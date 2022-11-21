@@ -23,7 +23,7 @@ function Events() {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("/Psychology_Events");
+    const response = await fetch("https://drc-server.onrender.com/Psychology_Events");
     setData1(await response.json());
   };
 
@@ -58,7 +58,7 @@ function Events() {
 
   const del = async (id) => {
     // console.log(id);
-    const response = await fetch(`/delete_Psychology_Events/${id}`, {
+    const response = await fetch(`https://drc-server.onrender.com/delete_Psychology_Events/${id}`, {
       method: "POST",
     });
     const data = await response.json();
@@ -92,7 +92,7 @@ function Events() {
     try {
       if (pdf) {
         await axios.post(
-          `/Psychology_Events_file_add/${id}`,
+          `https://drc-server.onrender.com/Psychology_Events_file_add/${id}`,
           {
             file: pdf,
           },
@@ -122,7 +122,7 @@ function Events() {
         setErrMsg("");
         console.log(file, caption);
         await axios.post(
-          `/Psychology_Events_add`,
+          `https://drc-server.onrender.com/Psychology_Events_add`,
           { file: file, title: caption },
           {
             headers: {

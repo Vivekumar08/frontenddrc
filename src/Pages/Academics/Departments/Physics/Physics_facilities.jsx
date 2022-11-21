@@ -18,7 +18,7 @@ const Physics_facilities = () => {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("/physics_facilities");
+    const response = await fetch("https://drc-server.onrender.com/physics_facilities");
     setData1(await response.json());
   };
 
@@ -31,7 +31,7 @@ const Physics_facilities = () => {
       if (file) {
         setErrMsg("");
         await axios.post(
-          `/physics_facilities_img_upload/${id}`,
+          `https://drc-server.onrender.com/physics_facilities_img_upload/${id}`,
           { file: file },
           {
             headers: {
@@ -55,7 +55,7 @@ const Physics_facilities = () => {
     try {
       const arr = { pid: pid, type: type };
       console.log(id, arr);
-      const response = await fetch(`/delete_physics_facilities_para/${id}`, {
+      const response = await fetch(`https://drc-server.onrender.com/delete_physics_facilities_para/${id}`, {
         method: "POST",
         body: JSON.stringify(arr),
         headers: { "Content-Type": "application/json" },
@@ -75,7 +75,7 @@ const Physics_facilities = () => {
 
   const del = async (id) => {
     console.log(id);
-    const response = await fetch(`/delete_physics_facilities/${id}`, {
+    const response = await fetch(`https://drc-server.onrender.com/delete_physics_facilities/${id}`, {
       method: "POST",
     });
     await response.json();
@@ -91,7 +91,7 @@ const Physics_facilities = () => {
     console.log(id);
     console.log(file_path1);
     await axios.post(
-      `/delete_pdf_link_physics_facilities_fac/${id}`,
+      `https://drc-server.onrender.com/delete_pdf_link_physics_facilities_fac/${id}`,
       { file_path1: file_path1, pid: pid },
       {
         method: "POST",
@@ -103,7 +103,7 @@ const Physics_facilities = () => {
     console.log(id);
     console.log(file_path1);
     await axios.post(
-      `/delete_img_physics_facilities_fac/${id}`,
+      `https://drc-server.onrender.com/delete_img_physics_facilities_fac/${id}`,
       { file_path1: file_path1, pid: pid },
       {
         method: "POST",
@@ -118,7 +118,7 @@ const Physics_facilities = () => {
         setErrMsg("");
         const arr = { para1: para };
         console.log(arr);
-        await fetch(`/physics_facilities_add_para/${id}`, {
+        await fetch(`https://drc-server.onrender.com/physics_facilities_add_para/${id}`, {
           method: "POST",
           body: JSON.stringify(arr),
           headers: { "Content-Type": "application/json" },
@@ -136,7 +136,7 @@ const Physics_facilities = () => {
   const handleSubmit_link = async (id, link) => {
     try {
       console.log(link);
-      await axios.post(`/physics_facilities_add_link/${id}`, {
+      await axios.post(`https://drc-server.onrender.com/physics_facilities_add_link/${id}`, {
         link: link,
       });
       setCaption("");
@@ -153,7 +153,7 @@ const Physics_facilities = () => {
       console.log(pdf);
       if (pdf) {
         await axios.post(
-          `/physics_facilities_file_upload/${id}`,
+          `https://drc-server.onrender.com/physics_facilities_file_upload/${id}`,
           {
             file: pdf,
           },
@@ -180,7 +180,7 @@ const Physics_facilities = () => {
       if (link.trim() !== "" && caption.trim() !== "") {
         // if (file) {
         setErrMsg("");
-        await axios.post(`/physics_facilities_upload`, {
+        await axios.post(`https://drc-server.onrender.com/physics_facilities_upload`, {
           title: link,
           description: caption,
         });

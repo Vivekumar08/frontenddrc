@@ -24,7 +24,7 @@ const Psycho_programoffered = () => {
 
   const fetchdata = async () => {
     const response = await fetch(
-      "/Psychology_ProgramOffered"
+      "https://drc-server.onrender.com/Psychology_ProgramOffered"
     );
     setData1(await response.json());
   };
@@ -50,7 +50,7 @@ const Psycho_programoffered = () => {
   const del = async (id) => {
     console.log(id);
     const response = await fetch(
-      `/delete_Psychology_ProgramOffered/${id}`,
+      `https://drc-server.onrender.com/delete_Psychology_ProgramOffered/${id}`,
       {
         method: "DELETE",
       }
@@ -76,7 +76,7 @@ const Psycho_programoffered = () => {
         setErrMsg("");
         console.log(formData);
         await axios.post(
-          `/Psychology_ProgramOffered_add`,
+          `https://drc-server.onrender.com/Psychology_ProgramOffered_add`,
           formData,
           {
             headers: {

@@ -27,7 +27,7 @@ const Physics_fac = () => {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("/Physics_faculty");
+    const response = await fetch("https://drc-server.onrender.com/Physics_faculty");
     setData1(await response.json());
   };
 
@@ -58,7 +58,7 @@ const Physics_fac = () => {
 
   const del = async (id) => {
     console.log(id);
-    const response = await fetch(`/delete_Physics_fac/${id}`, {
+    const response = await fetch(`https://drc-server.onrender.com/delete_Physics_fac/${id}`, {
       method: "POST",
     });
     const data = await response.json();
@@ -76,7 +76,7 @@ const Physics_fac = () => {
       if (pdf) {
         // setErrMsg("");
         await axios.post(
-          `/Physics_fac_cv_upload/${id}`,
+          `https://drc-server.onrender.com/Physics_fac_cv_upload/${id}`,
           {
             file: pdf,
           },
@@ -106,7 +106,7 @@ const Physics_fac = () => {
           // setErrMsg("");
           console.log(link, caption, imag, filter);
           const data = await axios.post(
-            `/Physics_fac_file_upload`,
+            `https://drc-server.onrender.com/Physics_fac_file_upload`,
             // { method: "POST" },
             { title: caption, description: link, file: imag, filter: filter },
             {

@@ -23,7 +23,7 @@ const Psy = () => {
 
 
   const fetchdata = async () => {
-    const response = await fetch("/Psy_About");
+    const response = await fetch("https://drc-server.onrender.com/Psy_About");
     const dat = await response.json();
     console.log(dat);
     {
@@ -55,7 +55,7 @@ const Psy = () => {
       const arr = { pid: pid, type: type };
       console.log(id, arr);
       const response = await fetch(
-        `/delete_Psy_About_data/${id}`,
+        `https://drc-server.onrender.com/delete_Psy_About_data/${id}`,
         {
           method: "POST",
           body: JSON.stringify(arr),
@@ -81,7 +81,7 @@ const Psy = () => {
         console.log(files);
         setErrMsg("");
         await axios.post(
-          `/Psy_About_add`,
+          `https://drc-server.onrender.com/Psy_About_add`,
           { file: files },
           {
             headers: {
@@ -107,7 +107,7 @@ const Psy = () => {
         setErrMsg("");
         const arr = { para1: para };
         console.log(arr);
-        await fetch(`/Psy_About_add_data/${id}`, {
+        await fetch(`https://drc-server.onrender.com/Psy_About_add_data/${id}`, {
           method: "POST",
           body: JSON.stringify(arr),
           headers: { "Content-Type": "application/json" },

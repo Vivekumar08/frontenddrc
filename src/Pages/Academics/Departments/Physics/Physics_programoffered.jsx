@@ -24,7 +24,7 @@ const Physics_programmesoffered = () => {
 
   const fetchdata = async () => {
     const response = await fetch(
-      "/Physics_ProgramOffered"
+      "https://drc-server.onrender.com/Physics_ProgramOffered"
     );
     setData1(await response.json());
   };
@@ -50,7 +50,7 @@ const Physics_programmesoffered = () => {
   const del = async (id) => {
     console.log(id);
     const response = await fetch(
-      `/delete_Physics_ProgramOffered/${id}`,
+      `https://drc-server.onrender.com/delete_Physics_ProgramOffered/${id}`,
       {
         method: "DELETE",
       }
@@ -76,7 +76,7 @@ const Physics_programmesoffered = () => {
         setErrMsg("");
         console.log(formData);
         await axios.post(
-          `/Physics_ProgramOffered_add`,
+          `https://drc-server.onrender.com/Physics_ProgramOffered_add`,
           formData,
           {
             headers: {

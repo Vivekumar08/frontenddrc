@@ -19,7 +19,7 @@ function Zoo_facilities() {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("/Zoo_Facilities");
+    const response = await fetch("https://drc-server.onrender.com/Zoo_Facilities");
     setData1(await response.json());
   };
 
@@ -32,7 +32,7 @@ function Zoo_facilities() {
       if (file) {
         setErrMsg("");
         await axios.post(
-          `/Zoo_Facilities_img_upload/${id}`,
+          `https://drc-server.onrender.com/Zoo_Facilities_img_upload/${id}`,
           { file: file },
           {
             headers: {
@@ -56,7 +56,7 @@ function Zoo_facilities() {
     try {
       const arr = { pid: pid, type: type };
       console.log(id, arr);
-      const response = await fetch(`/delete_Zoo_Facilities_para/${id}`, {
+      const response = await fetch(`https://drc-server.onrender.com/delete_Zoo_Facilities_para/${id}`, {
         method: "POST",
         body: JSON.stringify(arr),
         headers: { "Content-Type": "application/json" },
@@ -76,7 +76,7 @@ function Zoo_facilities() {
 
   const del = async (id) => {
     console.log(id);
-    const response = await fetch(`/delete_Zoo_Facilities/${id}`, {
+    const response = await fetch(`https://drc-server.onrender.com/delete_Zoo_Facilities/${id}`, {
       method: "POST",
     });
     await response.json();
@@ -92,7 +92,7 @@ function Zoo_facilities() {
     console.log(id);
     console.log(file_path1);
     await axios.post(
-      `/delete_pdf_link_Zoo_Facilities_fac/${id}`,
+      `https://drc-server.onrender.com/delete_pdf_link_Zoo_Facilities_fac/${id}`,
       { file_path1: file_path1, pid: pid },
       {
         method: "POST",
@@ -104,7 +104,7 @@ function Zoo_facilities() {
     console.log(id);
     console.log(file_path1);
     await axios.post(
-      `/delete_img_Zoo_Facilities_fac/${id}`,
+      `https://drc-server.onrender.com/delete_img_Zoo_Facilities_fac/${id}`,
       { file_path1: file_path1, pid: pid },
       {
         method: "POST",
@@ -119,7 +119,7 @@ function Zoo_facilities() {
         setErrMsg("");
         const arr = { para1: para };
         console.log(arr);
-        await fetch(`/Zoo_Facilities_add_para/${id}`, {
+        await fetch(`https://drc-server.onrender.com/Zoo_Facilities_add_para/${id}`, {
           method: "POST",
           body: JSON.stringify(arr),
           headers: { "Content-Type": "application/json" },
@@ -137,7 +137,7 @@ function Zoo_facilities() {
   const handleSubmit_link = async (id, link) => {
     try {
       console.log(link);
-      await axios.post(`/Zoo_Facilities_add_link/${id}`, {
+      await axios.post(`https://drc-server.onrender.com/Zoo_Facilities_add_link/${id}`, {
         link: link,
       });
       setCaption("");
@@ -154,7 +154,7 @@ function Zoo_facilities() {
       console.log(pdf);
       if (pdf) {
         await axios.post(
-          `/Zoo_Facilities_file_upload/${id}`,
+          `https://drc-server.onrender.com/Zoo_Facilities_file_upload/${id}`,
           {
             file: pdf,
           },
@@ -181,7 +181,7 @@ function Zoo_facilities() {
       if (link.trim() !== "" && caption.trim() !== "") {
         // if (file) {
         setErrMsg("");
-        await axios.post(`/Zoo_Facilities_upload`, {
+        await axios.post(`https://drc-server.onrender.com/Zoo_Facilities_upload`, {
           title: link,
           description: caption,
         });

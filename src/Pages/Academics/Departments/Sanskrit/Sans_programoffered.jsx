@@ -24,7 +24,7 @@ const Sans_programoffered = () => {
 
   const fetchdata = async () => {
     const response = await fetch(
-      "/Sanskrit_ProgramOffered"
+      "https://drc-server.onrender.com/Sanskrit_ProgramOffered"
     );
     setData1(await response.json());
   };
@@ -50,7 +50,7 @@ const Sans_programoffered = () => {
   const del = async (id) => {
     console.log(id);
     const response = await fetch(
-      `/delete_Sanskrit_ProgramOffered/${id}`,
+      `https://drc-server.onrender.com/delete_Sanskrit_ProgramOffered/${id}`,
       {
         method: "DELETE",
       }
@@ -76,7 +76,7 @@ const Sans_programoffered = () => {
         setErrMsg("");
         console.log(formData);
         await axios.post(
-          `/Sanskrit_ProgramOffered_add`,
+          `https://drc-server.onrender.com/Sanskrit_ProgramOffered_add`,
           formData,
           {
             headers: {

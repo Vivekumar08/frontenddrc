@@ -16,7 +16,7 @@ const Zoology_fac_data = (props) => {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("/Zoology_faculty");
+    const response = await fetch("https://drc-server.onrender.com/Zoology_faculty");
     setData1(await response.json());
   };
 

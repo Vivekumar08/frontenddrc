@@ -19,7 +19,7 @@ function Psycho_Facilities() {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("/Psycho_facilities");
+    const response = await fetch("https://drc-server.onrender.com/Psycho_facilities");
     setData1(await response.json());
   };
 
@@ -32,7 +32,7 @@ function Psycho_Facilities() {
       if (file) {
         setErrMsg("");
         await axios.post(
-          `/Psycho_facilities_img_upload/${id}`,
+          `https://drc-server.onrender.com/Psycho_facilities_img_upload/${id}`,
           { file: file },
           {
             headers: {
@@ -56,7 +56,7 @@ function Psycho_Facilities() {
     try {
       const arr = { pid: pid, type: type };
       console.log(id, arr);
-      const response = await fetch(`/delete_Psycho_facilities_para/${id}`, {
+      const response = await fetch(`https://drc-server.onrender.com/delete_Psycho_facilities_para/${id}`, {
         method: "POST",
         body: JSON.stringify(arr),
         headers: { "Content-Type": "application/json" },
@@ -76,7 +76,7 @@ function Psycho_Facilities() {
 
   const del = async (id) => {
     console.log(id);
-    const response = await fetch(`/delete_Psycho_facilities/${id}`, {
+    const response = await fetch(`https://drc-server.onrender.com/delete_Psycho_facilities/${id}`, {
       method: "POST",
     });
     await response.json();
@@ -92,7 +92,7 @@ function Psycho_Facilities() {
     console.log(id);
     console.log(file_path1);
     await axios.post(
-      `/delete_pdf_link_Psycho_facilities_fac/${id}`,
+      `https://drc-server.onrender.com/delete_pdf_link_Psycho_facilities_fac/${id}`,
       { file_path1: file_path1, pid: pid },
       {
         method: "POST",
@@ -104,7 +104,7 @@ function Psycho_Facilities() {
     console.log(id);
     console.log(file_path1);
     await axios.post(
-      `/delete_img_Psycho_facilities_fac/${id}`,
+      `https://drc-server.onrender.com/delete_img_Psycho_facilities_fac/${id}`,
       { file_path1: file_path1, pid: pid },
       {
         method: "POST",
@@ -119,7 +119,7 @@ function Psycho_Facilities() {
         setErrMsg("");
         const arr = { para1: para };
         console.log(arr);
-        await fetch(`/Psycho_facilities_add_para/${id}`, {
+        await fetch(`https://drc-server.onrender.com/Psycho_facilities_add_para/${id}`, {
           method: "POST",
           body: JSON.stringify(arr),
           headers: { "Content-Type": "application/json" },
@@ -137,7 +137,7 @@ function Psycho_Facilities() {
   const handleSubmit_link = async (id, link) => {
     try {
       console.log(link);
-      await axios.post(`/Psycho_facilities_add_link/${id}`, {
+      await axios.post(`https://drc-server.onrender.com/Psycho_facilities_add_link/${id}`, {
         link: link,
       });
       setCaption("");
@@ -154,7 +154,7 @@ function Psycho_Facilities() {
       console.log(pdf);
       if (pdf) {
         await axios.post(
-          `/Psycho_facilities_file_upload/${id}`,
+          `https://drc-server.onrender.com/Psycho_facilities_file_upload/${id}`,
           {
             file: pdf,
           },
@@ -181,7 +181,7 @@ function Psycho_Facilities() {
       if (link.trim() !== "" && caption.trim() !== "") {
         // if (file) {
         setErrMsg("");
-        await axios.post(`/Psycho_facilities_upload`, {
+        await axios.post(`https://drc-server.onrender.com/Psycho_facilities_upload`, {
           title: link,
           description: caption,
         });

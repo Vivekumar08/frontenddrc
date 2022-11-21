@@ -16,7 +16,7 @@ const Political_Science_fac_data_sup = (props) => {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("/Political_Science_faculty");
+    const response = await fetch("https://drc-server.onrender.com/Political_Science_faculty");
     setData1(await response.json());
   };
 

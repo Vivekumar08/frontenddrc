@@ -28,7 +28,7 @@ function Sanskrit_gallery() {
   let slideInterval;
   let intervalTime = 3000;
   const fetchdata = async () => {
-    const response = await fetch("/Psychology_Gallery");
+    const response = await fetch("https://drc-server.onrender.com/Psychology_Gallery");
     setData1(await response.json());
   };
 
@@ -73,7 +73,7 @@ function Sanskrit_gallery() {
   const del = async (id) => {
     console.log(id);
     const response = await fetch(
-      `/delete_Psychology_Gallery/${id}`,
+      `https://drc-server.onrender.com/delete_Psychology_Gallery/${id}`,
       {
         method: "DELETE",
       }
@@ -93,7 +93,7 @@ function Sanskrit_gallery() {
         formData.append("file", file);
 
         setErrMsg("");
-        await axios.post(`/Psychology_Gallery_add`, formData, {
+        await axios.post(`https://drc-server.onrender.com/Psychology_Gallery_add`, formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },

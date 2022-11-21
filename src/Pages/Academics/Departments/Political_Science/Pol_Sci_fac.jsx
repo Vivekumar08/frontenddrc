@@ -27,7 +27,7 @@ const Pol_Sci_fac = () => {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("/Political_Science_faculty");
+    const response = await fetch("https://drc-server.onrender.com/Political_Science_faculty");
     setData1(await response.json());
   };
 
@@ -58,7 +58,7 @@ const Pol_Sci_fac = () => {
 
   const del = async (id) => {
     console.log(id);
-    const response = await fetch(`/delete_Political_Science_faculty/${id}`, {
+    const response = await fetch(`https://drc-server.onrender.com/delete_Political_Science_faculty/${id}`, {
       method: "POST",
     });
     const data = await response.json();
@@ -76,7 +76,7 @@ const Pol_Sci_fac = () => {
       if (pdf) {
         // setErrMsg("");
         await axios.post(
-          `/Political_Science_faculty_cv_upload/${id}`,
+          `https://drc-server.onrender.com/Political_Science_faculty_cv_upload/${id}`,
           {
             file: pdf,
           },
@@ -106,7 +106,7 @@ const Pol_Sci_fac = () => {
           // setErrMsg("");
           console.log(link, caption, imag, filter);
           const data = await axios.post(
-            `/Political_Science_faculty_file_upload`,
+            `https://drc-server.onrender.com/Political_Science_faculty_file_upload`,
             // { method: "POST" },
             { title: caption, description: link, file: imag, filter: filter },
             {
