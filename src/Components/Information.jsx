@@ -8,13 +8,13 @@ function Information() {
   const [Publicinfo, setPublicinfo] = useState();
 
   const fetchdata = async () => {
-    const response_staff = await fetch("/Staff_notice");
+    const response_staff = await fetch("https://drc-server.onrender.com/Staff_notice");
     const Staff_data = await response_staff.json();
 
-    const response_Student = await fetch("/Student_notice");
+    const response_Student = await fetch("https://drc-server.onrender.com/Student_notice");
     const Stud_data = await response_Student.json();
 
-    const response_public = await fetch("/Public_notice");
+    const response_public = await fetch("https://drc-server.onrender.com/Public_notice");
     const Public_data = await response_public.json();
 
     if (Stud_data) {
@@ -41,7 +41,7 @@ function Information() {
           </span>
         </div>
         {/* content/body/messages */}
-        <div className="flex xl:flex-row flex-col items-center   mb-5 mt-8 lg:justify-between   ml-12 mr-12 ">
+        <div className="flex xl:flex-row flex-col items-center   mb-5 mt-8 lg:justify-between   ml-14 mr-10 ">
           <div className=" bg-[#d3d3d3] w-[20em] rounded-lg h-[600px]  text-lg font-semibold mb-5  ml-5 mr-10 ">
             <span className="bg-[#000080] rounded-t-lg flex flex-row justify-center z-10 text-white pb-4  px-4 ">
               <span className="mt-3">Notice for Students</span>
