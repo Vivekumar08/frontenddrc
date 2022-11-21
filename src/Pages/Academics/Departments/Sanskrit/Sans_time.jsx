@@ -23,7 +23,7 @@ const Sans_time = () => {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("/Sanskrit_Time");
+    const response = await fetch("https://drc-server.onrender.com/Sanskrit_Time");
     setData1(await response.json());
   };
 
@@ -48,7 +48,7 @@ const Sans_time = () => {
   const del = async (id) => {
     console.log(id);
     const response = await fetch(
-      `/delete_Sanskrit_Time/${id}`,
+      `https://drc-server.onrender.com/delete_Sanskrit_Time/${id}`,
       {
         method: "DELETE",
       }
@@ -73,7 +73,7 @@ const Sans_time = () => {
 
         setErrMsg("");
         console.log(formData);
-        await axios.post(`/Sanskrit_Time_add`, formData, {
+        await axios.post(`https://drc-server.onrender.com/Sanskrit_Time_add`, formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },

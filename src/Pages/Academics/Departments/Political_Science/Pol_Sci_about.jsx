@@ -24,7 +24,7 @@ const Pol_Sci = () => {
 
 
   const fetchdata = async () => {
-    const response = await fetch("/Pol_Sci_About");
+    const response = await fetch("https://drc-server.onrender.com/Pol_Sci_About");
     const dat = await response.json();
     console.log(dat);
     {
@@ -56,7 +56,7 @@ const Pol_Sci = () => {
       const arr = { pid: pid, type: type };
       console.log(id, arr);
       const response = await fetch(
-        `/delete_Pol_Sci_About_data/${id}`,
+        `https://drc-server.onrender.com/delete_Pol_Sci_About_data/${id}`,
         {
           method: "POST",
           body: JSON.stringify(arr),
@@ -82,7 +82,7 @@ const Pol_Sci = () => {
         console.log(files);
         setErrMsg("");
         await axios.post(
-          `/Pol_Sci_About_add`,
+          `https://drc-server.onrender.com/Pol_Sci_About_add`,
           { file: files },
           {
             headers: {
@@ -108,7 +108,7 @@ const Pol_Sci = () => {
         setErrMsg("");
         const arr = { para1: para };
         console.log(arr);
-        await fetch(`/Pol_Sci_About_add_data/${id}`, {
+        await fetch(`https://drc-server.onrender.com/Pol_Sci_About_add_data/${id}`, {
           method: "POST",
           body: JSON.stringify(arr),
           headers: { "Content-Type": "application/json" },

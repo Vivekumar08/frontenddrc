@@ -16,7 +16,7 @@ const Psychology_fac_data = (props) => {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("/Psychology_faculty");
+    const response = await fetch("https://drc-server.onrender.com/Psychology_faculty");
     setData1(await response.json());
   };
 

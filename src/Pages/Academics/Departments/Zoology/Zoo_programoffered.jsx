@@ -24,7 +24,7 @@ const Zoo_programoffered = () => {
 
   const fetchdata = async () => {
     const response = await fetch(
-      "/Zoology_ProgramOffered"
+      "https://drc-server.onrender.com/Zoology_ProgramOffered"
     );
     setData1(await response.json());
   };
@@ -50,7 +50,7 @@ const Zoo_programoffered = () => {
   const del = async (id) => {
     console.log(id);
     const response = await fetch(
-      `/delete_Zoology_ProgramOffered/${id}`,
+      `https://drc-server.onrender.com/delete_Zoology_ProgramOffered/${id}`,
       {
         method: "DELETE",
       }
@@ -76,7 +76,7 @@ const Zoo_programoffered = () => {
         setErrMsg("");
         console.log(formData);
         await axios.post(
-          `/Zoology_ProgramOffered_add`,
+          `https://drc-server.onrender.com/Zoology_ProgramOffered_add`,
           formData,
           {
             headers: {

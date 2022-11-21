@@ -20,7 +20,7 @@ function Sanskrit_Facilities() {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("/Sanskrit_Facilities");
+    const response = await fetch("https://drc-server.onrender.com/Sanskrit_Facilities");
     setData1(await response.json());
   };
 
@@ -33,7 +33,7 @@ function Sanskrit_Facilities() {
       if (file) {
         setErrMsg("");
         await axios.post(
-          `/Sanskrit_Facilities_img_upload/${id}`,
+          `https://drc-server.onrender.com/Sanskrit_Facilities_img_upload/${id}`,
           { file: file },
           {
             headers: {
@@ -57,7 +57,7 @@ function Sanskrit_Facilities() {
     try {
       const arr = { pid: pid, type: type };
       console.log(id, arr);
-      const response = await fetch(`/delete_Sanskrit_Facilities_para/${id}`, {
+      const response = await fetch(`https://drc-server.onrender.com/delete_Sanskrit_Facilities_para/${id}`, {
         method: "POST",
         body: JSON.stringify(arr),
         headers: { "Content-Type": "application/json" },
@@ -77,7 +77,7 @@ function Sanskrit_Facilities() {
 
   const del = async (id) => {
     console.log(id);
-    const response = await fetch(`/delete_Sanskrit_Facilities/${id}`, {
+    const response = await fetch(`https://drc-server.onrender.com/delete_Sanskrit_Facilities/${id}`, {
       method: "POST",
     });
     await response.json();
@@ -93,7 +93,7 @@ function Sanskrit_Facilities() {
     console.log(id);
     console.log(file_path1);
     await axios.post(
-      `/delete_pdf_link_Sanskrit_Facilities_fac/${id}`,
+      `https://drc-server.onrender.com/delete_pdf_link_Sanskrit_Facilities_fac/${id}`,
       { file_path1: file_path1, pid: pid },
       {
         method: "POST",
@@ -105,7 +105,7 @@ function Sanskrit_Facilities() {
     console.log(id);
     console.log(file_path1);
     await axios.post(
-      `/delete_img_Sanskrit_Facilities_fac/${id}`,
+      `https://drc-server.onrender.com/delete_img_Sanskrit_Facilities_fac/${id}`,
       { file_path1: file_path1, pid: pid },
       {
         method: "POST",
@@ -120,7 +120,7 @@ function Sanskrit_Facilities() {
         setErrMsg("");
         const arr = { para1: para };
         console.log(arr);
-        await fetch(`/Sanskrit_Facilities_add_para/${id}`, {
+        await fetch(`https://drc-server.onrender.com/Sanskrit_Facilities_add_para/${id}`, {
           method: "POST",
           body: JSON.stringify(arr),
           headers: { "Content-Type": "application/json" },
@@ -138,7 +138,7 @@ function Sanskrit_Facilities() {
   const handleSubmit_link = async (id, link) => {
     try {
       console.log(link);
-      await axios.post(`/Sanskrit_Facilities_add_link/${id}`, {
+      await axios.post(`https://drc-server.onrender.com/Sanskrit_Facilities_add_link/${id}`, {
         link: link,
       });
       setCaption("");
@@ -155,7 +155,7 @@ function Sanskrit_Facilities() {
       console.log(pdf);
       if (pdf) {
         await axios.post(
-          `/Sanskrit_Facilities_file_upload/${id}`,
+          `https://drc-server.onrender.com/Sanskrit_Facilities_file_upload/${id}`,
           {
             file: pdf,
           },
@@ -182,7 +182,7 @@ function Sanskrit_Facilities() {
       if (link.trim() !== "" && caption.trim() !== "") {
         // if (file) {
         setErrMsg("");
-        await axios.post(`/Sanskrit_Facilities_upload`, {
+        await axios.post(`https://drc-server.onrender.com/Sanskrit_Facilities_upload`, {
           title: link,
           description: caption,
         });
