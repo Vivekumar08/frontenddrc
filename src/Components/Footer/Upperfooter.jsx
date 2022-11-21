@@ -172,14 +172,17 @@ function Upperfooter() {
                       rel="noreferrer"
                       className="hover:text-white hover:font-semibold text-[#d3d3d3]"
                     >
-                      <FontAwesomeIcon icon={faEnvelope} className="mr-0 md:mr-1   " />
+                      <FontAwesomeIcon
+                        icon={faEnvelope}
+                        className="mr-0 md:mr-1   "
+                      />
                       <span className="ml-2">daulatramcollegedu@gmail.com</span>
                     </a>
                   </p>
                 </div>
               </ul>
               <div className="footer-map">
-              <iframe
+                <iframe
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3500.0416241843877!2d77.20486695!3d28.68840145!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cfd8d74105ee5%3A0xb06f76b10853f864!2sDaulat%20Ram%20College%2C%20Maurice%20Nagar%2C%20Roop%20Nagar%2C%20Delhi%2C%20110007!5e0!3m2!1sen!2sin!4v1659536675984!5m2!1sen!2sin"
                   // width="600"
                   // height="450"
@@ -193,21 +196,21 @@ function Upperfooter() {
               </div>
             </div>
           </div>
-          <div className="mt-1 bg-[#1E1F29]">
-            <p className="text-gray-200 m-2  text-center md:text-base text-sm h-12 pt-3">
+          <div className="mt-1 pb-1 bg-[#1E1F29]">
+            <p className="text-gray-200 mx-2  text-center md:text-base text-sm  pt-3">
               © All Rights Reserved
               <Link to="/" className="ml-3">
                 DAULAT RAM COLLEGE, <span className="ml-2  mr-2">|</span>
               </Link>
               Created by: CIC (Ishika Rai, Priyanshu Sisodiya, Riya Kumari,
               Vivek Kumar)
-              <br />
-            <p className="bg--[#1E1F29]">
+              {/* <br /> */}
+            </p>
+            <p className="flex justify-center text-sm md:text-base pt-1 ">
               icon by{" "}
               <Link target="_blank" to="https://icons8.com">
                 Icons8
               </Link>
-            </p>
             </p>
           </div>
         </div>

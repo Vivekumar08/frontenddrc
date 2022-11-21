@@ -51,7 +51,7 @@ const Events1 = () => {
   };
 
   const fetchdata = async () => {
-    const response = await fetch("/Events_and_Activities");
+    const response = await fetch("https://drc-server.onrender.com/Events_and_Activities");
     setData1(await response.json());
   };
 
@@ -82,7 +82,7 @@ const Events1 = () => {
 
   const del = async (id) => {
     console.log(id);
-    const response = await fetch(`/delete_Events_and_Activities/${id}`, {
+    const response = await fetch(`https://drc-server.onrender.com/delete_Events_and_Activities/${id}`, {
       method: "POST",
     });
     const data = await response.json();
@@ -96,7 +96,7 @@ const Events1 = () => {
   const handleSubmit_link = async (id, link) => {
     try {
       console.log(link);
-      await axios.post(`/Events_and_Activities_add_link/${id}`, {
+      await axios.post(`https://drc-server.onrender.com/Events_and_Activities_add_link/${id}`, {
         link: link,
       });
       setCaption("");
@@ -113,7 +113,7 @@ const Events1 = () => {
       console.log(pdf);
       if (pdf) {
         await axios.post(
-          `/Events_and_Activities_file_upload/${id}`,
+          `https://drc-server.onrender.com/Events_and_Activities_file_upload/${id}`,
           {
             file: pdf,
           },
@@ -141,7 +141,7 @@ const Events1 = () => {
         if (imag) {
           setErrMsg("");
           await axios.post(
-            `/Events_and_Activities_upload`,
+            `https://drc-server.onrender.com/Events_and_Activities_upload`,
             { title: caption, file: imag },
             {
               headers: {
@@ -169,7 +169,7 @@ const Events1 = () => {
   return (
     <>
       <div className="quick_links flex flex-row items-center mt-6 justify-center text-center text-white font-bold  ">
-        <span className="uppercase w-full font-bold text-2xl">
+        <span className="uppercase w-full font-bold text-base md:text-2xl">
           College Events and Activities
         </span>
       </div>
