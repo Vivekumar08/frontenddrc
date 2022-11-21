@@ -187,7 +187,7 @@ function Upperfooter() {
                   allowFullScreen=""
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
-                  className="w-[400px] lg:h-[400px] md:w-[350x] md:ml-12 md:h-[400px] xl-[600px] h-[300px] mb-5 mt-5"
+                  className="w-[350px] lg:h-[400px] md:w-[350x] md:ml-12 md:h-[400px] xl-[600px] h-[300px] mb-5 mt-5"
                 ></iframe>
                 <Icons />
               </div>
@@ -199,14 +199,15 @@ function Upperfooter() {
               <Link to="/" className="ml-3">
                 DAULAT RAM COLLEGE, <span className="ml-2  mr-2">|</span>
               </Link>
-              {/* Created by: DarkWeb Dreamers (CICians) */}
               Created by: CIC (Ishika Rai, Priyanshu Sisodiya, Riya Kumari,
               Vivek Kumar)
               <br />
+            <p className="bg--[#1E1F29]">
               icon by{" "}
               <Link target="_blank" to="https://icons8.com">
                 Icons8
               </Link>
+            </p>
             </p>
           </div>
         </div>
