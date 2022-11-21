@@ -27,7 +27,7 @@ const Psycho_fac = () => {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("/Psychology_faculty");
+    const response = await fetch("https://drc-server.onrender.com/Psychology_faculty");
     setData1(await response.json());
   };
 
@@ -58,7 +58,7 @@ const Psycho_fac = () => {
 
   const del = async (id) => {
     console.log(id);
-    const response = await fetch(`/delete_Psychology_faculty/${id}`, {
+    const response = await fetch(`https://drc-server.onrender.com/delete_Psychology_faculty/${id}`, {
       method: "POST",
     });
     const data = await response.json();
@@ -76,7 +76,7 @@ const Psycho_fac = () => {
       if (pdf) {
         // setErrMsg("");
         await axios.post(
-          `/Psychology_faculty_cv_upload/${id}`,
+          `https://drc-server.onrender.com/Psychology_faculty_cv_upload/${id}`,
           {
             file: pdf,
           },

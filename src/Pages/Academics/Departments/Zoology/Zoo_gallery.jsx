@@ -27,7 +27,7 @@ function Zoo_gallery() {
   let slideInterval;
   let intervalTime = 3000;
   const fetchdata = async () => {
-    const response = await fetch("/Zoology_Gallery");
+    const response = await fetch("https://drc-server.onrender.com/Zoology_Gallery");
     setData1(await response.json());
   };
 
@@ -72,7 +72,7 @@ function Zoo_gallery() {
   const del = async (id) => {
     console.log(id);
     const response = await fetch(
-      `/delete_Zoology_Gallery/${id}`,
+      `https://drc-server.onrender.com/delete_Zoology_Gallery/${id}`,
       {
         method: "DELETE",
       }
@@ -93,7 +93,7 @@ function Zoo_gallery() {
 
         setErrMsg("");
         await axios.post(
-          `/Zoology_Gallery_add`,
+          `https://drc-server.onrender.com/Zoology_Gallery_add`,
           formData,
           {
             headers: {

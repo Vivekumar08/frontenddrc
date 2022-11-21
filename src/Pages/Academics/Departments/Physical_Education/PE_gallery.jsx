@@ -26,7 +26,7 @@ function PE_gallery() {
   let slideInterval;
   let intervalTime = 3000;
   const fetchdata = async () => {
-    const response = await fetch("/PE_Gallery");
+    const response = await fetch("https://drc-server.onrender.com/PE_Gallery");
     setData1(await response.json());
     
   };
@@ -73,7 +73,7 @@ function PE_gallery() {
   const del = async (id) => {
     console.log(id);
     const response = await fetch(
-      `/delete_PE_Gallery/${id}`,
+      `https://drc-server.onrender.com/delete_PE_Gallery/${id}`,
       {
         method: "DELETE",
       }
@@ -93,7 +93,7 @@ function PE_gallery() {
         formData.append("file", file);
 
         setErrMsg("");
-        await axios.post(`/PE_Gallery_add`, formData, {
+        await axios.post(`https://drc-server.onrender.com/PE_Gallery_add`, formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },

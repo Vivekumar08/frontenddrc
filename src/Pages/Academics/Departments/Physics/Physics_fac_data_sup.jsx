@@ -16,7 +16,7 @@ const Physics_fac_data_sup = (props) => {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("/Physics_faculty");
+    const response = await fetch("https://drc-server.onrender.com/Physics_faculty");
     setData1(await response.json());
   };
 

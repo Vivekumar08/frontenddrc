@@ -26,7 +26,7 @@ function Physics_gallery() {
   let slideInterval;
   let intervalTime = 3000;
   const fetchdata = async () => {
-    const response = await fetch("/Physics_Gallery");
+    const response = await fetch("https://drc-server.onrender.com/Physics_Gallery");
     setData1(await response.json());
   };
 
@@ -72,7 +72,7 @@ function Physics_gallery() {
   const del = async (id) => {
     console.log(id);
     const response = await fetch(
-      `/delete_Physics_Gallery/${id}`,
+      `https://drc-server.onrender.com/delete_Physics_Gallery/${id}`,
       {
         method: "DELETE",
       }
@@ -93,7 +93,7 @@ function Physics_gallery() {
 
         setErrMsg("");
         await axios.post(
-          `/Physics_Gallery_add`,
+          `https://drc-server.onrender.com/Physics_Gallery_add`,
           formData,
           {
             headers: {

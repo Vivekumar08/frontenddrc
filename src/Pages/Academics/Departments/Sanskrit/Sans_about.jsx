@@ -22,7 +22,7 @@ const Sans = () => {
 
 
   const fetchdata = async () => {
-    const response = await fetch("/Sans_About");
+    const response = await fetch("https://drc-server.onrender.com/Sans_About");
     const dat = await response.json();
     console.log(dat);
     {
@@ -54,7 +54,7 @@ const Sans = () => {
       const arr = { pid: pid, type: type };
       console.log(id, arr);
       const response = await fetch(
-        `/delete_Sans_About_data/${id}`,
+        `https://drc-server.onrender.com/delete_Sans_About_data/${id}`,
         {
           method: "POST",
           body: JSON.stringify(arr),
@@ -80,7 +80,7 @@ const Sans = () => {
         console.log(files);
         setErrMsg("");
         await axios.post(
-          `/Sans_About_add`,
+          `https://drc-server.onrender.com/Sans_About_add`,
           { file: files },
           {
             headers: {
@@ -106,7 +106,7 @@ const Sans = () => {
         setErrMsg("");
         const arr = { para1: para };
         console.log(arr);
-        await fetch(`/Sans_About_add_data/${id}`, {
+        await fetch(`https://drc-server.onrender.com/Sans_About_add_data/${id}`, {
           method: "POST",
           body: JSON.stringify(arr),
           headers: { "Content-Type": "application/json" },

@@ -23,7 +23,7 @@ const PhysicalEdu_programmesoffer = () => {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("/PE_ProgramOffered");
+    const response = await fetch("https://drc-server.onrender.com/PE_ProgramOffered");
     setData1(await response.json());
   };
 
@@ -48,7 +48,7 @@ const PhysicalEdu_programmesoffer = () => {
   const del = async (id) => {
     console.log(id);
     const response = await fetch(
-      `/delete_PE_ProgramOffered/${id}`,
+      `https://drc-server.onrender.com/delete_PE_ProgramOffered/${id}`,
       {
         method: "DELETE",
       }
@@ -74,7 +74,7 @@ const PhysicalEdu_programmesoffer = () => {
         setErrMsg("");
         console.log(formData);
         await axios.post(
-          `/PE_ProgramOffered_add`,
+          `https://drc-server.onrender.com/PE_ProgramOffered_add`,
           formData,
           {
             headers: {

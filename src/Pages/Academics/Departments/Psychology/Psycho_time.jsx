@@ -23,7 +23,7 @@ const Psycho_time = () => {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("/Psychology_Time");
+    const response = await fetch("https://drc-server.onrender.com/Psychology_Time");
     setData1(await response.json());
   };
 
@@ -48,7 +48,7 @@ const Psycho_time = () => {
   const del = async (id) => {
     console.log(id);
     const response = await fetch(
-      `/delete_Psychology_Time/${id}`,
+      `https://drc-server.onrender.com/delete_Psychology_Time/${id}`,
       {
         method: "DELETE",
       }
@@ -74,7 +74,7 @@ const Psycho_time = () => {
         setErrMsg("");
         console.log(formData);
         await axios.post(
-          `/Psychology_Time_add`,
+          `https://drc-server.onrender.com/Psychology_Time_add`,
           formData,
           {
             headers: {
