@@ -6,6 +6,7 @@ import Dropzone from "react-dropzone";
 import axios from "axios";
 import Sidebar from "../../Components/Sidebar/Sidebar";
 import Founder_banner from "../../Components/Banners/Founder_banner";
+import { URLs } from "../SocietiesInfo";
 
 const Founder = () => {
   const [data1, setData1] = useState();
@@ -20,7 +21,7 @@ const Founder = () => {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("https://drc-server.onrender.com/Founder_About");
+    const response = await fetch(`${URLs}/Founder_About`);
     const dat = await response.json();
     console.log(dat);
     {
@@ -46,13 +47,12 @@ const Founder = () => {
     fetchdata();
   }, []);
 
-
   const del = async (id, pid, type) => {
     try {
       const arr = { pid: pid, type: type };
       console.log(id, arr);
       const response = await fetch(
-        `https://drc-server.onrender.com/delete_Founder_About_data/${id}`,
+        `${URLs}/delete_Founder_About_data/${id}`,
         {
           method: "POST",
           body: JSON.stringify(arr),
@@ -78,7 +78,7 @@ const Founder = () => {
         console.log(files);
         setErrMsg("");
         await axios.post(
-          `https://drc-server.onrender.com/Founder_About_add`,
+          `${URLs}/Founder_About_add`,
           { file: files },
           {
             headers: {
@@ -104,11 +104,14 @@ const Founder = () => {
         setErrMsg("");
         const arr = { para1: para };
         console.log(arr);
-        await fetch(`https://drc-server.onrender.com/Founder_About_add_data/${id}`, {
-          method: "POST",
-          body: JSON.stringify(arr),
-          headers: { "Content-Type": "application/json" },
-        });
+        await fetch(
+          `${URLs}/Founder_About_add_data/${id}`,
+          {
+            method: "POST",
+            body: JSON.stringify(arr),
+            headers: { "Content-Type": "application/json" },
+          }
+        );
         setPara("");
         setAuth(true);
         fetchdata();
@@ -138,14 +141,14 @@ const Founder = () => {
             {data1 &&
               data1.img_data.file_path &&
               data1.img_data.file_path.map((elem) => {
-                var path = elem.file_path1.replace(/\\/g, "/");
+                // var path = elem.file_path1.replace(/\\/g, "/");
                 // var path = path2.slice(19);
-                console.log(path);
+                console.log(elem.file_path1);
                 return (
                   <>
                     <div className=" flex flex-row  items-center p-4">
                       <img
-                        src={path}
+                        src={`${URLs}/fileinfo/${elem.file_path1}`}
                         style={{
                           width: "300px",
                           height: "250px",
@@ -160,7 +163,7 @@ const Founder = () => {
                               icon={faTrashCan}
                               size="lg"
                               className=" cursor-pointer   hover:text-red-500"
-                              onClick={() => del(data1._id,elem._id,"link")}
+                              onClick={() => del(data1._id, elem._id, "link")}
                             ></FontAwesomeIcon>
                           </div>
                         </>

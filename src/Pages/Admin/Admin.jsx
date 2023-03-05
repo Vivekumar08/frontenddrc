@@ -25,7 +25,7 @@ const Admin = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(user, pwd);
-    const response = await fetch("https://drc-server.onrender.com/AdminLogin", {
+    const response = await fetch("http://localhost:4000/AdminLogin", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

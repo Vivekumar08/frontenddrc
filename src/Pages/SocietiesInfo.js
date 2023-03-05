@@ -98,3 +98,5 @@ export const SocietiesInfo = [
 
 
 ];
+
+export const URLs = "http://localhost:4000";
