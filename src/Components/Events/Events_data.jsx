@@ -45,14 +45,15 @@ const Events_data = (props) => {
         <div className="small_box">
           {props.img_data.file_path &&
             props.img_data.file_path.map((elem) => {
-              var path2 = elem.file_path1.replace(/\\/g, "/");
-              var path = path2.slice(19);
+              // var path2 = elem.file_path1.replace(/\\/g, "/");
+              // var path = path2.slice(19);
               return (
                 <>
                   <img
                     className="event_img z=-10"
                     style={{ width: "300px", height: "300px" }}
-                    src={path}
+                    src={`https://drc-server.onrender.com/fileinfo/${elem.file_path1}`}
+
                     alt={props.title}
                   />
                   <span className="event_name text-4xl font-bold  text-justify">
@@ -63,8 +64,8 @@ const Events_data = (props) => {
             })}
           {props.img_data &&
             props.img_data.pdf_path.map((elem) => {
-              const path2 = elem.pdf_path1.replace(/\\/g, "/");
-              const path = path2.slice(19);
+              // const path2 = elem.pdf_path1.replace(/\\/g, "/");
+              // const path = path2.slice(19);
               return (
                 <>
                   {elem.pdf_mimetype1 === "text/link" ? (
@@ -75,7 +76,10 @@ const Events_data = (props) => {
                     </>
                   ) : (
                     <>
-                      <a href={path}>
+                      <a 
+                        href={`https://drc-server.onrender.com/fileinfo/${elem.pdf_path1}`}
+                      
+                      >
                         <button className="read_btn ">Read More </button>
                       </a>
                     </>

@@ -137,14 +137,14 @@ const Chairperson = () => {
             {data1 &&
               data1.img_data.file_path &&
               data1.img_data.file_path.map((elem) => {
-                var path2 = elem.file_path1.replace(/\\/g, "/");
-                var path = path2.slice(19);
+                // var path2 = elem.file_path1.replace(/\\/g, "/");
+                // var path = path2.slice(19);
                 // console.log(path);
                 return (
                   <>
                     <div className="flex flex-row  items-center p-4">
                       <img
-                        src={path}
+                        src={`https://drc-server.onrender.com/fileinfo/${elem.file_path1}`}
                         style={{
                           width: "300px",
                           height: "250px",

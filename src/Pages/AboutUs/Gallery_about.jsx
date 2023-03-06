@@ -157,9 +157,9 @@ function Gallery_about() {
                 {data1 &&
                   data1.map((curElem, index) => {
                     const { _id, file_path } = curElem;
-                    var path_pic = file_path;
-                    var path2 = path_pic.replace(/\\/g, "/");
-                    var path = path2.slice(19);
+                    // var path_pic = file_path;
+                    // var path2 = path_pic.replace(/\\/g, "/");
+                    // var path = path2.slice(19);
                     return (
                       <>
                         <div
@@ -168,7 +168,7 @@ function Gallery_about() {
                           }
                           key={_id}
                         >
-                          <img src={path} className="w-full h-[500px]" alt={path} />
+                          <img src={`https://drc-server.onrender.com/fileinfo/${file_path}`} className="w-full h-[500px]" alt={""} />
                         </div>
                       </>
                     );
@@ -187,16 +187,16 @@ function Gallery_about() {
               auth &&
               data1.map((curElem) => {
                 const { _id, file_path } = curElem;
-                var path_pic = file_path;
-                var path2 = path_pic.replace(/\\/g, "/");
-                var path = path2.slice(19);
+                // var path_pic = file_path;
+                // var path2 = path_pic.replace(/\\/g, "/");
+                // var path = path2.slice(19);
                 return (
                   <>
                     <div class="flex flex-col items-center" key={_id}>
                       <img
-                        src={path}
+                        src={`https://drc-server.onrender.com/fileinfo/${file_path}`}
                         style={{ height: "250px", width: "250px" }}
-                        alt={path}
+                        alt={""}
                       />
                       <div>
                         <FontAwesomeIcon

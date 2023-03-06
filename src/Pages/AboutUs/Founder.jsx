@@ -148,7 +148,7 @@ const Founder = () => {
                   <>
                     <div className=" flex flex-row  items-center p-4">
                       <img
-                        src={`${URLs}/fileinfo/${elem.file_path1}`}
+                        src={`https://drc-server.onrender.com/fileinfo/${elem.file_path1}`}
                         style={{
                           width: "300px",
                           height: "250px",

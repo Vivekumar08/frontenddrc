@@ -137,9 +137,9 @@ const Publications_res = () => {
             {data1 &&
               data1.map((curElem) => {
                 const { _id, title, file_path, description } = curElem;
-                var path_pic = file_path;
-                var path2 = path_pic.replace(/\\/g, "/");
-                var path = path2.slice(19);
+                // var path_pic = file_path;
+                // var path2 = path_pic.replace(/\\/g, "/");
+                // var path = path2.slice(19);
                 return (
                   <>
                     <div class="card2 mb-10" key={_id}>
@@ -150,7 +150,7 @@ const Publications_res = () => {
                         <div class="info2 ml-4 w-full ">
                           <p className="text-justify mr-16">{title}</p>
                           <br />
-                          <a href={path} className="">
+                          <a href={`https://drc-server.onrender.com/fileinfo/${file_path}`} className="">
                             <button className="w-[80%]">View</button>
                           </a>
                           {auth && (

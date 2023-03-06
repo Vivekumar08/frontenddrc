@@ -72,13 +72,17 @@ function Information() {
                   const cur_date = new Date();
                   const diffTime = Math.abs(exp_date) - Math.abs(cur_date);
                   // const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-                  var path2 = file_path.replace(/\\/g, "/");
-                  var path = path2.slice(19);
+                  // var path2 = file_path.replace(/\\/g, "/");
+                  // var path = path2.slice(19);
                   return (
                     <>
                       {file_mimetype !== "text/link" ? (
                         <>
-                          <a href={path} target="_blank" key={_id}>
+                          <a
+                            href={`https://drc-server.onrender.com/fileinfo/${file_path}`}
+                            target="_blank"
+                            key={_id}
+                          >
                             <div className="flex items-center   ">
                               <span className="information  hover:font-semibold hover:text-blue-600 text-justify   ml-4 text-sm mb-1 mt-4">
                                 {title}
@@ -148,7 +152,11 @@ function Information() {
                     <>
                       {file_mimetype !== "text/link" ? (
                         <>
-                          <a href={path} target="_blank" key={_id}>
+                          <a
+                            href={`https://drc-server.onrender.com/fileinfo/${file_path}`}
+                            target="_blank"
+                            key={_id}
+                          >
                             <div className="flex items-center   ">
                               <span className="information  hover:font-semibold hover:text-blue-600 text-justify   ml-4 text-sm mb-2 mt-4">
                                 {title}
@@ -218,7 +226,11 @@ function Information() {
                     <>
                       {file_mimetype !== "text/link" ? (
                         <>
-                          <a href={path} target="_blank" key={_id}>
+                          <a
+                            href={`https://drc-server.onrender.com/fileinfo/${file_path}`}
+                            target="_blank"
+                            key={_id}
+                          >
                             <div className="flex items-center   ">
                               <span className="information  hover:font-semibold hover:text-blue-600 text-justify   ml-4 text-sm mb-2 mt-4">
                                 {title}
