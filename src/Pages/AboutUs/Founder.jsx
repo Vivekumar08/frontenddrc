@@ -21,7 +21,7 @@ const Founder = () => {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch(`${URLs}/Founder_About`);
+    const response = await fetch(`https://drc-server.onrender.com/Founder_About`);
     const dat = await response.json();
     console.log(dat);
     {
@@ -52,7 +52,7 @@ const Founder = () => {
       const arr = { pid: pid, type: type };
       console.log(id, arr);
       const response = await fetch(
-        `${URLs}/delete_Founder_About_data/${id}`,
+        `https://drc-server.onrender.com/delete_Founder_About_data/${id}`,
         {
           method: "POST",
           body: JSON.stringify(arr),
@@ -78,7 +78,7 @@ const Founder = () => {
         console.log(files);
         setErrMsg("");
         await axios.post(
-          `${URLs}/Founder_About_add`,
+          `https://drc-server.onrender.com/Founder_About_add`,
           { file: files },
           {
             headers: {
@@ -105,7 +105,7 @@ const Founder = () => {
         const arr = { para1: para };
         console.log(arr);
         await fetch(
-          `${URLs}/Founder_About_add_data/${id}`,
+          `https://drc-server.onrender.com/Founder_About_add_data/${id}`,
           {
             method: "POST",
             body: JSON.stringify(arr),
