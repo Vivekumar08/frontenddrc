@@ -56,9 +56,12 @@ const Ethics = () => {
 
   const del = async (id) => {
     console.log(id);
-    const response = await fetch(`https://drc-server.onrender.com/delete_Ethics/${id}`, {
-      method: "DELETE",
-    });
+    const response = await fetch(
+      `https://drc-server.onrender.com/delete_Ethics/${id}`,
+      {
+        method: "DELETE",
+      }
+    );
     const data = await response.json();
     if (data || response.status === 200) {
       fetchdata();
@@ -78,11 +81,15 @@ const Ethics = () => {
         formData.append("heading", heading);
 
         setErrMsg("");
-        await axios.post(`https://drc-server.onrender.com/Ethics_add`, formData, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        });
+        await axios.post(
+          `https://drc-server.onrender.com/Ethics_add`,
+          formData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
         setCaption("");
         setHead("");
         setLink("");
@@ -115,7 +122,7 @@ const Ethics = () => {
           link: link,
           title: caption,
           file: file,
-          heading:heading,
+          heading: heading,
         }),
       }
     );
@@ -451,57 +458,59 @@ const Ethics = () => {
               </figure>
             </div>
           </div>
-          {data1 && data1.map((curElem) => {
-            const { _id, heading, title, file_path, link } = curElem;
-            var path_pic = file_path;
-            var path2 = path_pic.replace(/\\/g, "/");
-            var path = path2.slice(19);
-            return (
-              <>
-                <h1 className="text-xl md:text-3xl font-bold mb-2 mt-5 flex flex-row justify-left items-center ">
-                  {heading}
-                </h1>
-                <div className="flex flex-row mb-2 ml-5">
-                  <li className="mt-2 list-none" key={_id}>
-                    <div className="flex flex-col mr-10 ">
-                      <h1 className="mt-5">
-                        <FontAwesomeIcon
-                          icon={faArrowRight}
-                          className="ml-3 font-medium text-justify text-base md:text-lg  md:text-left text-blue-400"
-                        />
-                        <a
-                          href={path}
-                          target="_blank"
-                          className="ml-1 font-medium text-justify text-base md:text-lg  md:text-left text-blue-400 hover:pl-3"
-                        >
-                          {" "}
-                          {link}{" "}
-                        </a>
-                        <p className=" ml-3 mt-2 leading-14 font-medium text-justify text-base md:text-lg">
-                          {title}
-                        </p>
-                      </h1>
-                    </div>
-                  </li>
-
-                  <span className="ml-auto">
-                    {auth && (
-                      <>
-                        <div className="flex flex-col">
+          {data1 &&
+            data1.map((curElem) => {
+              const { _id, heading, title, file_path, link } = curElem;
+              // var path_pic = file_path;
+              // var path2 = path_pic.replace(/\\/g, "/");
+              // var path = path2.slice(19);
+              return (
+                <>
+                  <h1 className="text-xl md:text-3xl font-bold mb-2 mt-5 flex flex-row justify-left items-center ">
+                    {heading}
+                  </h1>
+                  <div className="flex flex-row mb-2 ml-5">
+                    <li className="mt-2 list-none" key={_id}>
+                      <div className="flex flex-col mr-10 ">
+                        <h1 className="mt-5">
                           <FontAwesomeIcon
-                            icon={faTrashCan}
-                            size="lg"
-                            className="mt-16 cursor-pointer ml-auto mr-16 hover:text-red-500"
-                            onClick={() => del(_id)}
-                          ></FontAwesomeIcon>
-                        </div>
-                      </>
-                    )}
-                  </span>
-                </div>
-              </>
-            );
-          })}
+                            icon={faArrowRight}
+                            className="ml-3 font-medium text-justify text-base md:text-lg  md:text-left text-blue-400"
+                          />
+                          <a
+                            href={`https://drc-server.onrender.com/fileinfo/${file_path}`}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="ml-1 font-medium text-justify text-base md:text-lg  md:text-left text-blue-400 hover:pl-3"
+                          >
+                            {" "}
+                            {link}{" "}
+                          </a>
+                          <p className=" ml-3 mt-2 leading-14 font-medium text-justify text-base md:text-lg">
+                            {title}
+                          </p>
+                        </h1>
+                      </div>
+                    </li>
+
+                    <span className="ml-auto">
+                      {auth && (
+                        <>
+                          <div className="flex flex-col">
+                            <FontAwesomeIcon
+                              icon={faTrashCan}
+                              size="lg"
+                              className="mt-16 cursor-pointer ml-auto mr-16 hover:text-red-500"
+                              onClick={() => del(_id)}
+                            ></FontAwesomeIcon>
+                          </div>
+                        </>
+                      )}
+                    </span>
+                  </div>
+                </>
+              );
+            })}
           {auth && (
             <>
               <form

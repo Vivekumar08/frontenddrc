@@ -71,11 +71,15 @@ const Bulletins_Admission = () => {
 
         setErrMsg("");
         console.log(formData);
-        await axios.post(`https://drc-server.onrender.com/bulletin_add`, formData, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        });
+        await axios.post(
+          `https://drc-server.onrender.com/bulletin_add`,
+          formData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
         setCaption("");
         setLink("");
         setFile("");
@@ -128,9 +132,9 @@ const Bulletins_Admission = () => {
             {data1
               ? data1.map((curElem) => {
                   const { _id, title, file_path, link } = curElem;
-                  var path_pic = file_path;
-                  var path2 = path_pic.replace(/\\/g, "/");
-                  var path = path2.slice(19);
+                  // var path_pic = file_path;
+                  // var path2 = path_pic.replace(/\\/g, "/");
+                  // var path = path2.slice(19);
                   return (
                     <>
                       <div class="card2 ml-2 mb-10 " key={_id}>
@@ -139,7 +143,10 @@ const Bulletins_Admission = () => {
                           <div class="info2 ml-4 w-full">
                             <p className="text-justify">{title}</p>
                             <br />
-                            <a href={path} className="">
+                            <a
+                              href={`https://drc-server.onrender.com/fileinfo/${file_path}`}
+                              className=""
+                            >
                               <button className="w-[100%]">View</button>
                             </a>
                             {auth && (

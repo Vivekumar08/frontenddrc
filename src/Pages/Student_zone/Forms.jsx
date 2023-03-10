@@ -24,7 +24,9 @@ const forms = () => {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("https://drc-server.onrender.com/StudentZone_forms");
+    const response = await fetch(
+      "https://drc-server.onrender.com/StudentZone_forms"
+    );
     setData1(await response.json());
   };
 
@@ -159,7 +161,7 @@ const forms = () => {
 
         <div className="w-[1100px] mb-5">
           <h2 className=" text-3xl md:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center   ">
-            Forms for Students 
+            Forms for Students
           </h2>
           <div className="main flex-col ">
             <table className=" text-xs md:text-base leading-5 w-80 h-40 ml-3 md:table-fixed  md:ml-28 lg:ml-32 md:w-[500px] lg:w-[800px] md:h-[180px] mt-1 ">
@@ -173,9 +175,9 @@ const forms = () => {
                 data1.sort(sortOn("link")).map((curElem) => {
                   const { _id, title, file_path, link, file_mimetype } =
                     curElem;
-                  var path_pic = file_path;
-                  var path2 = path_pic.replace(/\\/g, "/");
-                  var path = path2.slice(19);
+                  // var path_pic = file_path;
+                  // var path2 = path_pic.replace(/\\/g, "/");
+                  // var path = path2.slice(19);
                   return (
                     <>
                       <tr className=" ">
@@ -198,7 +200,11 @@ const forms = () => {
                             </>
                           ) : (
                             <>
-                              <a href={path} target="_blank" rel="noreferrer">
+                              <a
+                                href={`https://drc-server.onrender.com/fileinfo/${file_path}`}
+                                target="_blank"
+                                rel="noreferrer"
+                              >
                                 {" "}
                                 <button className="btn">Click Here</button>
                               </a>{" "}

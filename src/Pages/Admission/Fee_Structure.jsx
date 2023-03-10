@@ -183,9 +183,9 @@ const Fee_Structure = () => {
           {data1 ? (
             data1.map((curElem) => {
               const { _id, title, file_path, link } = curElem;
-              var path_pic = file_path;
-              var path2 = path_pic.replace(/\\/g, "/");
-              var path = path2.slice(19);
+              // var path_pic = file_path;
+              // var path2 = path_pic.replace(/\\/g, "/");
+              // var path = path2.slice(19);
               return (
                 <>
                   <div className="flex flex-row mb-5 ml-5">
@@ -210,7 +210,7 @@ const Fee_Structure = () => {
                           ) : (
                             <>
                               <a
-                                href={path}
+                                href={`https://drc-server.onrender.com/fileinfo/${file_path}`}
                                 target="_blank"
                                 rel="noreferrer"
                                 className="ml-1 font-medium text-justify text-base md:text-lg  md:text-left text-blue-400 hover:pl-3"

@@ -7,9 +7,9 @@ const NavLinks = () => {
   const [subHeading, setSubHeading] = useState("");
   return (
     <>
-      {links.map((link) => (
+      {links.map((link,i) => (
         <>
-          <div className="z-50">
+          <div className="z-50" key={i}>
             <div className=" text-left xl:cursor-pointer group ">
               <h1
                 className="py-4 font-bold uppercase flex justify-between  items-center xl:pr-0  group"
@@ -43,9 +43,9 @@ const NavLinks = () => {
                     ></div>
                   </div>
                   <div className="  grid grid-cols-1 bg-white rounded-lg">
-                    {link.links.map((slink) => (
+                    {link.links.map((slink,i) => (
                       <>
-                        <div>
+                        <div key={i}>
                           {slink.name != "Annual Report" && (
                             <Link to={slink.link} className="hover:text-white">
                               <li className="text-base m-1 p-1 pl-2 pr-2 text-black  rounded-xl outline-none hover:text-white hover:bg-[#000080] ">
@@ -79,9 +79,9 @@ const NavLinks = () => {
             >
               <div>
 
-                {link.links.map((slink) => (
+                {link.links.map((slink,i) => (
                   <>
-                    <div>
+                    <div key={i}>
                       {slink.name != "Annual Report" && (
                         <Link to={slink.link} className="hover:text-white">
                           <li className="py-3 pl-14 ">

@@ -25,7 +25,9 @@ const Internal = () => {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("https://drc-server.onrender.com/StudentZone_Internal");
+    const response = await fetch(
+      "https://drc-server.onrender.com/StudentZone_Internal"
+    );
     setData1(await response.json());
   };
 
@@ -160,7 +162,8 @@ const Internal = () => {
 
         <div className="w-[1100px] mb-5">
           <h2 className=" text-2xl md:text-2xl lg:text-4xl md:ml-36 uppercase font-bold mb-5 mt-[5%]  flex flex-row lg:justify-center items-center   ">
-Internal Assessment        </h2>
+            Internal Assessment{" "}
+          </h2>
           <div className="main flex-col ">
             <table className=" text-xs md:text-base  w-80 h-40  ml-1 md:table-fixed xl:ml-60  md:ml-32 md:w-[420px] lg:ml-44 sm:w-[480px] lg:w-[550px] xl:w-[750px] md:h-[180px] mt-1 ">
               <tr className="h-20 text-lg">
@@ -173,9 +176,9 @@ Internal Assessment        </h2>
                 data1.sort(sortOn("link")).map((curElem) => {
                   const { _id, title, file_path, link, file_mimetype } =
                     curElem;
-                  var path_pic = file_path;
-                  var path2 = path_pic.replace(/\\/g, "/");
-                  var path = path2.slice(19);
+                  // var path_pic = file_path;
+                  // var path2 = path_pic.replace(/\\/g, "/");
+                  // var path = path2.slice(19);
                   return (
                     <>
                       <tr className=" ">
@@ -198,7 +201,11 @@ Internal Assessment        </h2>
                             </>
                           ) : (
                             <>
-                              <a href={path} target="_blank" rel="noreferrer">
+                              <a
+                                href={`https://drc-server.onrender.com/fileinfo/${file_path}`}
+                                target="_blank"
+                                rel="noreferrer"
+                              >
                                 {" "}
                                 <button className="btn">Click Here</button>
                               </a>{" "}

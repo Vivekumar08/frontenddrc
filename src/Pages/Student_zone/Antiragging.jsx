@@ -61,9 +61,12 @@ const Antiragg = () => {
 
   const del = async (id) => {
     console.log(id);
-    const response = await fetch(`https://drc-server.onrender.com/delete_Antiragg/${id}`, {
-      method: "DELETE",
-    });
+    const response = await fetch(
+      `https://drc-server.onrender.com/delete_Antiragg/${id}`,
+      {
+        method: "DELETE",
+      }
+    );
     const data = await response.json();
     if (data || response.status === 200) {
       fetchdata();
@@ -91,11 +94,15 @@ const Antiragg = () => {
         formData.append("title", caption);
 
         setErrMsg("");
-        await axios.post(`https://drc-server.onrender.com/Antiragg_add`, formData, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        });
+        await axios.post(
+          `https://drc-server.onrender.com/Antiragg_add`,
+          formData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
         setCaption("");
         setLink("");
         setFile(null);
@@ -114,17 +121,20 @@ const Antiragg = () => {
   const handleSubmit1 = async (e) => {
     e.preventDefault();
     console.log(link, caption, file);
-    const response = await fetch("https://drc-server.onrender.com/Antiragg_add_link", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        link: link,
-        title: caption,
-        file: file,
-      }),
-    });
+    const response = await fetch(
+      "https://drc-server.onrender.com/Antiragg_add_link",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          link: link,
+          title: caption,
+          file: file,
+        }),
+      }
+    );
     const data = await response.json();
     if (data && response.status === 200) {
       setCaption("");
@@ -164,9 +174,9 @@ const Antiragg = () => {
                 data1.sort(sortOn("link")).map((curElem) => {
                   const { _id, title, file_path, link, file_mimetype } =
                     curElem;
-                  var path_pic = file_path;
-                  var path2 = path_pic.replace(/\\/g, "/");
-                  var path = path2.slice(19);
+                  // var path_pic = file_path;
+                  // var path2 = path_pic.replace(/\\/g, "/");
+                  // var path = path2.slice(19);
                   return (
                     <>
                       <tr className=" ">
@@ -189,7 +199,11 @@ const Antiragg = () => {
                             </>
                           ) : (
                             <>
-                              <a href={path} target="_blank" rel="noreferrer">
+                              <a
+                                href={`https://drc-server.onrender.com/fileinfo/${file_path}`}
+                                target="_blank"
+                                rel="noreferrer"
+                              >
                                 {" "}
                                 <button className="btn">Click Here</button>
                               </a>{" "}

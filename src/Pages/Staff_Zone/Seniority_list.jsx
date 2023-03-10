@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
-import AuthContext from "../../Context/AuthProvider"
+import AuthContext from "../../Context/AuthProvider";
 import Dropzone from "react-dropzone";
 import axios from "axios";
 import Staff_side from "../../Components/Sidebar/Staff_side";
@@ -73,11 +73,15 @@ const Seniority_list = () => {
 
         setErrMsg("");
         console.log(formData);
-        await axios.post(`https://drc-server.onrender.com/Senior_list_add`, formData, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        });
+        await axios.post(
+          `https://drc-server.onrender.com/Senior_list_add`,
+          formData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
         setCaption("");
         setLink("");
         setFile("");
@@ -97,50 +101,57 @@ const Seniority_list = () => {
   return (
     <div className=" flex flex-col">
       <div
-          className="Banner"
-          style={{ backgroundImage: "url(/images/img1.jpeg)" }}
-        >
-          <div className="name">
-            <div className="flex flex-row justify-center">
-              <p className="  text-[#fff] text-6xl  mt-12 font-bold  p-5 flex justify-center w-full rounded-md  ">
-                Seniority List{" "}
-              </p>
-            </div>
+        className="Banner"
+        style={{ backgroundImage: "url(/images/img1.jpeg)" }}
+      >
+        <div className="name">
+          <div className="flex flex-row justify-center">
+            <p className="  text-[#fff] text-6xl  mt-12 font-bold  p-5 flex justify-center w-full rounded-md  ">
+              Seniority List{" "}
+            </p>
+          </div>
 
-            <div className=" bg-gray-400 pt-3 pb-3 pl-5 text-lg text-[#000080] mt-28 ">
-              <Link to={"/"}>
-                <span className="ml-5">Home</span>
-              </Link>
-              <span className="ml-5">Staff Zone</span>
-            </div>
+          <div className=" bg-gray-400 pt-3 pb-3 pl-5 text-lg text-[#000080] mt-28 ">
+            <Link to={"/"}>
+              <span className="ml-5">Home</span>
+            </Link>
+            <span className="ml-5">Staff Zone</span>
           </div>
         </div>
+      </div>
 
       <div className="flex flex-row">
-      <div className="w-[350px]">
-        <Staff_side />
+        <div className="w-[350px]">
+          <Staff_side />
         </div>
 
         <div className="w-full ml-auto mr-auto ">
           <h2 className=" md:text-3xl text-lg  uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center">
-          SENIORITY  LIST
+            SENIORITY LIST
           </h2>
           <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2  xl:grid-cols-3 ml-16 md:ml-24 lg:ml-10 w-full mt-5 mb-5">
             {data1 &&
               data1.map((curElem) => {
                 const { _id, title, file_path, link } = curElem;
-                var path_pic = file_path;
-                var path2 = path_pic.replace(/\\/g, "/");
-                var path = path2.slice(19);
+                // var path_pic = file_path;
+                // var path2 = path_pic.replace(/\\/g, "/");
+                // var path = path2.slice(19);
                 return (
                   <>
-                   <div class="card2 ml-12 mb-8 md:ml-4 " key={_id}>
-                      <span className="  font-bold text-lg w-[75%] ">{link}</span>
+                    <div class="card2 ml-12 mb-8 md:ml-4 " key={_id}>
+                      <span className="  font-bold text-lg w-[75%] ">
+                        {link}
+                      </span>
                       <div className="flex flex-col ml-4 w-full">
                         <div class="info2 ml-4 w-full">
                           <p className="text-justify ">{title}</p>
                           <br />
-                          <a href={path} className="">
+                          <a
+                            href={`https://drc-server.onrender.com/fileinfo/${file_path}`}
+                            target="_blank"
+                            rel="noreferrer"
+                            className=""
+                          >
                             <button className="w-[90%]">View</button>
                             <br />
                           </a>

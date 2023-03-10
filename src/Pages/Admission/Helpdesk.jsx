@@ -59,9 +59,12 @@ const Helpdesk = () => {
 
   const del = async (id) => {
     console.log(id);
-    const response = await fetch(`https://drc-server.onrender.com/deleteHelpdesk/${id}`, {
-      method: "DELETE",
-    });
+    const response = await fetch(
+      `https://drc-server.onrender.com/deleteHelpdesk/${id}`,
+      {
+        method: "DELETE",
+      }
+    );
     const data = await response.json();
     if (data || response.status === 200) {
       fetchdata();
@@ -89,11 +92,15 @@ const Helpdesk = () => {
         formData.append("title", caption);
 
         setErrMsg("");
-        await axios.post(`https://drc-server.onrender.com/helpdesk_admission`, formData, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        });
+        await axios.post(
+          `https://drc-server.onrender.com/helpdesk_admission`,
+          formData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
         setCaption("");
         setLink("");
         setFile(null);
@@ -174,9 +181,9 @@ const Helpdesk = () => {
           {data1 ? (
             data1.map((curElem) => {
               const { _id, title, file_path, link } = curElem;
-              var path_pic = file_path;
-              var path2 = path_pic.replace(/\\/g, "/");
-              var path = path2.slice(19);
+              // var path_pic = file_path;
+              // var path2 = path_pic.replace(/\\/g, "/");
+              // var path = path2.slice(19);
               return (
                 <>
                   <div className="flex flex-row mb-5 ml-5">
@@ -204,7 +211,7 @@ const Helpdesk = () => {
                           ) : (
                             <>
                               <a
-                                href={path}
+                                href={`https://drc-server.onrender.com/fileinfo/${file_path}`}
                                 target="_blank"
                                 rel="noreferrer"
                                 className="ml-1 font-medium text-justify text-base md:text-lg  md:text-left text-blue-400 hover:pl-3"

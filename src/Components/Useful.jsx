@@ -7,8 +7,8 @@ const Useful = () => {
   const [subHeading, setSubHeading] = useState("");
   return (
     <>
-      {useful.map((link) => (
-        <div className="z-10">
+      {useful.map((link,i) => (
+        <div className="z-10" key={i}>
           <div className=" text-left md:cursor-pointer group ">
             <h1
               className="py-4 font-bold uppercase flex justify-between items-center md:pr-0 pr-4 group"
@@ -39,9 +39,9 @@ const Useful = () => {
                   ></div>
                 </div>
                 <div className="  grid grid-cols-1 bg-white rounded-lg">
-                  {link.links.map((slink) => (
+                  {link.links.map((slink,i) => (
                     <>
-                      <div>
+                      <div key={i}>
                         <Link
                           to={slink.link}
                           // rel="noreferrer"
@@ -65,9 +65,9 @@ const Useful = () => {
               `}
           >
             <div>
-              {link.links.map((slink) => (
+              {link.links.map((slink,i) => (
                 <>
-                  <div>
+                  <div key={i}>
                     {slink.name != "Annual Report" && (
                       <a to={slink.link} className="hover:text-white">
                         <li className="py-3 pl-14 ">{slink.name}</li>

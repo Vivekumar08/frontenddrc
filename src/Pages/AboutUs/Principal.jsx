@@ -136,13 +136,13 @@ const Principal = () => {
           <figure className="flex flex-col p-4 ">
             {data1 &&
               data1.img_data.file_path &&
-              data1.img_data.file_path.map((elem) => {
+              data1.img_data.file_path.map((elem,i) => {
                 // var path2 = elem.file_path1.replace(/\\/g, "/");
                 // var path = path2.slice(19);
                 // console.log(path);
                 return (
                   <>
-                    <div className="flex flex-row  items-center p-4">
+                    <div className="flex flex-row  items-center p-4" key={i}>
                       <img
                         src={`https://drc-server.onrender.com/fileinfo/${elem.file_path1}`}
                         style={{

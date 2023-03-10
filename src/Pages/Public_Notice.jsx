@@ -50,7 +50,9 @@ const Public_Notice = () => {
   }/${current.getFullYear()}`;
 
   const fetchdata = async () => {
-    const response = await fetch("https://drc-server.onrender.com/Public_notice");
+    const response = await fetch(
+      "https://drc-server.onrender.com/Public_notice"
+    );
     setData1(await response.json());
   };
   const onDrop = (files) => {
@@ -81,20 +83,23 @@ const Public_Notice = () => {
     date
   ) => {
     try {
-      const response = await fetch("https://drc-server.onrender.com/Bulletins_notice_add", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          title,
-          file_mimetype,
-          file_path,
-          new_,
-          date_exp,
-          date,
-        }),
-      });
+      const response = await fetch(
+        "https://drc-server.onrender.com/Bulletins_notice_add",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            title,
+            file_mimetype,
+            file_path,
+            new_,
+            date_exp,
+            date,
+          }),
+        }
+      );
       const data = await response.json();
       if (!data && response.status === 400) {
         setErrMsg("No Server Response");
@@ -132,9 +137,12 @@ const Public_Notice = () => {
 
   const del = async (id) => {
     console.log(id);
-    const response = await fetch(`https://drc-server.onrender.com/delete_Public_notice/${id}`, {
-      method: "DELETE",
-    });
+    const response = await fetch(
+      `https://drc-server.onrender.com/delete_Public_notice/${id}`,
+      {
+        method: "DELETE",
+      }
+    );
     const data = await response.json();
     if (data || response.status === 200) {
       fetchdata();
@@ -144,9 +152,12 @@ const Public_Notice = () => {
   };
   const del_archive = async (id) => {
     console.log(id);
-    const response = await fetch(`https://drc-server.onrender.com/delete_Public_archive_notice/${id}`, {
-      method: "DELETE",
-    });
+    const response = await fetch(
+      `https://drc-server.onrender.com/delete_Public_archive_notice/${id}`,
+      {
+        method: "DELETE",
+      }
+    );
     const data = await response.json();
     if (data || response.status === 200) {
       fetchdata();
@@ -165,20 +176,23 @@ const Public_Notice = () => {
     date
   ) => {
     try {
-      const response = await fetch("https://drc-server.onrender.com/Archive_notice_add", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          title,
-          file_mimetype,
-          file_path,
-          new_,
-          date_exp,
-          date,
-        }),
-      });
+      const response = await fetch(
+        "https://drc-server.onrender.com/Archive_notice_add",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            title,
+            file_mimetype,
+            file_path,
+            new_,
+            date_exp,
+            date,
+          }),
+        }
+      );
       const data = await response.json();
       if (!data && response.status === 400) {
         setErrMsg("No Server Response");
@@ -208,11 +222,15 @@ const Public_Notice = () => {
           formData.append("new_", new_opt);
 
           setErrMsg("");
-          await axios.post(`https://drc-server.onrender.com/Public_notice_add`, formData, {
-            headers: {
-              "Content-Type": "multipart/form-data",
-            },
-          });
+          await axios.post(
+            `https://drc-server.onrender.com/Public_notice_add`,
+            formData,
+            {
+              headers: {
+                "Content-Type": "multipart/form-data",
+              },
+            }
+          );
           setCaption("");
           setFile("");
           setIsPreviewAvailable(false);
@@ -229,11 +247,15 @@ const Public_Notice = () => {
           formData.append("new_", new_opt);
 
           setErrMsg("");
-          await axios.post(`https://drc-server.onrender.com/Public_notice_add`, formData, {
-            headers: {
-              "Content-Type": "multipart/form-data",
-            },
-          });
+          await axios.post(
+            `https://drc-server.onrender.com/Public_notice_add`,
+            formData,
+            {
+              headers: {
+                "Content-Type": "multipart/form-data",
+              },
+            }
+          );
           setCaption("");
           setFile("");
           setIsPreviewAvailable(false);
@@ -257,19 +279,22 @@ const Public_Notice = () => {
       if (!date_exp || !month_exp || !year_exp) {
         const date_e = null;
         setErrMsg("");
-        const response = await fetch("https://drc-server.onrender.com/Public_notice_add_link", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            title: caption,
-            file: file,
-            date: date,
-            date_exp: date_e,
-            new_: new_opt,
-          }),
-        });
+        const response = await fetch(
+          "https://drc-server.onrender.com/Public_notice_add_link",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              title: caption,
+              file: file,
+              date: date,
+              date_exp: date_e,
+              new_: new_opt,
+            }),
+          }
+        );
         const data = await response.json();
         if (data && response.status === 200) {
           setCaption("");
@@ -287,19 +312,22 @@ const Public_Notice = () => {
       } else {
         const date_e = `${date_exp}/${month_exp}/${year_exp}`;
         setErrMsg("");
-        const response = await fetch("https://drc-server.onrender.com/Public_notice_add_link", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            title: caption,
-            file: file,
-            date: date,
-            date_exp: date_e,
-            new_: new_opt,
-          }),
-        });
+        const response = await fetch(
+          "https://drc-server.onrender.com/Public_notice_add_link",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              title: caption,
+              file: file,
+              date: date,
+              date_exp: date_e,
+              new_: new_opt,
+            }),
+          }
+        );
         const data = await response.json();
         if (data && response.status === 200) {
           setCaption("");
@@ -348,13 +376,13 @@ const Public_Notice = () => {
                 let exp_date;
                 if (date_exp !== null) {
                   date_e = date_exp.split("/");
-                    exp_date = new Date(date_e[2], date_e[1]-1, date_e[0]);
+                  exp_date = new Date(date_e[2], date_e[1] - 1, date_e[0]);
                 }
                 const cur_date = new Date();
-                  const diffTime = Math.abs(exp_date) - Math.abs(cur_date);
+                const diffTime = Math.abs(exp_date) - Math.abs(cur_date);
                 // const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-                var path2 = file_path.replace(/\\/g, "/");
-                var path = path2.slice(19);
+                // var path2 = file_path.replace(/\\/g, "/");
+                // var path = path2.slice(19);
                 return (
                   <>
                     <div
@@ -373,7 +401,7 @@ const Public_Notice = () => {
                         {file_mimetype !== "text/link" ? (
                           <>
                             <a
-                              href={path}
+                              href={`https://drc-server.onrender.com/fileinfo/${file_path}`}
                               target="_blank"
                               rel="noopener noreferrer"
                             >

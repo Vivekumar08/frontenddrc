@@ -157,7 +157,7 @@ const Admission_Grievence_comm = () => {
       >
         <div className="name">
           <div className="flex flex-row justify-center">
-          <p className="  text-[#fff] text-3xl md:text-4xl lg:text-6xl shadow-lg  mt-12 font-bold  p-5 flex justify-center w-full rounded-md  ">
+            <p className="  text-[#fff] text-3xl md:text-4xl lg:text-6xl shadow-lg  mt-12 font-bold  p-5 flex justify-center w-full rounded-md  ">
               Admission Grievance Committee
             </p>
           </div>
@@ -180,11 +180,11 @@ const Admission_Grievence_comm = () => {
           </h2>
           {data1 ? (
             data1.map((curElem) => {
-              const { _id, title, file_path, link,file_mimetype } = curElem;
+              const { _id, title, file_path, link, file_mimetype } = curElem;
               console.log(_id);
-              var path_pic = file_path;
-              var path2 = path_pic.replace(/\\/g, "/");
-              var path = path2.slice(19);
+              // var path_pic = file_path;
+              // var path2 = path_pic.replace(/\\/g, "/");
+              // var path = path2.slice(19);
               return (
                 <>
                   <div className="flex flex-row mb-5 ml-5">
@@ -209,7 +209,7 @@ const Admission_Grievence_comm = () => {
                           ) : (
                             <>
                               <a
-                                href={path}
+                                href={`https://drc-server.onrender.com/fileinfo/${file_path}`}
                                 target="_blank"
                                 rel="noreferrer"
                                 className="ml-1 font-medium text-justify text-base md:text-lg  md:text-left text-blue-400 hover:pl-3"

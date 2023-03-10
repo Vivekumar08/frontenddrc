@@ -128,13 +128,13 @@ const Hostel_dat = (props) => {
         })}
       <>
         {path_pic.file_path.map((elem) => {
-          var path2 = elem.file_path1.replace(/\\/g, "/");
-          var path = path2.slice(19);
+          // var path2 = elem.file_path1.replace(/\\/g, "/");
+          // var path = path2.slice(19);
           return (
             <>
               <div className="flex justify-center items-center">
                 <img
-                  src={path}
+                  src={`https://drc-server.onrender.com/fileinfo/${elem.file_path1}`}
                   style={{
                     width: "700px",
                     height: "400px",
@@ -162,24 +162,24 @@ const Hostel_dat = (props) => {
         {path_pic.pdf_path &&
           path_pic.pdf_path.map((elem) => {
             const { _id, title, pdf_path1, pdf_mimetype1 } = elem;
-            let path;
-            if (pdf_path1 !== null) {
-              const path2 = pdf_path1.replace(/\\/g, "/");
-              path = path2.slice(19);
-            }
+            // let path;
+            // if (pdf_path1 !== null) {
+            //   const path2 = pdf_path1.replace(/\\/g, "/");
+            //   path = path2.slice(19);
+            // }
 
             return (
               <>
                 <div
-                      className="flex relative w-full items-center border-4 border-[#000080] mb-2 rounded-xl"
-                    key={_id}
+                  className="flex relative w-full items-center border-4 border-[#000080] mb-2 rounded-xl"
+                  key={_id}
                 >
                   <div className="  p-2 m-3 md:m-4 w-12 h-13 md:w-16 md:h-16 text-center bg-gray-700 rounded-full text-white float-right fd-cl group-hover:opacity-0 opacity-0 "></div>
                   <div>
                     {pdf_mimetype1 !== "text/link" ? (
                       <>
                         <a
-                          href={path}
+                          href={`https://drc-server.onrender.com/fileinfo/${pdf_path1}`}
                           target="_blank"
                           rel="noopener noreferrer"
                         >

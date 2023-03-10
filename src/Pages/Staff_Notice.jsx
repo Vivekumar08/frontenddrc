@@ -50,7 +50,9 @@ const Staff_Notice = () => {
   }/${current.getFullYear()}`;
 
   const fetchdata = async () => {
-    const response = await fetch("https://drc-server.onrender.com/Staff_notice");
+    const response = await fetch(
+      "https://drc-server.onrender.com/Staff_notice"
+    );
     setData1(await response.json());
   };
   const onDrop = (files) => {
@@ -93,9 +95,12 @@ const Staff_Notice = () => {
 
   const del = async (id) => {
     console.log(id);
-    const response = await fetch(`https://drc-server.onrender.com/delete_Staff_notice/${id}`, {
-      method: "DELETE",
-    });
+    const response = await fetch(
+      `https://drc-server.onrender.com/delete_Staff_notice/${id}`,
+      {
+        method: "DELETE",
+      }
+    );
     const data = await response.json();
     if (data || response.status === 200) {
       fetchdata();
@@ -105,9 +110,12 @@ const Staff_Notice = () => {
   };
   const del_archive = async (id) => {
     console.log(id);
-    const response = await fetch(`https://drc-server.onrender.com/delete_Staff_archive_notice/${id}`, {
-      method: "DELETE",
-    });
+    const response = await fetch(
+      `https://drc-server.onrender.com/delete_Staff_archive_notice/${id}`,
+      {
+        method: "DELETE",
+      }
+    );
     const data = await response.json();
     if (data || response.status === 200) {
       fetchdata();
@@ -126,20 +134,23 @@ const Staff_Notice = () => {
     date
   ) => {
     try {
-      const response = await fetch("https://drc-server.onrender.com/Bulletins_notice_add", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          title,
-          file_mimetype,
-          file_path,
-          new_,
-          date_exp,
-          date,
-        }),
-      });
+      const response = await fetch(
+        "https://drc-server.onrender.com/Bulletins_notice_add",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            title,
+            file_mimetype,
+            file_path,
+            new_,
+            date_exp,
+            date,
+          }),
+        }
+      );
       const data = await response.json();
       if (!data && response.status === 400) {
         setErrMsg("No Server Response");
@@ -166,20 +177,23 @@ const Staff_Notice = () => {
     date
   ) => {
     try {
-      const response = await fetch("https://drc-server.onrender.com/Archive_notice_add", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          title,
-          file_mimetype,
-          file_path,
-          new_,
-          date_exp,
-          date,
-        }),
-      });
+      const response = await fetch(
+        "https://drc-server.onrender.com/Archive_notice_add",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            title,
+            file_mimetype,
+            file_path,
+            new_,
+            date_exp,
+            date,
+          }),
+        }
+      );
       const data = await response.json();
       if (!data && response.status === 400) {
         setErrMsg("No Server Response");
@@ -209,11 +223,15 @@ const Staff_Notice = () => {
           formData.append("new_", new_opt);
 
           setErrMsg("");
-          await axios.post(`https://drc-server.onrender.com/Staff_notice_add`, formData, {
-            headers: {
-              "Content-Type": "multipart/form-data",
-            },
-          });
+          await axios.post(
+            `https://drc-server.onrender.com/Staff_notice_add`,
+            formData,
+            {
+              headers: {
+                "Content-Type": "multipart/form-data",
+              },
+            }
+          );
           setCaption("");
           setFile("");
           setIsPreviewAvailable(false);
@@ -230,11 +248,15 @@ const Staff_Notice = () => {
           formData.append("new_", new_opt);
 
           setErrMsg("");
-          await axios.post(`https://drc-server.onrender.com/Staff_notice_add`, formData, {
-            headers: {
-              "Content-Type": "multipart/form-data",
-            },
-          });
+          await axios.post(
+            `https://drc-server.onrender.com/Staff_notice_add`,
+            formData,
+            {
+              headers: {
+                "Content-Type": "multipart/form-data",
+              },
+            }
+          );
           setCaption("");
           setFile("");
           setIsPreviewAvailable(false);
@@ -255,25 +277,28 @@ const Staff_Notice = () => {
       if (!date_exp || !month_exp || !year_exp) {
         const date_e = null;
         setErrMsg("");
-        const response = await fetch("https://drc-server.onrender.com/Staff_notice_add_link", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            title: caption,
-            file: file,
-            date: date,
-            date_exp: date_e,
-            new_: new_opt,
-          }),
-        });
+        const response = await fetch(
+          "https://drc-server.onrender.com/Staff_notice_add_link",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              title: caption,
+              file: file,
+              date: date,
+              date_exp: date_e,
+              new_: new_opt,
+            }),
+          }
+        );
         const data = await response.json();
         if (data && response.status === 200) {
           setCaption("");
           setFile("");
           setAuth(true);
-          
+
           fetchdata();
         } else if (response.status === 401) {
           setErrMsg("Fill Complete Details");
@@ -285,25 +310,28 @@ const Staff_Notice = () => {
       } else {
         const date_e = `${date_exp}/${month_exp}/${year_exp}`;
         setErrMsg("");
-        const response = await fetch("https://drc-server.onrender.com/Staff_notice_add_link", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            title: caption,
-            file: file,
-            date: date,
-            date_exp: date_e,
-            new_: new_opt,
-          }),
-        });
+        const response = await fetch(
+          "https://drc-server.onrender.com/Staff_notice_add_link",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              title: caption,
+              file: file,
+              date: date,
+              date_exp: date_e,
+              new_: new_opt,
+            }),
+          }
+        );
         const data = await response.json();
         if (data && response.status === 200) {
           setCaption("");
           setFile("");
           setAuth(true);
-          
+
           fetchdata();
         } else if (response.status === 401) {
           setErrMsg("Fill Complete Details");
@@ -346,13 +374,13 @@ const Staff_Notice = () => {
                 let exp_date;
                 if (date_exp !== null) {
                   date_e = date_exp.split("/");
-                    exp_date = new Date(date_e[2], date_e[1]-1, date_e[0]);
+                  exp_date = new Date(date_e[2], date_e[1] - 1, date_e[0]);
                 }
                 const cur_date = new Date();
-                  const diffTime = Math.abs(exp_date) - Math.abs(cur_date);
+                const diffTime = Math.abs(exp_date) - Math.abs(cur_date);
                 // const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-                var path2 = file_path.replace(/\\/g, "/");
-                var path = path2.slice(19);
+                // var path2 = file_path.replace(/\\/g, "/");
+                // var path = path2.slice(19);
                 return (
                   <>
                     <div
@@ -371,7 +399,7 @@ const Staff_Notice = () => {
                         {file_mimetype !== "text/link" ? (
                           <>
                             <a
-                              href={path}
+                              href={`https://drc-server.onrender.com/fileinfo/${file_path}`}
                               target="_blank"
                               rel="noopener noreferrer"
                             >

@@ -23,7 +23,9 @@ const Anti_Ragging = () => {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("https://drc-server.onrender.com/Anti_Ragging");
+    const response = await fetch(
+      "https://drc-server.onrender.com/Anti_Ragging"
+    );
     setData1(await response.json());
   };
 
@@ -157,7 +159,7 @@ const Anti_Ragging = () => {
       >
         <div className="name">
           <div className="flex flex-row justify-center">
-          <p className="  text-[#fff] text-3xl md:text-4xl lg:text-6xl shadow-lg  mt-12 font-bold  p-5 flex justify-center w-full rounded-md  ">
+            <p className="  text-[#fff] text-3xl md:text-4xl lg:text-6xl shadow-lg  mt-12 font-bold  p-5 flex justify-center w-full rounded-md  ">
               Anti-Ragging Guidelines
             </p>
           </div>
@@ -170,7 +172,6 @@ const Anti_Ragging = () => {
         </div>
       </div>
       <div className="flex flex-row">
-        
         <div className="md:w-[350px] ">
           <Admission_side />
         </div>
@@ -179,12 +180,12 @@ const Anti_Ragging = () => {
           <h2 className=" text-2xl md:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center   ">
             Anti-Ragging Guidelines
           </h2>
-          {data1 ?(
+          {data1 ? (
             data1.map((curElem) => {
-              const { _id, title, file_path, link ,file_mimetype} = curElem;
-              var path_pic = file_path;
-              var path2 = path_pic.replace(/\\/g, "/");
-              var path = path2.slice(19);
+              const { _id, title, file_path, link, file_mimetype } = curElem;
+              // var path_pic = file_path;
+              // var path2 = path_pic.replace(/\\/g, "/");
+              // var path = path2.slice(19);
               return (
                 <>
                   <div className="flex flex-row mb-5 ml-5">
@@ -209,7 +210,7 @@ const Anti_Ragging = () => {
                           ) : (
                             <>
                               <a
-                                href={path}
+                                href={`https://drc-server.onrender.com/fileinfo/${file_path}`}
                                 target="_blank"
                                 rel="noreferrer"
                                 className="ml-1 font-medium text-justify text-base md:text-lg  md:text-left text-blue-400 hover:pl-3"
@@ -242,7 +243,10 @@ const Anti_Ragging = () => {
                   </div>
                 </>
               );
-            })):(<Maintanence/>)}
+            })
+          ) : (
+            <Maintanence />
+          )}
           {auth && (
             <>
               <form

@@ -3,7 +3,9 @@ import React, { useEffect, useState } from "react";
 const Bulletin = () => {
   const [StudentInfo, setStaffinfo] = useState();
   const fetchdata = async () => {
-    const response = await fetch("https://drc-server.onrender.com/Bulletins_notice");
+    const response = await fetch(
+      "https://drc-server.onrender.com/Bulletins_notice"
+    );
     setStaffinfo(await response.json());
   };
   useEffect(() => {
@@ -33,53 +35,53 @@ const Bulletin = () => {
                   let exp_date;
                   if (date_exp !== null) {
                     date_e = date_exp.split("/");
-                    exp_date = new Date(date_e[2], date_e[1]-1, date_e[0]);
+                    exp_date = new Date(date_e[2], date_e[1] - 1, date_e[0]);
                   }
                   const cur_date = new Date();
                   const diffTime = Math.abs(exp_date) - Math.abs(cur_date);
-                  var path2 = file_path.replace(/\\/g, "/");
-                  var path = path2.slice(19);
+                  // var path2 = file_path.replace(/\\/g, "/");
+                  // var path = path2.slice(19);
                   return (
                     <>
-                        {file_mimetype !== "text/link" ? (
-                          <>
-                            <a
-                              href={path}
-                              target="_blank"
-                              className="  ml-8 hover:font-normal hover:text-[#F80CA7]"
-                              key={_id}
-                              rel="noopener noreferrer"
-                            >
-                              <span className=" text-md font-semibold  ml-2 mr-2 ">
-                                {title}
-                                {diffTime > 0 && new_ && (
-                                  <sup className="font-extrabold text-transparent  bg-clip-text text-lg bg-gradient-to-r from-red-600 to-fuchsia-600 animate-text">
-                                    new
-                                  </sup>
-                                )}
-                              </span>
-                            </a>
-                          </>
-                        ) : (
-                          <>
-                            <a
-                              href={file_path}
-                              target="_blank"
-                              className="  ml-8 hover:font-normal hover:text-[#F80CA7]"
-                              rel="noopener noreferrer"
-                              key={_id}
-                            >
-                              <span className=" text-md font-semibold  ml-2 mr-2 ">
-                                {title}
-                                {diffTime > 0&& new_ && (
-                                  <sup className="font-extrabold ml-1 text-transparent  bg-clip-text text-lg bg-gradient-to-r from-red-600 to-fuchsia-600 animate-text">
-                                    new
-                                  </sup>
-                                )}
-                              </span>
-                            </a>
-                          </>
-                        )}
+                      {file_mimetype !== "text/link" ? (
+                        <>
+                          <a
+                            href={`https://drc-server.onrender.com/fileinfo/${file_path}`}
+                            target="_blank"
+                            className="  ml-8 hover:font-normal hover:text-[#F80CA7]"
+                            key={_id}
+                            rel="noopener noreferrer"
+                          >
+                            <span className=" text-md font-semibold  ml-2 mr-2 ">
+                              {title}
+                              {diffTime > 0 && new_ && (
+                                <sup className="font-extrabold text-transparent  bg-clip-text text-lg bg-gradient-to-r from-red-600 to-fuchsia-600 animate-text">
+                                  new
+                                </sup>
+                              )}
+                            </span>
+                          </a>
+                        </>
+                      ) : (
+                        <>
+                          <a
+                            href={file_path}
+                            target="_blank"
+                            className="  ml-8 hover:font-normal hover:text-[#F80CA7]"
+                            rel="noopener noreferrer"
+                            key={_id}
+                          >
+                            <span className=" text-md font-semibold  ml-2 mr-2 ">
+                              {title}
+                              {diffTime > 0 && new_ && (
+                                <sup className="font-extrabold ml-1 text-transparent  bg-clip-text text-lg bg-gradient-to-r from-red-600 to-fuchsia-600 animate-text">
+                                  new
+                                </sup>
+                              )}
+                            </span>
+                          </a>
+                        </>
+                      )}
                     </>
                   );
                 })}

@@ -45,9 +45,12 @@ const Societies = () => {
 
   const del = async (id) => {
     console.log(id);
-    const response = await fetch(`https://drc-server.onrender.com/delete_Socities/${id}`, {
-      method: "DELETE",
-    });
+    const response = await fetch(
+      `https://drc-server.onrender.com/delete_Socities/${id}`,
+      {
+        method: "DELETE",
+      }
+    );
     const data = await response.json();
     if (data || response.status === 200) {
       fetchdata();
@@ -137,12 +140,16 @@ const Societies = () => {
       {data1 &&
         data1.sort(sortOn("title")).map((currElem) => {
           const { _id, title, file_path, link } = currElem;
-          var path_pic = file_path;
-          var path2 = path_pic.replace(/\\/g, "/");
-          var path = path2.slice(19);
+          // var path_pic = file_path;
+          // var path2 = path_pic.replace(/\\/g, "/");
+          // var path = path2.slice(19);
           return (
             <div class="first1 fac1" key={_id}>
-              <img class="Fac-img1" src={path} alt="" />
+              <img
+                class="Fac-img1"
+                src={`https://drc-server.onrender.com/fileinfo/${file_path}`}
+                alt=""
+              />
               <div class="hero-description-bk"></div>
               <div className="">
                 <div className="">

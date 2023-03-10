@@ -23,7 +23,9 @@ const FAQs_Admission = () => {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("https://drc-server.onrender.com/Admission_FAQs");
+    const response = await fetch(
+      "https://drc-server.onrender.com/Admission_FAQs"
+    );
     setData1(await response.json());
   };
 
@@ -92,11 +94,15 @@ const FAQs_Admission = () => {
         formData.append("title", caption);
 
         setErrMsg("");
-        await axios.post(`https://drc-server.onrender.com/Admission_FAQs_add`, formData, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        });
+        await axios.post(
+          `https://drc-server.onrender.com/Admission_FAQs_add`,
+          formData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
         setCaption("");
         setLink("");
         setFile(null);
@@ -174,11 +180,11 @@ const FAQs_Admission = () => {
           </h2>
           {data1 ? (
             data1.map((curElem) => {
-              const { _id, title, file_path, link,file_mimetype } = curElem;
-              console.log(_id);
-              var path_pic = file_path;
-              var path2 = path_pic.replace(/\\/g, "/");
-              var path = path2.slice(19);
+              const { _id, title, file_path, link, file_mimetype } = curElem;
+              // console.log(_id);
+              // var path_pic = file_path;
+              // var path2 = path_pic.replace(/\\/g, "/");
+              // var path = path2.slice(19);
               return (
                 <>
                   <div className="flex flex-row mb-5 ml-5">
@@ -203,7 +209,7 @@ const FAQs_Admission = () => {
                           ) : (
                             <>
                               <a
-                                href={path}
+                                href={`https://drc-server.onrender.com/fileinfo/${file_path}`}
                                 target="_blank"
                                 rel="noreferrer"
                                 className="ml-1 font-medium text-justify text-base md:text-lg  md:text-left text-blue-400 hover:pl-3"

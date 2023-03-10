@@ -23,7 +23,9 @@ const GE_Option = () => {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("https://drc-server.onrender.com/GE_Options_admission");
+    const response = await fetch(
+      "https://drc-server.onrender.com/GE_Options_admission"
+    );
     setData1(await response.json());
   };
 
@@ -92,11 +94,15 @@ const GE_Option = () => {
         formData.append("title", caption);
 
         setErrMsg("");
-        await axios.post(`https://drc-server.onrender.com/GE_Options_add`, formData, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        });
+        await axios.post(
+          `https://drc-server.onrender.com/GE_Options_add`,
+          formData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
         setCaption("");
         setLink("");
         setFile(null);
@@ -115,17 +121,20 @@ const GE_Option = () => {
   const handleSubmit1 = async (e) => {
     e.preventDefault();
     console.log(link, caption, file);
-    const response = await fetch("https://drc-server.onrender.com/GE_Options_add_link", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        link: link,
-        title: caption,
-        file: file,
-      }),
-    });
+    const response = await fetch(
+      "https://drc-server.onrender.com/GE_Options_add_link",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          link: link,
+          title: caption,
+          file: file,
+        }),
+      }
+    );
     const data = await response.json();
     if (!data) {
       setErrMsg("No Server Response");
@@ -149,7 +158,7 @@ const GE_Option = () => {
         <div className="name">
           <div className="flex flex-row justify-center">
             <p className="  text-[#fff] text-3xl md:text-4xl lg:text-6xl shadow-lg  mt-12 font-bold  p-5 flex justify-center w-full rounded-md  ">
-            VACs / SECs / GE Options
+              VACs / SECs / GE Options
             </p>
           </div>
           <div className=" bg-gray-400 pt-3 pb-3 pl-5 text-lg text-[#000080] mt-28 ">
@@ -167,14 +176,14 @@ const GE_Option = () => {
 
         <div className="w-full mb-5">
           <h2 className=" text-3xl md:text-4xl  font-bold mb-5 mt-[5%] flex flex-row justify-center items-center   ">
-          VACs / SECs / GE Options
+            VACs / SECs / GE Options
           </h2>
           {data1 ? (
             data1.map((curElem) => {
               const { _id, title, file_path, link } = curElem;
-              var path_pic = file_path;
-              var path2 = path_pic.replace(/\\/g, "/");
-              var path = path2.slice(19);
+              // var path_pic = file_path;
+              // var path2 = path_pic.replace(/\\/g, "/");
+              // var path = path2.slice(19);
               return (
                 <>
                   <div className="flex flex-row mb-5 ml-5">
@@ -199,7 +208,7 @@ const GE_Option = () => {
                           ) : (
                             <>
                               <a
-                                href={path}
+                                href={`https://drc-server.onrender.com/fileinfo/${file_path}`}
                                 target="_blank"
                                 rel="noreferrer"
                                 className="ml-1 font-medium text-justify text-base md:text-lg  md:text-left text-blue-400 hover:pl-3"

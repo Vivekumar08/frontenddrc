@@ -59,9 +59,12 @@ const OnlineAdmission = () => {
 
   const del = async (id) => {
     console.log(id);
-    const response = await fetch(`https://drc-server.onrender.com/deleteAdmission/${id}`, {
-      method: "DELETE",
-    });
+    const response = await fetch(
+      `https://drc-server.onrender.com/deleteAdmission/${id}`,
+      {
+        method: "DELETE",
+      }
+    );
     const data = await response.json();
     if (data || response.status === 200) {
       fetchdata();
@@ -89,11 +92,15 @@ const OnlineAdmission = () => {
         formData.append("title", caption);
 
         setErrMsg("");
-        await axios.post(`https://drc-server.onrender.com/admission_online_add`, formData, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        });
+        await axios.post(
+          `https://drc-server.onrender.com/admission_online_add`,
+          formData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
         setCaption("");
         setLink("");
         setFile(null);
@@ -112,17 +119,20 @@ const OnlineAdmission = () => {
   const handleSubmit1 = async (e) => {
     e.preventDefault();
     console.log(link, caption, file);
-    const response = await fetch("https://drc-server.onrender.com/admission_online_add_link", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        link: link,
-        title: caption,
-        file: file,
-      }),
-    });
+    const response = await fetch(
+      "https://drc-server.onrender.com/admission_online_add_link",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          link: link,
+          title: caption,
+          file: file,
+        }),
+      }
+    );
     const data = await response.json();
     if (!data) {
       setErrMsg("No Server Response");
@@ -168,10 +178,10 @@ const OnlineAdmission = () => {
           </h2>
           {data1 ? (
             data1.map((curElem) => {
-              const { _id, title, file_path, link,file_mimetype } = curElem;
-              var path_pic = file_path;
-              var path2 = path_pic.replace(/\\/g, "/");
-              var path = path2.slice(19);
+              const { _id, title, file_path, link, file_mimetype } = curElem;
+              // var path_pic = file_path;
+              // var path2 = path_pic.replace(/\\/g, "/");
+              // var path = path2.slice(19);
               return (
                 <>
                   <div className="flex flex-row mb-2 ml-5">
@@ -196,7 +206,7 @@ const OnlineAdmission = () => {
                           ) : (
                             <>
                               <a
-                                href={path}
+                                href={`https://drc-server.onrender.com/fileinfo/${file_path}`}
                                 target="_blank"
                                 rel="noreferrer"
                                 className="ml-1 font-medium text-justify text-base md:text-lg  md:text-left text-blue-400 hover:pl-3"

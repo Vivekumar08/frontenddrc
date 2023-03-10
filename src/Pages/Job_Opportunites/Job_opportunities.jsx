@@ -48,7 +48,9 @@ const Forms = () => {
   }/${current.getFullYear()}`;
 
   const fetchdata = async () => {
-    const response = await fetch("https://drc-server.onrender.com/Job_Opportunities");
+    const response = await fetch(
+      "https://drc-server.onrender.com/Job_Opportunities"
+    );
     setData1(await response.json());
   };
 
@@ -84,9 +86,12 @@ const Forms = () => {
 
   const del = async (id) => {
     console.log(id);
-    const response = await fetch(`https://drc-server.onrender.com/delete_Job_Opportunities/${id}`, {
-      method: "DELETE",
-    });
+    const response = await fetch(
+      `https://drc-server.onrender.com/delete_Job_Opportunities/${id}`,
+      {
+        method: "DELETE",
+      }
+    );
     const data = await response.json();
     if (data || response.status === 200) {
       fetchdata();
@@ -119,11 +124,15 @@ const Forms = () => {
           formData.append("new_", new_opt);
 
           setErrMsg("");
-          await axios.post(`https://drc-server.onrender.com/Job_Opportunities_add`, formData, {
-            headers: {
-              "Content-Type": "multipart/form-data",
-            },
-          });
+          await axios.post(
+            `https://drc-server.onrender.com/Job_Opportunities_add`,
+            formData,
+            {
+              headers: {
+                "Content-Type": "multipart/form-data",
+              },
+            }
+          );
           setCaption("");
           setLink("");
           setFile("");
@@ -142,11 +151,15 @@ const Forms = () => {
           formData.append("new_", new_opt);
 
           setErrMsg("");
-          await axios.post(`https://drc-server.onrender.com/Job_Opportunities_add`, formData, {
-            headers: {
-              "Content-Type": "multipart/form-data",
-            },
-          });
+          await axios.post(
+            `https://drc-server.onrender.com/Job_Opportunities_add`,
+            formData,
+            {
+              headers: {
+                "Content-Type": "multipart/form-data",
+              },
+            }
+          );
           setCaption("");
           setLink("");
           setFile("");
@@ -168,20 +181,23 @@ const Forms = () => {
       if (!date_exp || !month_exp || !year_exp) {
         const date_e = null;
         setErrMsg("");
-        const response = await fetch("https://drc-server.onrender.com/Job_Opportunities_add_link", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            link: link,
-            title: caption,
-            file: file,
-            date: date,
-            date_exp: date_e,
-            new_: new_opt,
-          }),
-        });
+        const response = await fetch(
+          "https://drc-server.onrender.com/Job_Opportunities_add_link",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              link: link,
+              title: caption,
+              file: file,
+              date: date,
+              date_exp: date_e,
+              new_: new_opt,
+            }),
+          }
+        );
         const data = await response.json();
         if (!data) {
           setErrMsg("No Server Response");
@@ -196,20 +212,23 @@ const Forms = () => {
       } else {
         const date_e = `${date_exp}/${month_exp}/${year_exp}`;
         setErrMsg("");
-        const response = await fetch("https://drc-server.onrender.com/Job_Opportunities_add_link", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            link: link,
-            title: caption,
-            file: file,
-            date: date,
-            date_exp: date_e,
-            new_: new_opt,
-          }),
-        });
+        const response = await fetch(
+          "https://drc-server.onrender.com/Job_Opportunities_add_link",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              link: link,
+              title: caption,
+              file: file,
+              date: date,
+              date_exp: date_e,
+              new_: new_opt,
+            }),
+          }
+        );
         const data = await response.json();
         if (!data) {
           setErrMsg("No Server Response");
@@ -276,13 +295,13 @@ const Forms = () => {
                   let exp_date;
                   if (date_exp !== null) {
                     date_e = date_exp.split("/");
-                    exp_date = new Date(date_e[2], date_e[1]-1, date_e[0]);
+                    exp_date = new Date(date_e[2], date_e[1] - 1, date_e[0]);
                   }
                   const cur_date = new Date();
                   const diffTime = Math.abs(exp_date) - Math.abs(cur_date);
-                  var path_pic = file_path;
-                  var path2 = path_pic.replace(/\\/g, "/");
-                  var path = path2.slice(19);
+                  // var path_pic = file_path;
+                  // var path2 = path_pic.replace(/\\/g, "/");
+                  // var path = path2.slice(19);
                   return (
                     <>
                       <tr className=" ">
@@ -312,7 +331,11 @@ const Forms = () => {
                             </>
                           ) : (
                             <>
-                              <a href={path} target="_blank" rel="noreferrer">
+                              <a
+                                href={`https://drc-server.onrender.com/fileinfo/${file_path}`}
+                                target="_blank"
+                                rel="noreferrer"
+                              >
                                 {" "}
                                 <button className="md:btn text-sm font-semibold bg-[#fff] hover:bg-[#000080] text-black hover:text-white p-1  border-2 border-[#000080] rounded-md">
                                   Click Here

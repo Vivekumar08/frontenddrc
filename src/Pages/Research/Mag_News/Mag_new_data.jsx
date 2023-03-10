@@ -120,13 +120,13 @@ const Mag_new_data = (props) => {
             </div>
             <div className="flex flex-col ml-5 justify-end">
               {path_pic.file_path.map((elem) => {
-                var path2 = elem.file_path1.replace(/\\/g, "/");
-                var path = path2.slice(19);
+                // var path2 = elem.file_path1.replace(/\\/g, "/");
+                // var path = path2.slice(19);
                 return (
                   <>
                     <div className="flex flex-col justify-center items-center">
                       <img
-                        src={path}
+                        src={`https://drc-server.onrender.com/fileinfo/${elem.file_path1}`}
                         // style={{
                         //   width: "400px",
                         //   height: "250px",
@@ -157,8 +157,8 @@ const Mag_new_data = (props) => {
               })}
               {path_pic.pdf_path &&
                 path_pic.pdf_path.map((elem) => {
-                  const path2 = elem.pdf_path1.replace(/\\/g, "/");
-                  const path = path2.slice(19);
+                  // const path2 = elem.pdf_path1.replace(/\\/g, "/");
+                  // const path = path2.slice(19);
                   return (
                     <>
                       <div className="flex justify-center flex-col items-center">
@@ -171,7 +171,11 @@ const Mag_new_data = (props) => {
                             </>
                           ) : (
                             <>
-                              <a href={path}>
+                              <a
+                                href={`https://drc-server.onrender.com/fileinfo/${elem.pdf_path1}`}
+                                target="_blank"
+                                rel="noreferrer"
+                              >
                                 <button className="btn mt-5">Read More</button>
                               </a>
                             </>

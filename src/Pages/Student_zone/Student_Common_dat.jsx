@@ -108,13 +108,13 @@ const Student_Common_dat = (props) => {
         })}
       <>
         {path_pic.file_path.map((elem) => {
-          var path2 = elem.file_path1.replace(/\\/g, "/");
-          var path = path2.slice(19);
+          // var path2 = elem.file_path1.replace(/\\/g, "/");
+          // var path = path2.slice(19);
           return (
             <>
               <div className="flex justify-center items-center">
                 <img
-                  src={path}
+                  src={`https://drc-server.onrender.com/fileinfo/${elem.file_path1}`}
                   style={{
                     width: "700px",
                     height: "400px",

@@ -146,8 +146,8 @@ function Information() {
                   const cur_date = new Date();
                   const diffTime = Math.abs(exp_date) - Math.abs(cur_date);
                   // const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-                  var path2 = file_path.replace(/\\/g, "/");
-                  var path = path2.slice(19);
+                  // var path2 = file_path.replace(/\\/g, "/");
+                  // var path = path2.slice(19);
                   return (
                     <>
                       {file_mimetype !== "text/link" ? (
@@ -220,8 +220,8 @@ function Information() {
                   const cur_date = new Date();
                   const diffTime = Math.abs(exp_date) - Math.abs(cur_date);
                   // const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-                  var path2 = file_path.replace(/\\/g, "/");
-                  var path = path2.slice(19);
+                  // var path2 = file_path.replace(/\\/g, "/");
+                  // var path = path2.slice(19);
                   return (
                     <>
                       {file_mimetype !== "text/link" ? (

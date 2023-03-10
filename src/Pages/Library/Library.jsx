@@ -21,7 +21,9 @@ const Library = () => {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("https://drc-server.onrender.com/Library_details");
+    const response = await fetch(
+      "https://drc-server.onrender.com/Library_details"
+    );
     setData1(await response.json());
   };
 
@@ -37,7 +39,6 @@ const Library = () => {
     setIsPreviewAvailable(uploadedFile.name.match(/\.(jpeg|jpg|png)$/));
   };
 
-  
   const updateBorder = (dragState) => {
     if (dragState === "over") {
       dropRef.current.style.border = "2px solid #000";
@@ -78,11 +79,15 @@ const Library = () => {
 
         setErrMsg("");
         console.log(formData);
-        await axios.post(`https://drc-server.onrender.com/Library_add`, formData, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        });
+        await axios.post(
+          `https://drc-server.onrender.com/Library_add`,
+          formData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
         setCaption("");
         setLink("");
         setFile("");
@@ -131,9 +136,9 @@ const Library = () => {
             {data1 &&
               data1.map((curElem) => {
                 const { _id, title, file_path, link } = curElem;
-                var path_pic = file_path;
-                var path2 = path_pic.replace(/\\/g, "/");
-                var path = path2.slice(19);
+                // var path_pic = file_path;
+                // var path2 = path_pic.replace(/\\/g, "/");
+                // var path = path2.slice(19);
                 return (
                   <>
                     <div class="card2 ml-12 mb-8 md:ml-4 " key={_id}>
@@ -144,7 +149,12 @@ const Library = () => {
                         <div class="info2  w-full">
                           <p className="text-justify ">{title}</p>
                           <br />
-                          <a href={path} className="">
+                          <a
+                            href={`https://drc-server.onrender.com/fileinfo/${file_path}`}
+                            target="_blank"
+                            rel="noreferrer"
+                            className=""
+                          >
                             <button className="w-[90%]">View</button>
                             <br />
                           </a>

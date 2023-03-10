@@ -107,55 +107,61 @@ const Common_dat = (props) => {
           );
         })}
       <>
-        {path_pic.file_path.map((elem) => {
-          var path2 = elem.file_path1.replace(/\\/g, "/");
-          var path = path2.slice(19);
+        {path_pic.file_path.map((elem, i) => {
+          // var path2 = elem.file_path1.replace(/\\/g, "/");
+          // var path = path2.slice(19);
           return (
-            <>
-              <div className="flex justify-center items-center">
-                <img
-                  src={path}
-                  style={{
-                    width: "700px",
-                    height: "400px",
-                  }}
-                  className="bg-center ml-auto mr-auto lg:w-[800px] w-[250px] h-[190px] lg:h-[420px] bg-no-repeat mb-3 mt-[3%] bg-cover  rounded-2xl border-2 border-black"
-                />
-                {auth && (
-                  <>
-                    <div className="flex flex-col">
-                      <FontAwesomeIcon
-                        icon={faTrashCan}
-                        size="3x"
-                        className=" cursor-pointer ml-5  hover:text-red-500"
-                        onClick={() =>
-                          props.delete_img(props.id, elem._id, elem.file_path1)
-                        }
-                      ></FontAwesomeIcon>
-                    </div>
-                  </>
-                )}
-              </div>
-            </>
+            <div className="flex justify-center items-center" key={i}>
+              <img
+                src={`https://drc-server.onrender.com/fileinfo/${elem.file_path1}`}
+                style={{
+                  width: "700px",
+                  height: "400px",
+                }}
+                className="bg-center ml-auto mr-auto lg:w-[800px] w-[250px] h-[190px] lg:h-[420px] bg-no-repeat mb-3 mt-[3%] bg-cover  rounded-2xl border-2 border-black"
+              />
+              {auth && (
+                <>
+                  <div className="flex flex-col">
+                    <FontAwesomeIcon
+                      icon={faTrashCan}
+                      size="3x"
+                      className=" cursor-pointer ml-5  hover:text-red-500"
+                      onClick={() =>
+                        props.delete_img(props.id, elem._id, elem.file_path1)
+                      }
+                    ></FontAwesomeIcon>
+                  </div>
+                </>
+              )}
+            </div>
           );
         })}
         {path_pic.pdf_path &&
-          path_pic.pdf_path.map((elem) => {
-            const path2 = elem.pdf_path1.replace(/\\/g, "/");
-            const path = path2.slice(19);
+          path_pic.pdf_path.map((elem, i) => {
+            // const path2 = elem.pdf_path1.replace(/\\/g, "/");
+            // const path = path2.slice(19);
             return (
               <>
-                <div className="flex justify-center flex-col items-center">
+                <div className="flex justify-center flex-col items-center" key={i}>
                   <div className="flex justify-center items-center">
                     {elem.pdf_mimetype1 === "text/link" ? (
                       <>
-                        <a href={elem.pdf_path1}>
+                        <a
+                          href={elem.pdf_path1}
+                          target="_blank"
+                          rel="noreferrer"
+                        >
                           <button className="btn mt-5 ">Read More</button>
                         </a>
                       </>
                     ) : (
                       <>
-                        <a href={path}>
+                        <a
+                          href={`https://drc-server.onrender.com/fileinfo/${elem.pdf_path1}`}
+                          target="_blank"
+                          rel="noreferrer"
+                        >
                           <button className="btn mt-5">Read More</button>
                         </a>
                       </>

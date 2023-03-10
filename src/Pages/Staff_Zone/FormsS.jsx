@@ -24,7 +24,9 @@ const Forms = () => {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("https://drc-server.onrender.com/StaffZone_forms");
+    const response = await fetch(
+      "https://drc-server.onrender.com/StaffZone_forms"
+    );
     setData1(await response.json());
   };
 
@@ -175,9 +177,9 @@ const Forms = () => {
                 data1.sort(sortOn("link")).map((curElem) => {
                   const { _id, title, file_path, link, file_mimetype } =
                     curElem;
-                  var path_pic = file_path;
-                  var path2 = path_pic.replace(/\\/g, "/");
-                  var path = path2.slice(19);
+                  // var path_pic = file_path;
+                  // var path2 = path_pic.replace(/\\/g, "/");
+                  // var path = path2.slice(19);
                   return (
                     <>
                       <tr className=" ">
@@ -195,14 +197,22 @@ const Forms = () => {
                                 rel="noreferrer"
                               >
                                 {" "}
-                                <button className="md:btn text-sm font-semibold bg-[#fff] hover:bg-[#000080] text-black hover:text-white p-1  border-2 border-[#000080] rounded-md">Click Here</button>
+                                <button className="md:btn text-sm font-semibold bg-[#fff] hover:bg-[#000080] text-black hover:text-white p-1  border-2 border-[#000080] rounded-md">
+                                  Click Here
+                                </button>
                               </a>{" "}
                             </>
                           ) : (
                             <>
-                              <a href={path} target="_blank" rel="noreferrer">
+                              <a
+                                href={`https://drc-server.onrender.com/fileinfo/${file_path}`}
+                                target="_blank"
+                                rel="noreferrer"
+                              >
                                 {" "}
-                                <button className="md:btn text-sm font-semibold bg-[#fff] hover:bg-[#000080] text-black hover:text-white p-1  border-2 border-[#000080] rounded-md">Click Here</button>
+                                <button className="md:btn text-sm font-semibold bg-[#fff] hover:bg-[#000080] text-black hover:text-white p-1  border-2 border-[#000080] rounded-md">
+                                  Click Here
+                                </button>
                               </a>{" "}
                             </>
                           )}

@@ -8,7 +8,6 @@ import AuthContext from "../../Context/AuthProvider";
 import axios from "axios";
 import Sidebar from "../../Components/Sidebar/Usefulsidebar";
 
-
 const Useful = () => {
   const [data1, setData1] = useState();
   const userRef = useRef();
@@ -60,9 +59,12 @@ const Useful = () => {
 
   const del = async (id) => {
     console.log(id);
-    const response = await fetch(`https://drc-server.onrender.com/deleteuseful/${id}`, {
-      method: "DELETE",
-    });
+    const response = await fetch(
+      `https://drc-server.onrender.com/deleteuseful/${id}`,
+      {
+        method: "DELETE",
+      }
+    );
     const data = await response.json();
     if (data || response.status === 200) {
       fetchdata();
@@ -90,11 +92,15 @@ const Useful = () => {
         formData.append("title", caption);
 
         setErrMsg("");
-        await axios.post(`https://drc-server.onrender.com/useful_online_add`, formData, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        });
+        await axios.post(
+          `https://drc-server.onrender.com/useful_online_add`,
+          formData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
         setCaption("");
         setLink("");
         setFile(null);
@@ -113,17 +119,20 @@ const Useful = () => {
   const handleSubmit1 = async (e) => {
     e.preventDefault();
     console.log(link, caption, file);
-    const response = await fetch("https://drc-server.onrender.com/useful_online_add_link", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        link: link,
-        title: caption,
-        file: file,
-      }),
-    });
+    const response = await fetch(
+      "https://drc-server.onrender.com/useful_online_add_link",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          link: link,
+          title: caption,
+          file: file,
+        }),
+      }
+    );
     const data = await response.json();
     if (!data) {
       setErrMsg("No Server Response");
@@ -160,7 +169,7 @@ const Useful = () => {
       </div>
 
       <div className="flex flex-row">
-        <Sidebar/>
+        <Sidebar />
         <div className="w-full mb-5">
           <h2 className=" text-3xl md:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center   ">
             Useful Links{" "}
@@ -171,9 +180,9 @@ const Useful = () => {
             {data1
               ? data1.map((curElem) => {
                   const { _id, title, file_path, link } = curElem;
-                  var path_pic = file_path;
-                  var path2 = path_pic.replace(/\\/g, "/");
-                  var path = path2.slice(19);
+                  // var path_pic = file_path;
+                  // var path2 = path_pic.replace(/\\/g, "/");
+                  // var path = path2.slice(19);
                   return (
                     <>
                       <div class="card2 ml-20 mt-8" key={_id}>
@@ -183,7 +192,12 @@ const Useful = () => {
                         <div className="flex flex-col ml-6 text-lg w-full">
                           <div class="info2 ml-4 w-full">
                             <p className="text-justify">{title}</p>
-                            <a href={path} className="">
+                            <a
+                              href={`https://drc-server.onrender.com/fileinfo/${file_path}`}
+                              target="_blank"
+                              rel="noreferrer"
+                              className=""
+                            >
                               <button className="w-[80%]">View</button>
                             </a>
                             {auth && (

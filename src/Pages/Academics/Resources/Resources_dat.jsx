@@ -1,4 +1,4 @@
-import React, { useState, useContext, useRef,useEffect } from "react";
+import React, { useState, useContext, useRef, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faChevronUp,
@@ -22,7 +22,9 @@ const Resources_dat = (props) => {
   var path_pic = props.pic;
 
   const fetchdata = async () => {
-    const response = await fetch("https://drc-server.onrender.com/Academics_Facilities");
+    const response = await fetch(
+      "https://drc-server.onrender.com/Academics_Facilities"
+    );
     setData1(await response.json());
   };
 
@@ -30,7 +32,6 @@ const Resources_dat = (props) => {
     fetchdata();
   }, []);
 
-  
   const onDrop = (files) => {
     const [uploadedFile] = files;
     setFile(uploadedFile);
@@ -53,7 +54,6 @@ const Resources_dat = (props) => {
     }
   };
 
-  
   return (
     <figure className="flex flex-col">
       <div className="flex flex-row w-full">
@@ -89,14 +89,14 @@ const Resources_dat = (props) => {
       {visible && <p>{props.para}</p>}
       {visible && (
         <>
-          {path_pic.file_path.map((elem) => {
-            var path2 = elem.file_path1.replace(/\\/g, "/");
-            var path = path2.slice(19);
+          {path_pic.file_path.map((elem,i) => {
+            // var path2 = elem.file_path1.replace(/\\/g, "/");
+            // var path = path2.slice(19);
             return (
               <>
-                <div className="flex justify-center items-center">
+                <div className="flex justify-center items-center" key={i}>
                   <img
-                    src={path}
+                    src={`https://drc-server.onrender.com/fileinfo/${elem.file_path1}`}
                     style={{
                       width: "700px",
                       height: "400px",
@@ -111,7 +111,11 @@ const Resources_dat = (props) => {
                           size="3x"
                           className=" cursor-pointer ml-5  hover:text-red-500"
                           onClick={() =>
-                            props.delete_img(props.id, elem._id, elem.file_path1)
+                            props.delete_img(
+                              props.id,
+                              elem._id,
+                              elem.file_path1
+                            )
                           }
                         ></FontAwesomeIcon>
                       </div>
@@ -182,7 +186,7 @@ const Resources_dat = (props) => {
               <button
                 class="shadow w-full  bg-[#000080] hover:bg-[#0000d0] focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
                 type="button"
-                onClick={() => props.submit_img(props.id,file)}
+                onClick={() => props.submit_img(props.id, file)}
               >
                 Add Image
               </button>

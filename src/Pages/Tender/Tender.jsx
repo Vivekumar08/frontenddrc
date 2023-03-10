@@ -51,7 +51,9 @@ const Tender = () => {
   }/${current.getFullYear()}`;
 
   const fetchdata = async () => {
-    const response = await fetch("https://drc-server.onrender.com/Tender_Footer");
+    const response = await fetch(
+      "https://drc-server.onrender.com/Tender_Footer"
+    );
     setData1(await response.json());
   };
   const onDrop = (files) => {
@@ -94,9 +96,12 @@ const Tender = () => {
 
   const del = async (id) => {
     console.log(id);
-    const response = await fetch(`https://drc-server.onrender.com/delete_Tender_Footer/${id}`, {
-      method: "DELETE",
-    });
+    const response = await fetch(
+      `https://drc-server.onrender.com/delete_Tender_Footer/${id}`,
+      {
+        method: "DELETE",
+      }
+    );
     const data = await response.json();
     if (data || response.status === 200) {
       fetchdata();
@@ -120,11 +125,15 @@ const Tender = () => {
           formData.append("filter", filter);
 
           setErrMsg("");
-          await axios.post(`https://drc-server.onrender.com/Tender_Footer_add`, formData, {
-            headers: {
-              "Content-Type": "multipart/form-data",
-            },
-          });
+          await axios.post(
+            `https://drc-server.onrender.com/Tender_Footer_add`,
+            formData,
+            {
+              headers: {
+                "Content-Type": "multipart/form-data",
+              },
+            }
+          );
           setCaption("");
           setFile("");
           setIsPreviewAvailable(false);
@@ -142,11 +151,15 @@ const Tender = () => {
           formData.append("filter", filter);
 
           setErrMsg("");
-          await axios.post(`https://drc-server.onrender.com/Tender_Footer_add`, formData, {
-            headers: {
-              "Content-Type": "multipart/form-data",
-            },
-          });
+          await axios.post(
+            `https://drc-server.onrender.com/Tender_Footer_add`,
+            formData,
+            {
+              headers: {
+                "Content-Type": "multipart/form-data",
+              },
+            }
+          );
           setCaption("");
           setFile("");
           setIsPreviewAvailable(false);
@@ -167,20 +180,23 @@ const Tender = () => {
       if (!date_exp || !month_exp || !year_exp) {
         const date_e = null;
         setErrMsg("");
-        const response = await fetch("https://drc-server.onrender.com/Tender_Footer_add_link", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            title: caption,
-            file: file,
-            date: date,
-            date_exp: date_e,
-            new_: new_opt,
-            filter: filter,
-          }),
-        });
+        const response = await fetch(
+          "https://drc-server.onrender.com/Tender_Footer_add_link",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              title: caption,
+              file: file,
+              date: date,
+              date_exp: date_e,
+              new_: new_opt,
+              filter: filter,
+            }),
+          }
+        );
         const data = await response.json();
         if (data && response.status === 200) {
           setCaption("");
@@ -198,20 +214,23 @@ const Tender = () => {
       } else {
         const date_e = `${date_exp}/${month_exp}/${year_exp}`;
         setErrMsg("");
-        const response = await fetch("https://drc-server.onrender.com/Tender_Footer_add_link", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            title: caption,
-            file: file,
-            date: date,
-            date_exp: date_e,
-            new_: new_opt,
-            filter: filter,
-          }),
-        });
+        const response = await fetch(
+          "https://drc-server.onrender.com/Tender_Footer_add_link",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              title: caption,
+              file: file,
+              date: date,
+              date_exp: date_e,
+              new_: new_opt,
+              filter: filter,
+            }),
+          }
+        );
         const data = await response.json();
         if (data && response.status === 200) {
           setCaption("");
@@ -292,8 +311,8 @@ const Tender = () => {
             const cur_date = new Date();
             const diffTime = Math.abs(exp_date - cur_date);
             // const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-            var path2 = file_path.replace(/\\/g, "/");
-            var path = path2.slice(19);
+            // var path2 = file_path.replace(/\\/g, "/");
+            // var path = path2.slice(19);
             return (
               <>
                 {filter === "LATEST" && (
@@ -305,7 +324,9 @@ const Tender = () => {
                       <li className="list-disc">
                         {file_mimetype !== "text/link" ? (
                           <a
-                            href={path}
+                            href={`https://drc-server.onrender.com/fileinfo/${file_path}`}
+                            target="_blank"
+                            rel="noreferrer"
                             className="text-lg hover:text-[#000080] hover:font-semibold"
                           >
                             {" "}
@@ -319,6 +340,8 @@ const Tender = () => {
                         ) : (
                           <a
                             href={file_path}
+                            target="_blank"
+                            rel="noreferrer"
                             className="text-lg hover:text-[#000080] hover:font-semibold"
                           >
                             {" "}

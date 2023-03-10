@@ -18,15 +18,15 @@ function Department() {
               <DeptSidebar />
             </div>
             <div className="w-[1100px]">
-              {dept.map((names) => (
-                <h2 className="text-4xl font-bold mb-5 mt-[5%] flex flex-row justify-center uppercase items-center ">
+              {dept.map((names,i) => (
+                <h2 className="text-4xl font-bold mb-5 mt-[5%] flex flex-row justify-center uppercase items-center " key={i}>
                   {names.name}
                 </h2>
               ))}
 
-              {dept.map((names) => (
+              {dept.map((names,i) => (
                 <>
-                  <div className="scene ml-10">
+                  <div className="scene ml-10" key={i}>
                     {names.names.map((name) => (
                       <>
                         <Link to={name.link}>
