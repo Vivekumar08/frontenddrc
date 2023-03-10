@@ -5,17 +5,18 @@ import {
   faTrashCan,
   faCircleArrowLeft,
   faCircleArrowRight,
-  faBars
+  faBars,
 } from "@fortawesome/free-solid-svg-icons";
 import AuthContext from "../../../../Context/AuthProvider";
 import Dropzone from "react-dropzone";
 import axios from "axios";
 
 import Biochemistry from "../../../../Components/DepartSIde/Biochemistry";
+import { URL2 } from "../../../SocietiesInfo";
 // import "./stl.css";
 
 function Biochem_Gallery() {
-  const [visible, setVisible] = useState()
+  const [visible, setVisible] = useState();
   const [data1, setData1] = useState();
   const errRef = useRef();
   const dropRef = useRef();
@@ -31,7 +32,9 @@ function Biochem_Gallery() {
   let intervalTime = 3000;
 
   const fetchdata = async () => {
-    const response = await fetch("https://drc-server.onrender.com/Bio_Photo_Gallery");
+    const response = await fetch(
+      "https://drc-server.onrender.com/Bio_Photo_Gallery"
+    );
     const data = await response.json();
     setData1(data);
     setSlideLength(data.length);
@@ -78,9 +81,12 @@ function Biochem_Gallery() {
 
   const del = async (id) => {
     console.log(id);
-    const response = await fetch(`https://drc-server.onrender.com/delete_Bio_Photo_Gallery/${id}`, {
-      method: "DELETE",
-    });
+    const response = await fetch(
+      `https://drc-server.onrender.com/delete_Bio_Photo_Gallery/${id}`,
+      {
+        method: "DELETE",
+      }
+    );
     const data = await response.json();
     if (data || response.status === 200) {
       fetchdata();
@@ -96,11 +102,15 @@ function Biochem_Gallery() {
         formData.append("file", file);
 
         setErrMsg("");
-        await axios.post(`https://drc-server.onrender.com/Bio_Photo_Gallery_add`, formData, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        });
+        await axios.post(
+          `https://drc-server.onrender.com/Bio_Photo_Gallery_add`,
+          formData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
         setFile("");
         setIsPreviewAvailable(false);
         setPreviewSrc("");
@@ -184,9 +194,9 @@ function Biochem_Gallery() {
                 {data1 &&
                   data1.map((curElem, index) => {
                     const { _id, file_path } = curElem;
-                    var path_pic = file_path;
-                    var path2 = path_pic.replace(/\\/g, "/");
-                    var path = path2.slice(19);
+                    // var path_pic = file_path;
+                    // var path2 = path_pic.replace(/\\/g, "/");
+                    // var path = path2.slice(19);
                     return (
                       <>
                         <div
@@ -196,9 +206,9 @@ function Biochem_Gallery() {
                           key={_id}
                         >
                           <img
-                            src={path}
+                            src={`${URL2}/${file_path}`}
                             className="w-full h-[500px] "
-                            alt={path}
+                            alt={file_path}
                           />
                         </div>
                       </>
@@ -218,16 +228,16 @@ function Biochem_Gallery() {
               auth &&
               data1.map((curElem) => {
                 const { _id, file_path } = curElem;
-                var path_pic = file_path;
-                var path2 = path_pic.replace(/\\/g, "/");
-                var path = path2.slice(19);
+                // var path_pic = file_path;
+                // var path2 = path_pic.replace(/\\/g, "/");
+                // var path = path2.slice(19);
                 return (
                   <>
                     <div class="flex flex-col items-center mb-5" key={_id}>
                       <img
-                        src={path}
+                        src={`${URL2}/${file_path}`}
                         style={{ height: "250px", width: "250px" }}
-                        alt={path}
+                        alt={file_path}
                       />
                       <div>
                         <FontAwesomeIcon

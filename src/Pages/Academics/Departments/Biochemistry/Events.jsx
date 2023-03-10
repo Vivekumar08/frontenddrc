@@ -58,9 +58,12 @@ function Events() {
 
   const del = async (id) => {
     // console.log(id);
-    const response = await fetch(`https://drc-server.onrender.com/delete_Bio_Evetns/${id}`, {
-      method: "POST",
-    });
+    const response = await fetch(
+      `https://drc-server.onrender.com/delete_Bio_Evetns/${id}`,
+      {
+        method: "POST",
+      }
+    );
     const data = await response.json();
     if (data || response.status === 200) {
       fetchdata();
@@ -193,13 +196,13 @@ function Events() {
                         <div className="">
                           {img_data.file_path &&
                             img_data.file_path.map((elem) => {
-                              var path2 = elem.file_path1.replace(/\\/g, "/");
-                              var path = path2.slice(19);
+                              // var path2 = elem.file_path1.replace(/\\/g, "/");
+                              // var path = path2.slice(19);
                               return (
                                 <>
                                   <img
                                     className="Fac-img1"
-                                    src={path}
+                                    src={`${URL2}/${elem.file_path1}`}
                                     alt=""
                                   />
                                 </>
@@ -211,13 +214,17 @@ function Events() {
                           </div>
                           {img_data.pdf_path &&
                             img_data.pdf_path.map((elem) => {
-                              const path2 = elem.pdf_path1.replace(/\\/g, "/");
-                              const path = path2.slice(19);
+                              // const path2 = elem.pdf_path1.replace(/\\/g, "/");
+                              // const path = path2.slice(19);
                               return (
                                 <>
                                   {elem.value === "true" && (
                                     <>
-                                      <a href={path}>
+                                      <a
+                                        href={`${URL2}/${file_path}`}
+                                        target="_blank"
+                                        rel="noreferrer"
+                                      >
                                         <div className="hero-btn ml-12">
                                           Learn More
                                         </div>

@@ -1,11 +1,12 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrashCan,faBars, faClose } from "@fortawesome/free-solid-svg-icons";
+import { faTrashCan, faBars, faClose } from "@fortawesome/free-solid-svg-icons";
 import AuthContext from "../../../../Context/AuthProvider";
 import Dropzone from "react-dropzone";
 import axios from "axios";
 import DepartBanner from "../../../../Components/Banners/DepartBanner";
 import Sidebar from "../../../../Components/DepartSIde/Biochemistry";
+import { URL2 } from "../../../SocietiesInfo";
 
 const Biochem = () => {
   const [visible, setVisible] = useState(false);
@@ -20,9 +21,10 @@ const Biochem = () => {
   const [file, setFile] = useState(null);
   const { auth, setAuth } = useContext(AuthContext);
 
-
   const fetchdata = async () => {
-    const response = await fetch("https://drc-server.onrender.com/Biochem_About");
+    const response = await fetch(
+      "https://drc-server.onrender.com/Biochem_About"
+    );
     const dat = await response.json();
     console.log(dat);
     {
@@ -47,7 +49,6 @@ const Biochem = () => {
   useEffect(() => {
     fetchdata();
   }, []);
-
 
   const del = async (id, pid, type) => {
     try {
@@ -106,11 +107,14 @@ const Biochem = () => {
         setErrMsg("");
         const arr = { para1: para };
         console.log(arr);
-        await fetch(`https://drc-server.onrender.com/Biochem_About_add_data/${id}`, {
-          method: "POST",
-          body: JSON.stringify(arr),
-          headers: { "Content-Type": "application/json" },
-        });
+        await fetch(
+          `https://drc-server.onrender.com/Biochem_About_add_data/${id}`,
+          {
+            method: "POST",
+            body: JSON.stringify(arr),
+            headers: { "Content-Type": "application/json" },
+          }
+        );
         setPara("");
         setAuth(true);
         fetchdata();
@@ -121,7 +125,6 @@ const Biochem = () => {
       err.response && setErrMsg(err.response.data);
     }
   };
-
 
   return (
     <>
@@ -164,14 +167,14 @@ const Biochem = () => {
             {data1 &&
               data1.img_data.file_path &&
               data1.img_data.file_path.map((elem) => {
-                var path2 = elem.file_path1.replace(/\\/g, "/");
-                var path = path2.slice(19);
+                // var path2 = elem.file_path1.replace(/\\/g, "/");
+                // var path = path2.slice(19);
                 // console.log(path);
                 return (
                   <>
                     <div className=" flex flex-row ml-[100px] items-center p-4">
                       <img
-                        src={path}
+                        src={`${URL2}/${elem.file_path1}`}
                         style={{
                           width: "300px",
                           height: "250px",

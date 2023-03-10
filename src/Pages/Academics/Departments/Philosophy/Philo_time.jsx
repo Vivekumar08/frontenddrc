@@ -23,7 +23,7 @@ const Philo_time = () => {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("/Philo_time");
+    const response = await fetch("https://drc-server.onrender.com/Philo_time");
     setData1(await response.json());
   };
 
@@ -48,7 +48,7 @@ const Philo_time = () => {
   const del = async (id) => {
     console.log(id);
     const response = await fetch(
-      `/delete_Philo_time/${id}`,
+      `https://drc-server.onrender.com/delete_Philo_time/${id}`,
       {
         method: "DELETE",
       }
@@ -73,11 +73,15 @@ const Philo_time = () => {
 
         setErrMsg("");
         console.log(formData);
-        await axios.post(`/Philo_time_add`, formData, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        });
+        await axios.post(
+          `https://drc-server.onrender.com/Philo_time_add`,
+          formData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
         setCaption("");
         setLink("");
         setFile("");
@@ -134,12 +138,12 @@ const Philo_time = () => {
             {data1 &&
               data1.map((curElem) => {
                 const { _id, title, file_path, link } = curElem;
-                var path_pic = file_path;
-                var path2 = path_pic.replace(/\\/g, "/");
-                var path = path2.slice(19);
+                // var path_pic = file_path;
+                // var path2 = path_pic.replace(/\\/g, "/");
+                // var path = path2.slice(19);
                 return (
                   <>
-                   <div class="card2 ml-12 mb-8 md:ml-4 " key={_id}>
+                    <div class="card2 ml-12 mb-8 md:ml-4 " key={_id}>
                       <span className="  font-bold text-lg w-[75%] ">
                         {link}
                       </span>
@@ -147,7 +151,12 @@ const Philo_time = () => {
                         <div class="info2 ml-4 w-full">
                           <p className="text-justify ">{title}</p>
                           <br />
-                          <a href={path} className="">
+                          <a
+                            href={`https://drc-server.onrender.com/fileinfo/${file_path}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className=""
+                          >
                             <button className="w-[90%]">View</button>
                             <br />
                           </a>

@@ -1,4 +1,3 @@
-
 import Philosophybanner from "../Philosophy/Philosophybanner.jsx";
 import Philosophy from "../../../../Components/DepartSIde/Philosophy";
 import React, { useContext, useEffect, useState, useRef } from "react";
@@ -20,7 +19,9 @@ function Philosophy_association() {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("/Philo_Association");
+    const response = await fetch(
+      "https://drc-server.onrender.com/Philo_Association"
+    );
     setData1(await response.json());
   };
 
@@ -33,7 +34,7 @@ function Philosophy_association() {
       if (file) {
         setErrMsg("");
         await axios.post(
-          `/Philo_Association_img_upload/${id}`,
+          `https://drc-server.onrender.com/Philo_Association_img_upload/${id}`,
           { file: file },
           {
             headers: {
@@ -57,11 +58,14 @@ function Philosophy_association() {
     try {
       const arr = { pid: pid, type: type };
       console.log(id, arr);
-      const response = await fetch(`/delete_Philo_Association_para/${id}`, {
-        method: "POST",
-        body: JSON.stringify(arr),
-        headers: { "Content-Type": "application/json" },
-      });
+      const response = await fetch(
+        `https://drc-server.onrender.com/delete_Philo_Association_para/${id}`,
+        {
+          method: "POST",
+          body: JSON.stringify(arr),
+          headers: { "Content-Type": "application/json" },
+        }
+      );
       await response.json();
       if (response.status === 200) {
         fetchdata();
@@ -77,9 +81,12 @@ function Philosophy_association() {
 
   const del = async (id) => {
     console.log(id);
-    const response = await fetch(`/delete_Philo_Association/${id}`, {
-      method: "POST",
-    });
+    const response = await fetch(
+      `https://drc-server.onrender.com/delete_Philo_Association/${id}`,
+      {
+        method: "POST",
+      }
+    );
     await response.json();
     if (response.status === 200) {
       setErrMsg("");
@@ -93,7 +100,7 @@ function Philosophy_association() {
     console.log(id);
     console.log(file_path1);
     await axios.post(
-      `/delete_pdf_link_Philo_Association_fac/${id}`,
+      `https://drc-server.onrender.com/delete_pdf_link_Philo_Association_fac/${id}`,
       { file_path1: file_path1, pid: pid },
       {
         method: "POST",
@@ -105,7 +112,7 @@ function Philosophy_association() {
     console.log(id);
     console.log(file_path1);
     await axios.post(
-      `/delete_img_Philo_Association_fac/${id}`,
+      `https://drc-server.onrender.com/delete_img_Philo_Association_fac/${id}`,
       { file_path1: file_path1, pid: pid },
       {
         method: "POST",
@@ -120,11 +127,14 @@ function Philosophy_association() {
         setErrMsg("");
         const arr = { para1: para };
         console.log(arr);
-        await fetch(`/Philo_Association_add_para/${id}`, {
-          method: "POST",
-          body: JSON.stringify(arr),
-          headers: { "Content-Type": "application/json" },
-        });
+        await fetch(
+          `https://drc-server.onrender.com/Philo_Association_add_para/${id}`,
+          {
+            method: "POST",
+            body: JSON.stringify(arr),
+            headers: { "Content-Type": "application/json" },
+          }
+        );
         setAuth(true);
         fetchdata();
       } else {
@@ -138,9 +148,12 @@ function Philosophy_association() {
   const handleSubmit_link = async (id, link) => {
     try {
       console.log(link);
-      await axios.post(`/Philo_Association_add_link/${id}`, {
-        link: link,
-      });
+      await axios.post(
+        `https://drc-server.onrender.com/Philo_Association_add_link/${id}`,
+        {
+          link: link,
+        }
+      );
       setCaption("");
       setAuth(true);
       fetchdata();
@@ -155,7 +168,7 @@ function Philosophy_association() {
       console.log(pdf);
       if (pdf) {
         await axios.post(
-          `/Philo_Association_file_upload/${id}`,
+          `https://drc-server.onrender.com/Philo_Association_file_upload/${id}`,
           {
             file: pdf,
           },
@@ -182,10 +195,13 @@ function Philosophy_association() {
       if (link.trim() !== "" && caption.trim() !== "") {
         // if (file) {
         setErrMsg("");
-        await axios.post(`/Philo_Association_upload`, {
-          title: link,
-          description: caption,
-        });
+        await axios.post(
+          `https://drc-server.onrender.com/Philo_Association_upload`,
+          {
+            title: link,
+            description: caption,
+          }
+        );
         setCaption("");
         setLink("");
         setAuth(true);

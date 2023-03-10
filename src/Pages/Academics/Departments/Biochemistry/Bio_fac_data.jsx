@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import Dropzone from "react-dropzone";
+import { URL2 } from "../../../SocietiesInfo";
 
 const Bio_fac_data = (props) => {
   const [data1, setData1] = useState();
@@ -47,11 +48,16 @@ const Bio_fac_data = (props) => {
           <div class="first fac ml-5 mr-5 mt-5 ">
             {props.img_data.file_path &&
               props.img_data.file_path.map((elem) => {
-                var path2 = elem.file_path1.replace(/\\/g, "/");
-                var path = path2.slice(19);
+                // var path2 = elem.file_path1.replace(/\\/g, "/");
+                // var path = path2.slice(19);
                 return (
                   <>
-                    <img class="Fac-img" src={path} key={elem._id} alt="" />
+                    <img
+                      class="Fac-img"
+                      src={`${URL2}/${elem.file_path1}`}
+                      key={elem._id}
+                      alt=""
+                    />
                     <div class="fac-description-bk"></div>
                     <div class="Fac-description">
                       <p>{props.description}</p>
@@ -62,13 +68,17 @@ const Bio_fac_data = (props) => {
               })}
 
             {props.img_data.pdf_path.map((elem) => {
-              const path2 = elem.pdf_path1.replace(/\\/g, "/");
-              const path = path2.slice(19);
+              // const path2 = elem.pdf_path1.replace(/\\/g, "/");
+              // const path = path2.slice(19);
               return (
                 <>
                   {elem.value === "true" && (
                     <>
-                      <a href={path}>
+                      <a
+                        href={`${URL2}/${elem.pdf_path1}`}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
                         <div class="fac-btn">View CV</div>
                       </a>
                     </>
@@ -90,7 +100,7 @@ const Bio_fac_data = (props) => {
           {props.img_data.pdf_path.map((elem) => {
             return (
               <>
-                {auth&&elem.value === "false" && (
+                {auth && elem.value === "false" && (
                   <>
                     {/* // <div key={props.id}> */}
 
@@ -137,7 +147,6 @@ const Bio_fac_data = (props) => {
               </>
             );
           })}
-
         </div>
       )}
     </>

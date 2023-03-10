@@ -23,7 +23,9 @@ const Bot_faculty = () => {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("https://drc-server.onrender.com/bot_Lab_faculty");
+    const response = await fetch(
+      "https://drc-server.onrender.com/bot_Lab_faculty"
+    );
     setData1(await response.json());
   };
 
@@ -132,12 +134,16 @@ const Bot_faculty = () => {
                   <>
                     {img_data &&
                       img_data.file_path.map((elem) => {
-                        var path2 = elem.file_path1.replace(/\\/g, "/");
-                        var path = path2.slice(19);
+                        // var path2 = elem.file_path1.replace(/\\/g, "/");
+                        // var path = path2.slice(19);
                         return (
                           <>
                             <div class="first1 fac1 " key={_id}>
-                              <img class="Fac-img1" src={path} alt="" />
+                              <img
+                                class="Fac-img1"
+                                src={`https://drc-server.onrender.com/fileinfo/${elem.file_path1}`}
+                                alt=""
+                              />
                               <div class="fac-description-bk"></div>
 
                               <div class="Fac-description1">

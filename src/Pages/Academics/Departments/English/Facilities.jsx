@@ -19,7 +19,7 @@ function Facilities() {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("/Eng_Research_facilities");
+    const response = await fetch("https://drc-server.onrender.com/Eng_Research_facilities");
     setData1(await response.json());
   };
 
@@ -32,7 +32,7 @@ function Facilities() {
       if (file) {
         setErrMsg("");
         await axios.post(
-          `/Eng_Research_facilities_img_upload/${id}`,
+          `https://drc-server.onrender.com/Eng_Research_facilities_img_upload/${id}`,
           { file: file },
           {
             headers: {
@@ -57,7 +57,7 @@ function Facilities() {
       const arr = { pid: pid, type: type };
       console.log(id, arr);
       const response = await fetch(
-        `/delete_Eng_Research_facilities_para/${id}`,
+        `https://drc-server.onrender.com/delete_Eng_Research_facilities_para/${id}`,
         {
           method: "POST",
           body: JSON.stringify(arr),
@@ -79,7 +79,7 @@ function Facilities() {
 
   const del = async (id) => {
     console.log(id);
-    const response = await fetch(`/delete_Eng_Research_facilities/${id}`, {
+    const response = await fetch(`https://drc-server.onrender.com/delete_Eng_Research_facilities/${id}`, {
       method: "POST",
     });
     await response.json();
@@ -95,7 +95,7 @@ function Facilities() {
     console.log(id);
     console.log(file_path1);
     await axios.post(
-      `/delete_pdf_link_Eng_Research_facilities_fac/${id}`,
+      `https://drc-server.onrender.com/delete_pdf_link_Eng_Research_facilities_fac/${id}`,
       { file_path1: file_path1, pid: pid },
       {
         method: "POST",
@@ -107,7 +107,7 @@ function Facilities() {
     console.log(id);
     console.log(file_path1);
     await axios.post(
-      `/delete_img_Eng_Research_facilities_fac/${id}`,
+      `https://drc-server.onrender.com/delete_img_Eng_Research_facilities_fac/${id}`,
       { file_path1: file_path1, pid: pid },
       {
         method: "POST",
@@ -122,7 +122,7 @@ function Facilities() {
         setErrMsg("");
         const arr = { para1: para };
         console.log(arr);
-        await fetch(`/Eng_Research_facilities_add_para/${id}`, {
+        await fetch(`https://drc-server.onrender.com/Eng_Research_facilities_add_para/${id}`, {
           method: "POST",
           body: JSON.stringify(arr),
           headers: { "Content-Type": "application/json" },
@@ -140,7 +140,7 @@ function Facilities() {
   const handleSubmit_link = async (id, link) => {
     try {
       console.log(link);
-      await axios.post(`/Eng_Research_facilities_add_link/${id}`, {
+      await axios.post(`https://drc-server.onrender.com/Eng_Research_facilities_add_link/${id}`, {
         link: link,
       });
       setCaption("");
@@ -157,7 +157,7 @@ function Facilities() {
       console.log(pdf);
       if (pdf) {
         await axios.post(
-          `/Eng_Research_facilities_file_upload/${id}`,
+          `https://drc-server.onrender.com/Eng_Research_facilities_file_upload/${id}`,
           {
             file: pdf,
           },
@@ -184,7 +184,7 @@ function Facilities() {
       if (link.trim() !== "" && caption.trim() !== "") {
         // if (file) {
         setErrMsg("");
-        await axios.post(`/Eng_Research_facilities_upload`, {
+        await axios.post(`https://drc-server.onrender.com/Eng_Research_facilities_upload`, {
           title: link,
           description: caption,
         });

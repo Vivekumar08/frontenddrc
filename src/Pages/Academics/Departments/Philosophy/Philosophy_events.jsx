@@ -8,7 +8,6 @@ import "../../../Societies.css";
 import Philosophybanner from "../Philosophy/Philosophybanner.jsx";
 import Philosophy from "../../../../Components/DepartSIde/Philosophy";
 
-
 function Events() {
   const [visible, setVisible] = useState(false);
   const [data1, setData1] = useState();
@@ -24,7 +23,9 @@ function Events() {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("/Philo_Events");
+    const response = await fetch(
+      "https://drc-server.onrender.com/Philo_Events"
+    );
     setData1(await response.json());
   };
 
@@ -59,9 +60,12 @@ function Events() {
 
   const del = async (id) => {
     // console.log(id);
-    const response = await fetch(`/delete_Philo_Events/${id}`, {
-      method: "POST",
-    });
+    const response = await fetch(
+      `https://drc-server.onrender.com/delete_Philo_Events/${id}`,
+      {
+        method: "POST",
+      }
+    );
     const data = await response.json();
     if (data || response.status === 200) {
       fetchdata();
@@ -93,7 +97,7 @@ function Events() {
     try {
       if (pdf) {
         await axios.post(
-          `/Philo_Events_file_add/${id}`,
+          `https://drc-server.onrender.com/Philo_Events_file_add/${id}`,
           {
             file: pdf,
           },
@@ -119,11 +123,10 @@ function Events() {
     e.preventDefault();
     try {
       if (caption.trim() !== "") {
-
         setErrMsg("");
         console.log(file, caption);
         await axios.post(
-          `/Philo_Events_add`,
+          `https://drc-server.onrender.com/Philo_Events_add`,
           { file: file, title: caption },
           {
             headers: {
@@ -195,13 +198,13 @@ function Events() {
                         <div className="">
                           {img_data.file_path &&
                             img_data.file_path.map((elem) => {
-                              var path2 = elem.file_path1.replace(/\\/g, "/");
-                              var path = path2.slice(19);
+                              // var path2 = elem.file_path1.replace(/\\/g, "/");
+                              // var path = path2.slice(19);
                               return (
                                 <>
                                   <img
                                     className="Fac-img1"
-                                    src={path}
+                                    src={`https://drc-server.onrender.com/fileinfo/${elem.file_path1}`}
                                     alt=""
                                   />
                                 </>
@@ -213,13 +216,17 @@ function Events() {
                           </div>
                           {img_data.pdf_path &&
                             img_data.pdf_path.map((elem) => {
-                              const path2 = elem.pdf_path1.replace(/\\/g, "/");
-                              const path = path2.slice(19);
+                              // const path2 = elem.pdf_path1.replace(/\\/g, "/");
+                              // const path = path2.slice(19);
                               return (
                                 <>
                                   {elem.value === "true" && (
                                     <>
-                                      <a href={path}>
+                                      <a
+                                        href={`https://drc-server.onrender.com/fileinfo/${elem.pdf_path1}`}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                      >
                                         <div class="hero-btn ml-12">
                                           Learn More
                                         </div>

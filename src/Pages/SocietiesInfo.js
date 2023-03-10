@@ -100,3 +100,4 @@ export const SocietiesInfo = [
 ];
 
 export const URLs = "http://localhost:4000";
+export const URL2 = "https://drc-server.onrender.com/fileinfo";

@@ -18,7 +18,9 @@ function Studentsachieve() {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("/Eng_Student_Achievement");
+    const response = await fetch(
+      "https://drc-server.onrender.com/Eng_Student_Achievement"
+    );
     setData1(await response.json());
   };
 
@@ -31,7 +33,7 @@ function Studentsachieve() {
       if (file) {
         setErrMsg("");
         await axios.post(
-          `/Eng_Student_Achievement_img_upload/${id}`,
+          `https://drc-server.onrender.com/Eng_Student_Achievement_img_upload/${id}`,
           { file: file },
           {
             headers: {
@@ -55,11 +57,14 @@ function Studentsachieve() {
     try {
       const arr = { pid: pid, type: type };
       console.log(id, arr);
-      const response = await fetch(`/delete_Eng_Student_Achievement_para/${id}`, {
-        method: "POST",
-        body: JSON.stringify(arr),
-        headers: { "Content-Type": "application/json" },
-      });
+      const response = await fetch(
+        `https://drc-server.onrender.com/delete_Eng_Student_Achievement_para/${id}`,
+        {
+          method: "POST",
+          body: JSON.stringify(arr),
+          headers: { "Content-Type": "application/json" },
+        }
+      );
       await response.json();
       if (response.status === 200) {
         fetchdata();
@@ -75,9 +80,12 @@ function Studentsachieve() {
 
   const del = async (id) => {
     console.log(id);
-    const response = await fetch(`/delete_Eng_Student_Achievement/${id}`, {
-      method: "POST",
-    });
+    const response = await fetch(
+      `https://drc-server.onrender.com/delete_Eng_Student_Achievement/${id}`,
+      {
+        method: "POST",
+      }
+    );
     await response.json();
     if (response.status === 200) {
       setErrMsg("");
@@ -91,7 +99,7 @@ function Studentsachieve() {
     console.log(id);
     console.log(file_path1);
     await axios.post(
-      `/delete_pdf_link_Eng_Student_Achievement_fac/${id}`,
+      `https://drc-server.onrender.com/delete_pdf_link_Eng_Student_Achievement_fac/${id}`,
       { file_path1: file_path1, pid: pid },
       {
         method: "POST",
@@ -103,7 +111,7 @@ function Studentsachieve() {
     console.log(id);
     console.log(file_path1);
     await axios.post(
-      `/delete_img_Eng_Student_Achievement_fac/${id}`,
+      `https://drc-server.onrender.com/delete_img_Eng_Student_Achievement_fac/${id}`,
       { file_path1: file_path1, pid: pid },
       {
         method: "POST",
@@ -118,11 +126,14 @@ function Studentsachieve() {
         setErrMsg("");
         const arr = { para1: para };
         console.log(arr);
-        await fetch(`/Eng_Student_Achievement_add_para/${id}`, {
-          method: "POST",
-          body: JSON.stringify(arr),
-          headers: { "Content-Type": "application/json" },
-        });
+        await fetch(
+          `https://drc-server.onrender.com/Eng_Student_Achievement_add_para/${id}`,
+          {
+            method: "POST",
+            body: JSON.stringify(arr),
+            headers: { "Content-Type": "application/json" },
+          }
+        );
         setAuth(true);
         fetchdata();
       } else {
@@ -136,9 +147,12 @@ function Studentsachieve() {
   const handleSubmit_link = async (id, link) => {
     try {
       console.log(link);
-      await axios.post(`/Eng_Student_Achievement_add_link/${id}`, {
-        link: link,
-      });
+      await axios.post(
+        `https://drc-server.onrender.com/Eng_Student_Achievement_add_link/${id}`,
+        {
+          link: link,
+        }
+      );
       setCaption("");
       setAuth(true);
       fetchdata();
@@ -153,7 +167,7 @@ function Studentsachieve() {
       console.log(pdf);
       if (pdf) {
         await axios.post(
-          `/Eng_Student_Achievement_file_upload/${id}`,
+          `https://drc-server.onrender.com/Eng_Student_Achievement_file_upload/${id}`,
           {
             file: pdf,
           },
@@ -180,10 +194,13 @@ function Studentsachieve() {
       if (link.trim() !== "" && caption.trim() !== "") {
         // if (file) {
         setErrMsg("");
-        await axios.post(`/Eng_Student_Achievement_upload`, {
-          title: link,
-          description: caption,
-        });
+        await axios.post(
+          `https://drc-server.onrender.com/Eng_Student_Achievement_upload`,
+          {
+            title: link,
+            description: caption,
+          }
+        );
         setCaption("");
         setLink("");
         setAuth(true);

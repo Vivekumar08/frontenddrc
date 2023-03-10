@@ -26,7 +26,7 @@ const Eng_faculty = () => {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("/eng_faculty");
+    const response = await fetch("https://drc-server.onrender.com/eng_faculty");
     setData1(await response.json());
   };
 
@@ -57,9 +57,12 @@ const Eng_faculty = () => {
 
   const del = async (id) => {
     console.log(id);
-    const response = await fetch(`/delete_eng_faculty/${id}`, {
-      method: "POST",
-    });
+    const response = await fetch(
+      `https://drc-server.onrender.com/delete_eng_faculty/${id}`,
+      {
+        method: "POST",
+      }
+    );
     const data = await response.json();
     if (data || response.status === 200) {
       fetchdata();
@@ -75,7 +78,7 @@ const Eng_faculty = () => {
       if (pdf) {
         // setErrMsg("");
         await axios.post(
-          `/eng_faculty_cv_upload/${id}`,
+          `https://drc-server.onrender.com/eng_faculty_cv_upload/${id}`,
           {
             file: pdf,
           },
@@ -107,7 +110,7 @@ const Eng_faculty = () => {
           // setErrMsg("");
           console.log(link, caption, imag, filter);
           const data = await axios.post(
-            `/eng_faculty_file_upload`,
+            `https://drc-server.onrender.com/eng_faculty_file_upload`,
             // { method: "POST" },
             { title: caption, description: link, file: imag, filter: filter },
             {
