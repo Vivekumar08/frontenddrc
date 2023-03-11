@@ -1,8 +1,13 @@
 import { Link } from "react-router-dom";
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrashCan, faClose, faBars, faCircleArrowLeft,
-  faCircleArrowRight,  } from "@fortawesome/free-solid-svg-icons";
+import {
+  faTrashCan,
+  faClose,
+  faBars,
+  faCircleArrowLeft,
+  faCircleArrowRight,
+} from "@fortawesome/free-solid-svg-icons";
 import AuthContext from "../../../../Context/AuthProvider";
 import Dropzone from "react-dropzone";
 import axios from "axios";
@@ -26,7 +31,9 @@ function Physics_gallery() {
   let slideInterval;
   let intervalTime = 3000;
   const fetchdata = async () => {
-    const response = await fetch("https://drc-server.onrender.com/Physics_Gallery");
+    const response = await fetch(
+      "https://drc-server.onrender.com/Physics_Gallery"
+    );
     setData1(await response.json());
   };
 
@@ -153,7 +160,7 @@ function Physics_gallery() {
             Photo Gallery
           </h2>
           <div className="main_conta flex items-center ml-5">
-          <FontAwesomeIcon
+            <FontAwesomeIcon
               icon={faCircleArrowLeft}
               onClick={prevSlide}
               size="2xl"
@@ -164,19 +171,23 @@ function Physics_gallery() {
                 {data1 &&
                   data1.map((curElem) => {
                     const { _id, file_path } = curElem;
-                    var path_pic = file_path;
-                    var path2 = path_pic.replace(/\\/g, "/");
-                    var path = path2.slice(19);
+                    // var path_pic = file_path;
+                    // var path2 = path_pic.replace(/\\/g, "/");
+                    // var path = path2.slice(19);
                     return (
                       <>
-                         <div
-                      class={
-                        index === currentSlide ? `slidee current` : "slidee"
-                      }
-                      key={_id}
-                    >
-                      <img src={path} className="w-full h-[500px]" alt={path} />
-                    </div>
+                        <div
+                          class={
+                            index === currentSlide ? `slidee current` : "slidee"
+                          }
+                          key={_id}
+                        >
+                          <img
+                            src={`https://drc-server.onrender.com/fileinfo/${file_path}`}
+                            className="w-full h-[500px]"
+                            alt={file_path}
+                          />
+                        </div>
                       </>
                     );
                   })}
@@ -195,15 +206,15 @@ function Physics_gallery() {
               data1.map((curElem) => {
                 const { _id, file_path } = curElem;
                 var path_pic = file_path;
-                var path2 = path_pic.replace(/\\/g, "/");
-                var path = path2.slice(19);
+                // var path2 = path_pic.replace(/\\/g, "/");
+                // var path = path2.slice(19);
                 return (
                   <>
                     <div class="flex flex-col items-center mb-5" key={_id}>
                       <img
-                        src={path}
+                        src={`https://drc-server.onrender.com/fileinfo/${file_path}`}
                         style={{ height: "250px", width: "250px" }}
-                        alt={path}
+                        alt={file_path}
                       />
                       <div>
                         <FontAwesomeIcon

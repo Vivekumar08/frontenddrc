@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom";
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {  faTrashCan,
+import {
+  faTrashCan,
   faCircleArrowLeft,
-  faCircleArrowRight, } from "@fortawesome/free-solid-svg-icons";
+  faCircleArrowRight,
+} from "@fortawesome/free-solid-svg-icons";
 import AuthContext from "../../../../Context/AuthProvider";
 import Dropzone from "react-dropzone";
 import axios from "axios";
@@ -70,15 +72,11 @@ function Music_Gallery() {
     slideInterval = setInterval(nextSlide, intervalTime);
   }
 
-
   const del = async (id) => {
     console.log(id);
-    const response = await fetch(
-      `/delete_Music_Photo_Gallery/${id}`,
-      {
-        method: "DELETE",
-      }
-    );
+    const response = await fetch(`/delete_Music_Photo_Gallery/${id}`, {
+      method: "DELETE",
+    });
     const data = await response.json();
     if (data || response.status === 200) {
       fetchdata();
@@ -127,27 +125,27 @@ function Music_Gallery() {
             </div>
 
             <div className=" bg-gray-400 pt-3 pb-3 pl-5 text-lg text-[#000080] mt-28 ">
-            <Link to={"/"}>
-              <span className="ml-5">Home</span>
-            </Link>
-            <span className="ml-5">Academics</span>
-            <Link to={"/academics/departments"}>
-              <span className="ml-5">Departments</span>
-            </Link>
-          </div>
+              <Link to={"/"}>
+                <span className="ml-5">Home</span>
+              </Link>
+              <span className="ml-5">Academics</span>
+              <Link to={"/academics/departments"}>
+                <span className="ml-5">Departments</span>
+              </Link>
+            </div>
           </div>
         </div>
       </div>
       <div className="flex flex-row">
         <div className="flex  flex-col mt-12 ml-2">
-        <Music />
+          <Music />
         </div>
         <div className="w-[1100px]">
           <h2 className="text-3xl md:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center  ">
             Gallery
           </h2>
           <div className="main_conta flex items-center ml-5">
-          <FontAwesomeIcon
+            <FontAwesomeIcon
               icon={faCircleArrowLeft}
               onClick={prevSlide}
               size="2xl"
@@ -158,19 +156,23 @@ function Music_Gallery() {
                 {data1 &&
                   data1.map((curElem) => {
                     const { _id, file_path } = curElem;
-                    var path_pic = file_path;
-                    var path2 = path_pic.replace(/\\/g, "/");
-                    var path = path2.slice(19);
+                    // var path_pic = file_path;
+                    // var path2 = path_pic.replace(/\\/g, "/");
+                    // var path = path2.slice(19);
                     return (
                       <>
-                      <div
-                      class={
-                        index === currentSlide ? `slidee current` : "slidee"
-                      }
-                      key={_id}
-                    >
-                      <img src={path} className="w-full h-[500px]" alt={path} />
-                    </div>
+                        <div
+                          class={
+                            index === currentSlide ? `slidee current` : "slidee"
+                          }
+                          key={_id}
+                        >
+                          <img
+                            src={`https://drc-server.onrender.com/fileinfo/${file_path}`}
+                            className="w-full h-[500px]"
+                            alt={file_path}
+                          />
+                        </div>
                       </>
                     );
                   })}
@@ -188,16 +190,16 @@ function Music_Gallery() {
               auth &&
               data1.map((curElem) => {
                 const { _id, file_path } = curElem;
-                var path_pic = file_path;
-                var path2 = path_pic.replace(/\\/g, "/");
-                var path = path2.slice(19);
+                // var path_pic = file_path;
+                // var path2 = path_pic.replace(/\\/g, "/");
+                // var path = path2.slice(19);
                 return (
                   <>
                     <div class="flex flex-col items-center mb-5" key={_id}>
                       <img
-                        src={path}
+                        src={`https://drc-server.onrender.com/fileinfo/${file_path}`}
                         style={{ height: "250px", width: "250px" }}
-                        alt={path}
+                        alt={file_path}
                       />
                       <div>
                         <FontAwesomeIcon

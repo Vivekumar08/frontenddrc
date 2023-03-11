@@ -24,7 +24,9 @@ const Zoo_time = () => {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("https://drc-server.onrender.com/Zoology_Time");
+    const response = await fetch(
+      "https://drc-server.onrender.com/Zoology_Time"
+    );
     setData1(await response.json());
   };
 
@@ -74,11 +76,15 @@ const Zoo_time = () => {
 
         setErrMsg("");
         console.log(formData);
-        await axios.post(`https://drc-server.onrender.com/Zoology_Time_add`, formData, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        });
+        await axios.post(
+          `https://drc-server.onrender.com/Zoology_Time_add`,
+          formData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
         setCaption("");
         setLink("");
         setFile("");
@@ -129,19 +135,19 @@ const Zoo_time = () => {
         </div>
 
         <div className="w-full mr-auto ml-auto">
-            <h2 className="md:text-4xl text-xl sm:text-xl uppercase font-bold mb-5 mt-[7%] flex flex-row ml-3 md:justify-center items-center  ">
+          <h2 className="md:text-4xl text-xl sm:text-xl uppercase font-bold mb-5 mt-[7%] flex flex-row ml-3 md:justify-center items-center  ">
             Time Table
           </h2>
           <div class="grid grid-cols-1 ml-5 md:grid-cols-3 w-full mt-5 mb-5">
             {data1 &&
               data1.map((curElem) => {
                 const { _id, title, file_path, link } = curElem;
-                var path_pic = file_path;
-                var path2 = path_pic.replace(/\\/g, "/");
-                var path = path2.slice(19);
+                // var path_pic = file_path;
+                // var path2 = path_pic.replace(/\\/g, "/");
+                // var path = path2.slice(19);
                 return (
                   <>
-                   <div class="card2 ml-12 mb-8 md:ml-4 " key={_id}>
+                    <div class="card2 ml-12 mb-8 md:ml-4 " key={_id}>
                       <span className="  font-bold text-lg w-[75%] ">
                         {link}
                       </span>
@@ -149,7 +155,12 @@ const Zoo_time = () => {
                         <div class="info2  w-full">
                           <p className="text-justify ">{title}</p>
                           <br />
-                          <a href={path} className="">
+                          <a
+                            href={`https://drc-server.onrender.com/fileinfo/${file_path}`}
+                            target="_blank"
+                            rel="noreferrer"
+                            className=""
+                          >
                             <button className="w-[90%]">View</button>
                             <br />
                           </a>

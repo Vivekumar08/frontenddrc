@@ -49,9 +49,12 @@ function PhysicalEdu_fac() {
 
   const del = async (id) => {
     console.log(id);
-    const response = await fetch(`https://drc-server.onrender.com/delete_PE_Fac/${id}`, {
-      method: "DELETE",
-    });
+    const response = await fetch(
+      `https://drc-server.onrender.com/delete_PE_Fac/${id}`,
+      {
+        method: "DELETE",
+      }
+    );
     const data = await response.json();
     if (data || response.status === 200) {
       fetchdata();
@@ -62,9 +65,14 @@ function PhysicalEdu_fac() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(name,email,Qualification,designation, file)
+    console.log(name, email, Qualification, designation, file);
     try {
-      if (name.trim() !== "" && designation.trim() !== "" && Qualification !=="" && email !=="") {
+      if (
+        name.trim() !== "" &&
+        designation.trim() !== "" &&
+        Qualification !== "" &&
+        email !== ""
+      ) {
         // if (file) {
         const formData = new FormData();
         formData.append("file", file);
@@ -75,18 +83,22 @@ function PhysicalEdu_fac() {
 
         setErrMsg("");
         console.log(formData);
-        await axios.post(`https://drc-server.onrender.com/PE_Fac_add`, formData, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        });
-        setName("")
-        setDesignation("")
-        setQualification("")
-        setEmail("")
-        setFile("")
-        setIsPreviewAvailable(false)
-        setPreviewSrc("")
+        await axios.post(
+          `https://drc-server.onrender.com/PE_Fac_add`,
+          formData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
+        setName("");
+        setDesignation("");
+        setQualification("");
+        setEmail("");
+        setFile("");
+        setIsPreviewAvailable(false);
+        setPreviewSrc("");
         setAuth(true);
         fetchdata();
       } else {
@@ -106,7 +118,7 @@ function PhysicalEdu_fac() {
         <PhysicalEdubanner />
       </div>
       <div className="flex flex-row">
-      <div className="md:hidden">
+        <div className="md:hidden">
           {visible ? (
             <>
               <div className=" flex  flex-col mt-8 ml-2">
@@ -148,16 +160,14 @@ function PhysicalEdu_fac() {
                   email,
                   file_path,
                 } = curElem;
-                var path_pic = file_path;
-                var path2 = path_pic.replace(/\\/g, "/");
-                var path = path2.slice(19);
+                // var path_pic = file_path;
+                // var path2 = path_pic.replace(/\\/g, "/");
+                // var path = path2.slice(19);
                 return (
                   <>
-                  
                     <div className="mr-5 ml-12 mb-10">
                       <img
-                        src={path}
-
+                        src={`https://drc-server.onrender.com/fileinfo/${file_path}`}
                         className="bg-center bg-no-repeat w-[300px] h-[300px] mt-[1%] bg-cover  mr-auto  mb-1 rounded-3xl border-2 border-black"
                       />
                       <div className="pr-3 pl-3 flex mr-auto  w-[320px] ">
@@ -166,7 +176,7 @@ function PhysicalEdu_fac() {
                             <li className="flex justify-center">
                               <b>{name}</b>
                             </li>
-                    <br />
+                            <br />
 
                             <li>
                               <b>Designation</b>: {Designation}
@@ -194,7 +204,6 @@ function PhysicalEdu_fac() {
                         </>
                       )}
                     </div>
-                    
                   </>
                 );
               })}

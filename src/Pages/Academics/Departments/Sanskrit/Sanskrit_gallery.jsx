@@ -1,14 +1,18 @@
 import { Link } from "react-router-dom";
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrashCan ,faClose, faBars,faCircleArrowLeft,
-  faCircleArrowRight,} from "@fortawesome/free-solid-svg-icons";
+import {
+  faTrashCan,
+  faClose,
+  faBars,
+  faCircleArrowLeft,
+  faCircleArrowRight,
+} from "@fortawesome/free-solid-svg-icons";
 import AuthContext from "../../../../Context/AuthProvider";
 import Dropzone from "react-dropzone";
 import axios from "axios";
 import Sansbanner from "./Sansbanner";
 import Sanskrit from "../../../../Components/DepartSIde/Sanskrit";
-
 
 // import "../../../AboutUs/stl.css";
 
@@ -28,7 +32,9 @@ function Sanskrit_gallery() {
   let slideInterval;
   let intervalTime = 3000;
   const fetchdata = async () => {
-    const response = await fetch("https://drc-server.onrender.com/Psychology_Gallery");
+    const response = await fetch(
+      "https://drc-server.onrender.com/Psychology_Gallery"
+    );
     setData1(await response.json());
   };
 
@@ -93,11 +99,15 @@ function Sanskrit_gallery() {
         formData.append("file", file);
 
         setErrMsg("");
-        await axios.post(`https://drc-server.onrender.com/Psychology_Gallery_add`, formData, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        });
+        await axios.post(
+          `https://drc-server.onrender.com/Psychology_Gallery_add`,
+          formData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
         setFile("");
         setIsPreviewAvailable(false);
         setPreviewSrc("");
@@ -114,9 +124,9 @@ function Sanskrit_gallery() {
   return (
     <>
       {/* <div className=" flex flex-col"> */}
-        <Sansbanner />
+      <Sansbanner />
 
-        <div className="flex flex-row">
+      <div className="flex flex-row">
         <div className="md:hidden">
           {visible ? (
             <>
@@ -145,78 +155,82 @@ function Sanskrit_gallery() {
           <Sanskrit />
         </div>
 
-          <div className="w-[1100px]">
+        <div className="w-[1100px]">
           <h2 className="md:text-4xl text-xl sm:text-xl uppercase font-bold mb-5 mt-[7%] flex flex-row ml-3 md:justify-center items-center  ">
-              Photo Gallery
-            </h2>
-            <div className="main_conta flex items-center ml-5">
-          <FontAwesomeIcon
+            Photo Gallery
+          </h2>
+          <div className="main_conta flex items-center ml-5">
+            <FontAwesomeIcon
               icon={faCircleArrowLeft}
               onClick={prevSlide}
               size="2xl"
               className="cursor-pointer "
             />
-              <div class="sliderr">
-                <div class="slidee-track">
-                  {data1 &&
-                    data1.map((curElem) => {
-                      const { _id, file_path } = curElem;
-                      var path_pic = file_path;
-                      var path2 = path_pic.replace(/\\/g, "/");
-                      var path = path2.slice(19);
-                      return (
-                        <>
-                            <div
-                      class={
-                        index === currentSlide ? `slidee current` : "slidee"
-                      }
-                      key={_id}
-                    >
-                      <img src={path} className="w-full h-[500px]" alt={path} />
-                    </div>
-                        </>
-                      );
-                    })}
-                </div>
+            <div class="sliderr">
+              <div class="slidee-track">
+                {data1 &&
+                  data1.map((curElem) => {
+                    const { _id, file_path } = curElem;
+                    // var path_pic = file_path;
+                    // var path2 = path_pic.replace(/\\/g, "/");
+                    // var path = path2.slice(19);
+                    return (
+                      <>
+                        <div
+                          class={
+                            index === currentSlide ? `slidee current` : "slidee"
+                          }
+                          key={_id}
+                        >
+                          <img
+                            src={`https://drc-server.onrender.com/fileinfo/${file_path}`}
+                            className="w-full h-[500px]"
+                            alt={file_path}
+                          />
+                        </div>
+                      </>
+                    );
+                  })}
               </div>
-              <FontAwesomeIcon
+            </div>
+            <FontAwesomeIcon
               icon={faCircleArrowRight}
               onClick={nextSlide}
               size="2xl"
               className="cursor-pointer"
             />
-            </div>
-            <div className="grid md:grid-cols-4">
-              {data1 &&
-                auth &&
-                data1.map((curElem) => {
-                  const { _id, file_path } = curElem;
-                  var path_pic = file_path;
-                  var path2 = path_pic.replace(/\\/g, "/");
-                  var path = path2.slice(19);
-                  return (
-                    <>
-                      <div class="flex flex-col items-center mb-5" key={_id}>
-                        <img
-                          src={path}
-                          style={{ height: "250px", width: "250px" }}
-                          alt={path}
-                        />
-                        <div>
-                          <FontAwesomeIcon
-                            icon={faTrashCan}
-                            size="xl"
-                            className=" cursor-pointer ml-auto mr-auto mt-[25%]   hover:text-red-500"
-                            onClick={() => del(_id)}
-                          ></FontAwesomeIcon>
-                        </div>
+          </div>
+          <div className="grid md:grid-cols-4">
+            {data1 &&
+              auth &&
+              data1.map((curElem) => {
+                const { _id, file_path } = curElem;
+                // var path_pic = file_path;
+                // var path2 = path_pic.replace(/\\/g, "/");
+                // var path = path2.slice(19);
+                return (
+                  <>
+                    <div class="flex flex-col items-center mb-5" key={_id}>
+                      <img
+                        src={`https://drc-server.onrender.com/fileinfo/${file_path}`}
+                        style={{ height: "250px", width: "250px" }}
+                        alt={file_path}
+                      />
+                      <div>
+                        <FontAwesomeIcon
+                          icon={faTrashCan}
+                          size="xl"
+                          className=" cursor-pointer ml-auto mr-auto mt-[25%]   hover:text-red-500"
+                          onClick={() => del(_id)}
+                        ></FontAwesomeIcon>
                       </div>
-                    </>
-                  );
-                })}
-            </div>
+                    </div>
+                  </>
+                );
+              })}
           </div>
         </div>
+      </div>
       {/* </div> */}
       {auth && (
         <form
