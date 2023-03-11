@@ -19,7 +19,7 @@ function Math_facilities() {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("/Math_Research_facilities");
+    const response = await fetch("https://drc-server.onrender.com/Math_Research_facilities");
     setData1(await response.json());
   };
 
@@ -32,7 +32,7 @@ function Math_facilities() {
       if (file) {
         setErrMsg("");
         await axios.post(
-          `/Math_Research_facilities_img_upload/${id}`,
+          `https://drc-server.onrender.com/Math_Research_facilities_img_upload/${id}`,
           { file: file },
           {
             headers: {
@@ -57,7 +57,7 @@ function Math_facilities() {
       const arr = { pid: pid, type: type };
       console.log(id, arr);
       const response = await fetch(
-        `/delete_Math_Research_facilities_para/${id}`,
+        `https://drc-server.onrender.com/delete_Math_Research_facilities_para/${id}`,
         {
           method: "POST",
           body: JSON.stringify(arr),
@@ -79,7 +79,7 @@ function Math_facilities() {
 
   const del = async (id) => {
     console.log(id);
-    const response = await fetch(`/delete_Math_Research_facilities/${id}`, {
+    const response = await fetch(`https://drc-server.onrender.com/delete_Math_Research_facilities/${id}`, {
       method: "POST",
     });
     await response.json();
@@ -95,7 +95,7 @@ function Math_facilities() {
     console.log(id);
     console.log(file_path1);
     await axios.post(
-      `/delete_pdf_link_Math_Research_facilities_fac/${id}`,
+      `https://drc-server.onrender.com/delete_pdf_link_Math_Research_facilities_fac/${id}`,
       { file_path1: file_path1, pid: pid },
       {
         method: "POST",
@@ -122,7 +122,7 @@ function Math_facilities() {
         setErrMsg("");
         const arr = { para1: para };
         console.log(arr);
-        await fetch(`/Math_Research_facilities_add_para/${id}`, {
+        await fetch(`https://drc-server.onrender.com/Math_Research_facilities_add_para/${id}`, {
           method: "POST",
           body: JSON.stringify(arr),
           headers: { "Content-Type": "application/json" },
@@ -140,7 +140,7 @@ function Math_facilities() {
   const handleSubmit_link = async (id, link) => {
     try {
       console.log(link);
-      await axios.post(`/Math_Research_facilities_add_link/${id}`, {
+      await axios.post(`https://drc-server.onrender.com/Math_Research_facilities_add_link/${id}`, {
         link: link,
       });
       setCaption("");
@@ -157,7 +157,7 @@ function Math_facilities() {
       console.log(pdf);
       if (pdf) {
         await axios.post(
-          `/Math_Research_facilities_file_upload/${id}`,
+          `https://drc-server.onrender.com/Math_Research_facilities_file_upload/${id}`,
           {
             file: pdf,
           },
@@ -184,7 +184,7 @@ function Math_facilities() {
       if (link.trim() !== "" && caption.trim() !== "") {
         // if (file) {
         setErrMsg("");
-        await axios.post(`/Math_Research_facilities_upload`, {
+        await axios.post(`https://drc-server.onrender.com/Math_Research_facilities_upload`, {
           title: link,
           description: caption,
         });

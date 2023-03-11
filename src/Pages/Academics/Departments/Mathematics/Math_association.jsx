@@ -21,7 +21,7 @@ function Math_association() {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("/Math_Association");
+    const response = await fetch("https://drc-server.onrender.com/Math_Association");
     setData1(await response.json());
   };
 
@@ -34,7 +34,7 @@ function Math_association() {
       if (file) {
         setErrMsg("");
         await axios.post(
-          `/Math_Association_img_upload/${id}`,
+          `https://drc-server.onrender.com/Math_Association_img_upload/${id}`,
           { file: file },
           {
             headers: {
@@ -58,7 +58,7 @@ function Math_association() {
     try {
       const arr = { pid: pid, type: type };
       console.log(id, arr);
-      const response = await fetch(`/delete_Math_Association_para/${id}`, {
+      const response = await fetch(`https://drc-server.onrender.com/delete_Math_Association_para/${id}`, {
         method: "POST",
         body: JSON.stringify(arr),
         headers: { "Content-Type": "application/json" },
@@ -78,7 +78,7 @@ function Math_association() {
 
   const del = async (id) => {
     console.log(id);
-    const response = await fetch(`/delete_Math_Association/${id}`, {
+    const response = await fetch(`https://drc-server.onrender.com/delete_Math_Association/${id}`, {
       method: "POST",
     });
     await response.json();
@@ -94,7 +94,7 @@ function Math_association() {
     console.log(id);
     console.log(file_path1);
     await axios.post(
-      `/delete_pdf_link_Math_Association_fac/${id}`,
+      `https://drc-server.onrender.com/delete_pdf_link_Math_Association_fac/${id}`,
       { file_path1: file_path1, pid: pid },
       {
         method: "POST",
@@ -106,7 +106,7 @@ function Math_association() {
     console.log(id);
     console.log(file_path1);
     await axios.post(
-      `/delete_img_Math_Association_fac/${id}`,
+      `https://drc-server.onrender.com/delete_img_Math_Association_fac/${id}`,
       { file_path1: file_path1, pid: pid },
       {
         method: "POST",
@@ -121,7 +121,7 @@ function Math_association() {
         setErrMsg("");
         const arr = { para1: para };
         console.log(arr);
-        await fetch(`/Math_Association_add_para/${id}`, {
+        await fetch(`https://drc-server.onrender.com/Math_Association_add_para/${id}`, {
           method: "POST",
           body: JSON.stringify(arr),
           headers: { "Content-Type": "application/json" },
@@ -139,7 +139,7 @@ function Math_association() {
   const handleSubmit_link = async (id, link) => {
     try {
       console.log(link);
-      await axios.post(`/Math_Association_add_link/${id}`, {
+      await axios.post(`https://drc-server.onrender.com/Math_Association_add_link/${id}`, {
         link: link,
       });
       setCaption("");
@@ -156,7 +156,7 @@ function Math_association() {
       console.log(pdf);
       if (pdf) {
         await axios.post(
-          `/Math_Association_file_upload/${id}`,
+          `https://drc-server.onrender.com/Math_Association_file_upload/${id}`,
           {
             file: pdf,
           },
@@ -183,7 +183,7 @@ function Math_association() {
       if (link.trim() !== "" && caption.trim() !== "") {
         // if (file) {
         setErrMsg("");
-        await axios.post(`/Math_Association_upload`, {
+        await axios.post(`https://drc-server.onrender.com/Math_Association_upload`, {
           title: link,
           description: caption,
         });

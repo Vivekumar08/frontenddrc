@@ -16,7 +16,9 @@ const Political_Science_fac_data_sup = (props) => {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("https://drc-server.onrender.com/Political_Science_faculty");
+    const response = await fetch(
+      "https://drc-server.onrender.com/Political_Science_faculty"
+    );
     setData1(await response.json());
   };
 
@@ -49,11 +51,16 @@ const Political_Science_fac_data_sup = (props) => {
           <div class="first fac ">
             {props.img_data.file_path &&
               props.img_data.file_path.map((elem) => {
-                var path2 = elem.file_path1.replace(/\\/g, "/");
-                var path = path2.slice(19);
+                // var path2 = elem.file_path1.replace(/\\/g, "/");
+                // var path = path2.slice(19);
                 return (
                   <>
-                    <img class="Fac-img" src={path} key={elem._id} alt="" />
+                    <img
+                      class="Fac-img"
+                      src={`https://drc-server.onrender.com/fileinfo/${elem.file_path1}`}
+                      key={elem._id}
+                      alt=""
+                    />
                     <div class="fac-description-bk"></div>
                     <div class="Fac-description">
                       <p>{props.description}</p>
@@ -63,15 +70,18 @@ const Political_Science_fac_data_sup = (props) => {
                 );
               })}
 
-
             {props.img_data.pdf_path.map((elem) => {
-              const path2 = elem.pdf_path1.replace(/\\/g, "/");
-              const path = path2.slice(19);
+              // const path2 = elem.pdf_path1.replace(/\\/g, "/");
+              // const path = path2.slice(19);
               return (
                 <>
                   {elem.value === "true" && (
                     <>
-                      <a href={path}>
+                      <a
+                        href={`https://drc-server.onrender.com/fileinfo/${elem.pdf_path1}`}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
                         <div class="fac-btn">View CV</div>
                       </a>
                     </>

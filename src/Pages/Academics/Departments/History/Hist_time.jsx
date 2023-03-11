@@ -22,7 +22,7 @@ const Hist_time = () => {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("/Hist_time");
+    const response = await fetch("https://drc-server.onrender.com/Hist_time");
     setData1(await response.json());
   };
 
@@ -47,7 +47,7 @@ const Hist_time = () => {
   const del = async (id) => {
     console.log(id);
     const response = await fetch(
-      `/delete_Hist_time/${id}`,
+      `https://drc-server.onrender.com/delete_Hist_time/${id}`,
       {
         method: "DELETE",
       }
@@ -95,10 +95,10 @@ const Hist_time = () => {
 
   return (
     <div className=" flex flex-col">
-<Histbanner/>
+      <Histbanner />
       <div className="flex flex-row">
         <div className="flex  flex-col mt-12 ml-2 ">
-<History/>
+          <History />
         </div>
 
         <div className="w-full mr-auto ml-auto">
@@ -109,18 +109,25 @@ const Hist_time = () => {
             {data1 &&
               data1.map((curElem) => {
                 const { _id, title, file_path, link } = curElem;
-                var path_pic = file_path;
-                var path2 = path_pic.replace(/\\/g, "/");
-                var path = path2.slice(19);
+                // var path_pic = file_path;
+                // var path2 = path_pic.replace(/\\/g, "/");
+                // var path = path2.slice(19);
                 return (
                   <>
                     <div class="card2 ml-2 " key={_id}>
-                      <span className="  font-bold text-lg w-[75%] ">{link}</span>
+                      <span className="  font-bold text-lg w-[75%] ">
+                        {link}
+                      </span>
                       <div className="flex flex-col ml-4 w-full">
                         <div class="info2 ml-4 w-full">
                           <p className="text-justify ">{title}</p>
                           <br />
-                          <a href={path} className="">
+                          <a
+                            href={`https://drc-server.onrender.com/fileinfo/${file_path}`}
+                            target="_blank"
+                            rel="noreferrer"
+                            className=""
+                          >
                             <button className="w-[90%]">View</button>
                             <br />
                           </a>

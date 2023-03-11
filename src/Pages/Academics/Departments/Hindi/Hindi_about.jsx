@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrashCan,faBars, faClose } from "@fortawesome/free-solid-svg-icons";
+import { faTrashCan, faBars, faClose } from "@fortawesome/free-solid-svg-icons";
 import AuthContext from "../../../../Context/AuthProvider";
 import Dropzone from "react-dropzone";
 import axios from "axios";
@@ -20,9 +20,8 @@ const Hin = () => {
   const [file, setFile] = useState(null);
   const { auth, setAuth } = useContext(AuthContext);
 
-
   const fetchdata = async () => {
-    const response = await fetch("/Hin_About");
+    const response = await fetch("https://drc-server.onrender.com/Hin_About");
     const dat = await response.json();
     console.log(dat);
     {
@@ -48,13 +47,12 @@ const Hin = () => {
     fetchdata();
   }, []);
 
-
   const del = async (id, pid, type) => {
     try {
       const arr = { pid: pid, type: type };
       console.log(id, arr);
       const response = await fetch(
-        `/delete_Hin_About_data/${id}`,
+        `https://drc-server.onrender.com/delete_Hin_About_data/${id}`,
         {
           method: "POST",
           body: JSON.stringify(arr),
@@ -80,7 +78,7 @@ const Hin = () => {
         console.log(files);
         setErrMsg("");
         await axios.post(
-          `/Hin_About_add`,
+          `https://drc-server.onrender.com/Hin_About_add`,
           { file: files },
           {
             headers: {
@@ -106,11 +104,14 @@ const Hin = () => {
         setErrMsg("");
         const arr = { para1: para };
         console.log(arr);
-        await fetch(`/Hin_About_add_data/${id}`, {
-          method: "POST",
-          body: JSON.stringify(arr),
-          headers: { "Content-Type": "application/json" },
-        });
+        await fetch(
+          `https://drc-server.onrender.com/Hin_About_add_data/${id}`,
+          {
+            method: "POST",
+            body: JSON.stringify(arr),
+            headers: { "Content-Type": "application/json" },
+          }
+        );
         setPara("");
         setAuth(true);
         fetchdata();
@@ -121,7 +122,6 @@ const Hin = () => {
       err.response && setErrMsg(err.response.data);
     }
   };
-
 
   return (
     <>
@@ -164,14 +164,14 @@ const Hin = () => {
             {data1 &&
               data1.img_data.file_path &&
               data1.img_data.file_path.map((elem) => {
-                var path2 = elem.file_path1.replace(/\\/g, "/");
-                var path = path2.slice(19);
+                // var path2 = elem.file_path1.replace(/\\/g, "/");
+                // var path = path2.slice(19);
                 // console.log(path);
                 return (
                   <>
                     <div className=" flex flex-row  items-center p-4">
                       <img
-                        src={path}
+                        src={`https://drc-server.onrender.com/fileinfo/${elem.file_path1}`}
                         style={{
                           width: "300px",
                           height: "250px",

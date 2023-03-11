@@ -16,7 +16,7 @@ const Hist_fac_data = (props) => {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("/Hist_fac");
+    const response = await fetch("https://drc-server.onrender.com/Hist_fac");
     setData1(await response.json());
   };
 
@@ -67,13 +67,17 @@ const Hist_fac_data = (props) => {
             {/* </> */}
 
             {props.img_data.pdf_path.map((elem) => {
-              const path2 = elem.pdf_path1.replace(/\\/g, "/");
-              const path = path2.slice(19);
+              // const path2 = elem.pdf_path1.replace(/\\/g, "/");
+              // const path = path2.slice(19);
               return (
                 <>
                   {elem.value === "true" && (
                     <>
-                      <a href={path}>
+                      <a
+                        href={`https://drc-server.onrender.com/fileinfo/${elem.pdf_path1}`}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
                         <div class="fac-btn">View CV</div>
                       </a>
                     </>
@@ -95,7 +99,7 @@ const Hist_fac_data = (props) => {
           {props.img_data.pdf_path.map((elem) => {
             return (
               <>
-                {auth&&elem.value === "false" && (
+                {auth && elem.value === "false" && (
                   <>
                     {/* // <div key={props.id}> */}
 
@@ -142,7 +146,6 @@ const Hist_fac_data = (props) => {
               </>
             );
           })}
-
         </div>
       )}
     </>

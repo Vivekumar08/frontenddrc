@@ -25,7 +25,9 @@ const Magazine = () => {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("/Hin_Magazine");
+    const response = await fetch(
+      "https://drc-server.onrender.com/Hin_Magazine"
+    );
     setData1(await response.json());
   };
 
@@ -50,7 +52,7 @@ const Magazine = () => {
   const del = async (id) => {
     console.log(id);
     const response = await fetch(
-      `/delete_Hin_Magazine/${id}`,
+      `https://drc-server.onrender.com/delete_Hin_Magazine/${id}`,
       {
         method: "DELETE",
       }
@@ -75,11 +77,15 @@ const Magazine = () => {
 
         setErrMsg("");
         console.log(formData);
-        await axios.post(`/Hin_Magazine_add`, formData, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        });
+        await axios.post(
+          `https://drc-server.onrender.com/Hin_Magazine_add`,
+          formData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
         setCaption("");
         setLink("");
         setFile("");
@@ -101,18 +107,18 @@ const Magazine = () => {
       <Hindibanner />
 
       <div className="flex flex-row">
-      <div className="md:hidden absolute bg-white">
+        <div className="md:hidden absolute bg-white">
           {visible ? (
             <>
-                <div className=" flex  flex-col mt-8 ml-2">
-                  <FontAwesomeIcon
-                    icon={faClose}
-                    size="lg"
-                    onClick={() => setVisible(!visible)}
-                    className=" border-2  border-[#000080] mr-2 hover:text-black text-white  rounded-lg p-2 cursor-pointer hover:bg-white bg-[#000080]"
-                  />
-                  <Hindi />
-                </div>
+              <div className=" flex  flex-col mt-8 ml-2">
+                <FontAwesomeIcon
+                  icon={faClose}
+                  size="lg"
+                  onClick={() => setVisible(!visible)}
+                  className=" border-2  border-[#000080] mr-2 hover:text-black text-white  rounded-lg p-2 cursor-pointer hover:bg-white bg-[#000080]"
+                />
+                <Hindi />
+              </div>
             </>
           ) : (
             <div className=" flex  flex-col mt-8 ml-2">
@@ -137,18 +143,25 @@ const Magazine = () => {
             {data1 &&
               data1.map((curElem) => {
                 const { _id, title, file_path, link } = curElem;
-                var path_pic = file_path;
-                var path2 = path_pic.replace(/\\/g, "/");
-                var path = path2.slice(19);
+                // var path_pic = file_path;
+                // var path2 = path_pic.replace(/\\/g, "/");
+                // var path = path2.slice(19);
                 return (
                   <>
-                        <div class="card2 ml-12 mb-8 md:ml-4 " key={_id}>
-                      <span className="  font-bold text-justify text-lg w-[75%] ">{link}</span>
+                    <div class="card2 ml-12 mb-8 md:ml-4 " key={_id}>
+                      <span className="  font-bold text-justify text-lg w-[75%] ">
+                        {link}
+                      </span>
                       <div className="flex flex-col ml-4 w-full">
                         <div class="info2  w-full">
                           <p className="text-justify ">{title}</p>
                           <br />
-                          <a href={path} className="">
+                          <a
+                            href={`https://drc-server.onrender.com/fileinfo/${file_path}`}
+                            target="_blank"
+                            rel="noreferrer"
+                            className=""
+                          >
                             <button className="w-[90%]">View</button>
                             <br />
                           </a>

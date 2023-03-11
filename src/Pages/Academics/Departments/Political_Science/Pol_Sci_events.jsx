@@ -8,7 +8,6 @@ import "../../../Societies.css";
 import PolScibanner from "./PolScibanner";
 import Political_Science from "../../../../Components/DepartSIde/Political_Science";
 
-
 function Events() {
   const [visible, setVisible] = useState(false);
   const [data1, setData1] = useState();
@@ -24,7 +23,9 @@ function Events() {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("https://drc-server.onrender.com/PolSci_Events");
+    const response = await fetch(
+      "https://drc-server.onrender.com/PolSci_Events"
+    );
     setData1(await response.json());
   };
 
@@ -59,9 +60,12 @@ function Events() {
 
   const del = async (id) => {
     // console.log(id);
-    const response = await fetch(`https://drc-server.onrender.com/delete_PolSci_Events/${id}`, {
-      method: "POST",
-    });
+    const response = await fetch(
+      `https://drc-server.onrender.com/delete_PolSci_Events/${id}`,
+      {
+        method: "POST",
+      }
+    );
     const data = await response.json();
     if (data || response.status === 200) {
       fetchdata();
@@ -119,7 +123,6 @@ function Events() {
     e.preventDefault();
     try {
       if (caption.trim() !== "") {
-
         setErrMsg("");
         console.log(file, caption);
         await axios.post(
@@ -196,13 +199,13 @@ function Events() {
                         <div className="">
                           {img_data.file_path &&
                             img_data.file_path.map((elem) => {
-                              var path2 = elem.file_path1.replace(/\\/g, "/");
-                              var path = path2.slice(19);
+                              // var path2 = elem.file_path1.replace(/\\/g, "/");
+                              // var path = path2.slice(19);
                               return (
                                 <>
                                   <img
                                     class="Fac-img1"
-                                    src={path}
+                                    src={`https://drc-server.onrender.com/fileinfo/${elem.file_path1}`}
                                     alt=""
                                   />
                                 </>
@@ -210,20 +213,22 @@ function Events() {
                             })}
                           <div class="hero-description-bk"></div>
                           <div class="hero-description">
-                          <p className="font-medium"> {title}</p>
+                            <p className="font-medium"> {title}</p>
                           </div>
                           {img_data.pdf_path &&
                             img_data.pdf_path.map((elem) => {
-                              const path2 = elem.pdf_path1.replace(/\\/g, "/");
-                              const path = path2.slice(19);
+                              // const path2 = elem.pdf_path1.replace(/\\/g, "/");
+                              // const path = path2.slice(19);
                               return (
                                 <>
                                   {elem.value === "true" && (
                                     <>
-                                      <a href={path}>
-                                        <div class="hero-btn ">
-                                          Learn More
-                                        </div>
+                                      <a
+                                        href={`https://drc-server.onrender.com/fileinfo/${elem.pdf_path1}`}
+                                        target="_blank"
+                                        rel="noreferrer"
+                                      >
+                                        <div class="hero-btn ">Learn More</div>
                                       </a>
                                     </>
                                   )}

@@ -26,7 +26,7 @@ const Hin_faculty = () => {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("/hin_faculty");
+    const response = await fetch("https://drc-server.onrender.com/hin_faculty");
     setData1(await response.json());
   };
 
@@ -58,7 +58,7 @@ const Hin_faculty = () => {
   const del = async (id) => {
     console.log(id);
     const response = await fetch(
-      `/delete_hin_faculty/${id}`,
+      `https://drc-server.onrender.com/delete_hin_faculty/${id}`,
       {
         method: "POST",
       }
@@ -78,7 +78,7 @@ const Hin_faculty = () => {
       if (pdf) {
         // setErrMsg("");
         await axios.post(
-          `/hin_faculty_cv_upload/${id}`,
+          `https://drc-server.onrender.com/hin_faculty_cv_upload/${id}`,
           {
             file: pdf,
           },
@@ -108,7 +108,7 @@ const Hin_faculty = () => {
           // setErrMsg("");
           console.log(link, caption, imag, filter);
           const data = await axios.post(
-            `/hin_faculty_file_upload`,
+            `https://drc-server.onrender.com/hin_faculty_file_upload`,
             // { method: "POST" },
             { title: caption, description: link, file: imag, filter: filter },
             {
