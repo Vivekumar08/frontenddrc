@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash, faUser } from "@fortawesome/free-solid-svg-icons";
 import AuthContext from "../../Context/AuthProvider";
 import { Link, useNavigate } from "react-router-dom";
+import { setAuthToken } from "./setAuthToken";
 
 const Admin = () => {
   const navigate = useNavigate();
@@ -24,7 +25,6 @@ const Admin = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(user, pwd);
     const response = await fetch("https://drc-server.onrender.com/AdminLogin", {
       method: "POST",
       headers: {
@@ -45,8 +45,12 @@ const Admin = () => {
     } else {
       setUser("");
       setPwd("");
-      setAuth(true);
-      navigate("/");
+      if (data.token) {
+        localStorage.setItem("token", data.token);
+        setAuthToken(data.token)
+        setAuth(true);
+        navigate(-1)
+      }
     }
   };
 

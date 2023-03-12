@@ -48,6 +48,7 @@ const Bio_fac_data = (props) => {
           <div class="first fac ml-5 mr-5 mt-5 ">
             {props.img_data.file_path &&
               props.img_data.file_path.map((elem) => {
+                console.log(props.img_data)
                 // var path2 = elem.file_path1.replace(/\\/g, "/");
                 // var path = path2.slice(19);
                 return (
